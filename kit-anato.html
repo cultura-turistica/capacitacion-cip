@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit ANATO 2026 | CULTURA T</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #E67E22;
+        }
+
+        .project-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Module Navigation */
+        .module-nav {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .module-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .module-option:hover {
+            background: #fff5e6;
+            transform: translateX(5px);
+        }
+
+        .module-option.active {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            border-color: #E67E22;
+        }
+
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #E67E22;
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .module-option.active .radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: #E67E22;
+            border-radius: 50%;
+        }
+
+        .module-info {
+            flex: 1;
+        }
+
+        .module-number {
+            font-size: 0.7rem;
+            color: #E67E22;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .module-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #2C3E50;
+            margin: 2px 0;
+        }
+
+        .module-subtitle {
+            font-size: 0.8rem;
+            color: #7F8C8D;
+        }
+
+        .module-icon {
+            font-size: 1.5rem;
+            margin-left: 10px;
+        }
+
+        /* Module Content */
+        .module-content {
+            background: white;
+            margin: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .module-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-header {
+            background: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .content-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .content-header p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        .content-body {
+            padding: 20px;
+        }
+
+        /* Content Sections */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: #2C3E50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+            border-radius: 2px;
+        }
+
+        .content-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #34495E;
+            margin-bottom: 15px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .info-box.tip {
+            border-color: #27AE60;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+        }
+
+        .info-box.warning {
+            border-color: #F39C12;
+            background: linear-gradient(135deg, #fff3cd 0%, #fff8e6 100%);
+        }
+
+        .info-box strong {
+            color: #2C3E50;
+        }
+
+        /* Practical Cards */
+        .practical-grid {
+            display: grid;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .practical-card {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            border: 2px solid #F39C12;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .practical-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: #E67E22;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .practical-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #34495E;
+        }
+
+        /* Success Case */
+        .success-case {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #27AE60;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .success-case h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #27AE60;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .success-case p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #34495E;
+            margin-bottom: 8px;
+            padding-left: 12px;
+            border-left: 3px solid #27AE60;
+        }
+
+        /* Quick Tips */
+        .quick-tips {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .quick-tips h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .quick-tips li {
+            padding: 6px 0 6px 25px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .quick-tips li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #F39C12;
+            font-weight: 700;
+        }
+
+        /* Tariff Table */
+        .tariff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .tariff-table thead {
+            display: table-header-group;
+        }
+
+        .tariff-table tbody {
+            display: table-row-group;
+        }
+
+        .tariff-table th {
+            background: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .tariff-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .tariff-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tariff-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* B2B Resources */
+        .b2b-resources {
+            background: #f8f9fa;
+            border: 2px dashed #E67E22;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .b2b-resources h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #E67E22;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .resource-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+
+        .resource-item h5 {
+            font-size: 0.9rem;
+            color: #2C3E50;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .resource-item p {
+            font-size: 0.85rem;
+            color: #7F8C8D;
+            line-height: 1.5;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 0 0 12px 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .nav-btn.prev {
+            background: #ecf0f1;
+            color: #2C3E50;
+        }
+
+        .nav-btn.prev:hover:not(:disabled) {
+            background: #bdc3c7;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+            color: white;
+        }
+
+        .nav-btn.next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            background: white;
+            margin: 10px;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .welcome-screen h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+
+        .welcome-screen p {
+            font-size: 0.95rem;
+            color: #34495E;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .welcome-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .welcome-feature {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .welcome-feature-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .welcome-feature h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+
+        .welcome-feature p {
+            font-size: 0.8rem;
+            color: #7F8C8D;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .welcome-features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="CULTURA T">
+                <span class="logo-text">Kit ANATO 2026</span>
+            </div>
+            <span class="project-badge">FNTP-2025-320</span>
+        </div>
+    </header>
+
+    <!-- Module Navigation -->
+    <nav class="module-nav">
+        <div class="module-option" data-module="0" onclick="selectModule(0)">
+            <div class="radio-custom"></div>
+            <div class="module-info">
+                <div class="module-number">Módulo 1</div>
+                <div class="module-title">Consejos Tácticos</div>
+                <div class="module-subtitle">Entorno B2B</div>
+            </div>
+            <div class="module-icon">🎯</div>
+        </div>
+
+        <div class="module-option" data-module="1" onclick="selectModule(1)">
+            <div class="radio-custom"></div>
+            <div class="module-info">
+                <div class="module-number">Módulo 2</div>
+                <div class="module-title">Pitch y Comercialización</div>
+                <div class="module-subtitle">Storytelling B2B</div>
+            </div>
+            <div class="module-icon">📖</div>
+        </div>
+
+        <div class="module-option" data-module="2" onclick="selectModule(2)">
+            <div class="radio-custom"></div>
+            <div class="module-info">
+                <div class="module-number">Módulo 3</div>
+                <div class="module-title">Habilidades Blandas</div>
+                <div class="module-subtitle">Inteligencia Emocional</div>
+            </div>
+            <div class="module-icon">💚</div>
+        </div>
+
+        <div class="module-option" data-module="3" onclick="selectModule(3)">
+            <div class="radio-custom"></div>
+            <div class="module-info">
+                <div class="module-number">Módulo 4</div>
+                <div class="module-title">Servicio al Cliente</div>
+                <div class="module-subtitle">Momentos WOW</div>
+            </div>
+            <div class="module-icon">✨</div>
+        </div>
+
+        <div class="module-option" data-module="4" onclick="selectModule(4)">
+            <div class="radio-custom"></div>
+            <div class="module-info">
+                <div class="module-number">Módulo 5</div>
+                <div class="module-title">Negociación B2B</div>
+                <div class="module-subtitle">Precios y Canales</div>
+            </div>
+            <div class="module-icon">💼</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <h2>📚 Kit de Entrenamiento Comercial</h2>
+            <p>Herramientas prácticas para maximizar tu participación en la Vitrina Turística de ANATO 2026</p>
+
+            <div class="welcome-features">
+                <div class="welcome-feature">
+                    <div class="welcome-feature-icon">📱</div>
+                    <h4>100% Mobile</h4>
+                    <p>Diseñado para celular</p>
+                </div>
+                <div class="welcome-feature">
+                    <div class="welcome-feature-icon">⚡</div>
+                    <h4>Acceso Rápido</h4>
+                    <p>Sin descargas</p>
+                </div>
+                <div class="welcome-feature">
+                    <div class="welcome-feature-icon">🎯</div>
+                    <h4>Enfoque B2B</h4>
+                    <p>Para ferias</p>
+                </div>
+                <div class="welcome-feature">
+                    <div class="welcome-feature-icon">📊</div>
+                    <h4>Casos Reales</h4>
+                    <p>Ejemplos prácticos</p>
+                </div>
+            </div>
+
+            <button class="start-btn" onclick="selectModule(0)">
+                🚀 Comenzar Entrenamiento
+            </button>
+        </div>
+
+        <!-- Module contents will be injected here -->
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Proyecto FNTP-2025-320 | Vitrina Turística ANATO 2026</p>
+        <p>Fondo Nacional de Turismo - FONTUR</p>
+        <p>© 2026 CULTURA T SAS</p>
+    </footer>
+
+    <script>
+        const modules = [
+            {
+                id: 1,
+                title: "Consejos Tácticos para la Feria",
+                subtitle: "Entorno B2B",
+                icon: "🎯",
+                objective: "Maximizar tu tiempo, optimizar el relacionamiento corporativo y convertir contactos en cierres de negocios efectivos.",
+                theory: `
+                    <p>Asistir a una feria B2B no es pararse detrás de un mostrador. Es el mecanismo más poderoso para prospectar clientes y analizar competencia.</p>
+                    <div class="info-box warning">
+                        <strong>⚠️ Error Común:</strong> Actitud pasiva (brazos cruzados, mirar reloj). El tiempo vuela y la proactividad es vital.
+                    </div>
+                    <p>El verdadero valor está en el <strong>seguimiento posterior</strong>. Clasificar clientes y contactarlos inmediatamente (incluso al día siguiente) garantiza el ROI.</p>
+                    <div class="info-box tip">
+                        <strong>💡 Dato Clave:</strong> 80% de ventas se concretan después del 5to contacto. La mayoría solo hace 1-2 contactos post-feria.
+                    </div>
+                `,
+                practical: [
+                    { icon: "👥", title: "Equipo Dividido", content: "Mínimo 2 personas: 1 atiende el stand, 1 hace recorridos estratégicos buscando contactos y tendencias." },
+                    { icon: "📇", title: "Protocolo Tarjeta", content: "Con asiáticos: ambas manos. Sin tarjetas: pide número y envía WhatsApp en el acto." },
+                    { icon: "📝", title: "Clasificación Leads", content: "Anota atrás de cada tarjeta: 'Muy interesado', 'Medianamente', 'Poco'. Prioriza seguimiento." }
+                ],
+                successCase: `
+                    <p><strong>Situación:</strong> Operador Eje Cafetero con 50 tarjetas al finalizar día 1.</p>
+                    <p><strong>Acción:</strong> Esa noche enviaron correo personalizado con Ficha Técnica solo a 15 "Muy interesados".</p>
+                    <p><strong>Resultado:</strong> Día 2: dos mayoristas regresaron a firmar acuerdo comercial.</p>
+                `,
+                tips: [
+                    "Llega 30 min antes de apertura",
+                    "Ten agua y snacks en stand",
+                    "Zapatos cómodos (8+ horas de pie)",
+                    "Carga celular + power bank",
+                    "Prepara pitch de 30 seg, 2 min, 5 min"
+                ]
+            },
+            {
+                id: 2,
+                title: "El Pitch y Comercialización",
+                subtitle: "Storytelling B2B + Tarifas",
+                icon: "📖",
+                objective: "Estructurar discurso persuasivo, emocional y directo para ruedas de negocios B2B.",
+                theory: `
+                    <p>Ruedas de negocios: 15-20 minutos. Captar atención casi de inmediato. Usa <strong>Storytelling</strong> con lenguaje sensorial.</p>
+                    <div class="info-box tip">
+                        <strong>🔄 Las 4Cs del Marketing Moderno:</strong><br>
+                        Producto → Solución al Consumidor<br>
+                        Precio → Costo/Valor<br>
+                        Plaza → Conveniencia tecnológica<br>
+                        Promoción → Comunicación de doble vía
+                    </div>
+                    <p>En ANATO no solo vienen a ver portafolios. Vienen por: <strong>tarifas netas, protocolos de operación, condiciones de alianza, y viabilidad comercial</strong>.</p>
+                    <div class="info-box warning">
+                        <strong>⚠️ Realidad B2B:</strong> El comprador evalúa: ¿Puedo vender esto? ¿Qué margen tengo? ¿Qué soporte me das?
+                    </div>
+                `,
+                practical: [
+                    { icon: "⏱️", title: "Micro-Pitch B2B", content: "3 minutos: 1) Quién eres, 2) Qué te hace único, 3) Cómo facilitas vida a la agencia." },
+                    { icon: "📱", title: "Arsenal Digital", content: "Celular: Ficha Técnica, políticas descuento, capacidades, métodos pago. Listo para QR/WhatsApp." },
+                    { icon: "🎭", title: "Narrativa Sensorial", content: "No digas 'tour selva'. Di: 'Imagina despertar con monos aulladores, café recién tostado, inmensidad verde'." },
+                    { icon: "💰", title: "Estructura Tarifaria", content: "Ten clara: Tarifa Neta, Tarifa Comisionable (15-25%), Temporadas, Políticas cancelación, Cupos mínimos." }
+                ],
+                b2bResources: [
+                    { icon: "📄", title: "Ficha Técnica B2B", content: "Incluye: descripción, duración, cupos, tarifas netas, comisiones, políticas, contactos" },
+                    { icon: "📋", title: "Protocolo Operativo", content: "Procedimientos: reservas, confirmaciones, cambios, cancelaciones, emergencias, pagos" },
+                    { icon: "🤝", title: "Acuerdo de Alianza", content: "Términos: comisiones, plazos pago, exclusividades, responsabilidades, confidencialidad" }
+                ],
+                tariffTable: `
+                    <table class="tariff-table">
+                        <thead>
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Tarifa Neta</th>
+                                <th>Comisión</th>
+                                <th>Precio Público</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Paquete Básico (2D/1N)</td>
+                                <td>$180.000</td>
+                                <td>20% ($36.000)</td>
+                                <td>$216.000</td>
+                            </tr>
+                            <tr>
+                                <td>Paquete Premium (3D/2N)</td>
+                                <td>$320.000</td>
+                                <td>25% ($80.000)</td>
+                                <td>$400.000</td>
+                            </tr>
+                            <tr>
+                                <td>Experiencia VIP</td>
+                                <td>$450.000</td>
+                                <td>20% ($90.000)</td>
+                                <td>$540.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `,
+                successCase: `
+                    <p><strong>Situación:</strong> Agencia internacional saturada de "sol y playa".</p>
+                    <p><strong>Acción:</strong> Expositor ofreció dulce típico mientras contaba leyenda de pescadores locales.</p>
+                    <p><strong>Resultado:</strong> Agencia recordó marca sobre 20 stands. Cerró alianza comercial.</p>
+                `,
+                tips: [
+                    "Practica pitch frente espejo 10 veces",
+                    "Grábate y escúchate (tono, ritmo)",
+                    "3 versiones: 30 seg, 2 min, 5 min",
+                    "Incluye pregunta que invite conversación",
+                    "Termina con llamado a acción claro",
+                    "Ten tarifas impresas Y digitales"
+                ]
+            },
+            {
+                id: 3,
+                title: "Habilidades Blandas",
+                subtitle: "Inteligencia Emocional",
+                icon: "💚",
+                objective: "Gestionar estrés de feria y conectar profundamente con clientes.",
+                theory: `
+                    <p>Inteligencia emocional: conciencia de uno mismo + control de impulsos ante frustración.</p>
+                    <div class="info-box warning">
+                        <strong>⚠️ Realidad Feria:</strong> Habrá rechazos, personas que solo piden regalos, clientes difíciles. No tomes "No" como fracaso personal.
+                    </div>
+                    <p>Vendedor exitoso usa <strong>optimismo</strong> y <strong>esperanza</strong> para recuperar entusiasmo y atender siguiente cliente con misma energía.</p>
+                    <div class="info-box tip">
+                        <strong>🧠 Ciencia:</strong> Estrés activa amígdala (centro miedo). Con respiración la desactivas en 5 minutos.
+                    </div>
+                `,
+                practical: [
+                    { icon: "😊", title: "Termómetro Anfitrión", content: "Primera impresión = lenguaje no verbal. Dinamismo, sonreír, mirar ojos, saludar con entusiasmo." },
+                    { icon: "👀", title: "Lectura Cliente", content: "Si mira reloj o cruza brazos: tiene prisa. Ve directo al grano, entrega info clave." },
+                    { icon: "🚦", title: "Semáforo Emocional", content: "Rojo (respira), Amarillo (reenfoca actitud), Verde (vuelve con sonrisa profesional)." }
+                ],
+                successCase: `
+                    <p><strong>Situación:</strong> Expositor 4 horas de pie, perdió negociación importante. Frustrado.</p>
+                    <p><strong>Acción:</strong> Tomó "tiempo fuera" 5 min, ejercicio respiración, calmó sistema nervioso.</p>
+                    <p><strong>Resultado:</strong> Siguiente cliente notó energía amable. Firmó contrato más grande jornada.</p>
+                `,
+                tips: [
+                    "Respira 4-7-8: inhala 4, sostén 7, exhala 8",
+                    "Pausas 5 min cada 2 horas",
+                    "Hidratación constante",
+                    "Sonríe aunque cansado (engaña cerebro)",
+                    "Celebra cada pequeño logro"
+                ]
+            },
+            {
+                id: 4,
+                title: "Servicio al Cliente",
+                subtitle: "Momentos WOW",
+                icon: "✨",
+                objective: "Transformar 'momentos de verdad' en experiencias memorables que destaquen.",
+                theory: `
+                    <p>"Ciclo de Servicio": secuencia desde contacto hasta adquisición. Ocurren "Momentos de Verdad".</p>
+                    <div class="info-box warning">
+                        <strong>⚡ Momento Verdad:</strong> Si respuesta es deficiente, experiencia será negativa. Cada interacción cuenta.
+                    </div>
+                    <p>Crea "Momentos WOW": elementos inesperados que emocionan y generan recordación de marca.</p>
+                    <div class="info-box tip">
+                        <strong>💫 Fórmula WOW:</strong> Expectativa + Elemento Inesperado + Emoción Positiva = Recordación
+                    </div>
+                `,
+                practical: [
+                    { icon: "⚡", title: "Gestión Ágil", content: "Si no sabes respuesta, nunca digas 'No sé'. Anota correo, consulta, responde en <24h." },
+                    { icon: "☕", title: "Momento WOW Stand", content: "Elementos sensoriales: café recién hecho método tradicional, música folclórica en audífonos para prestar." },
+                    { icon: "📊", title: "NPS Exprés", content: "Después de atender: 'Del 1-10, ¿qué tan probable me recomiende?' Si bajo, ajusta actitud." }
+                ],
+                successCase: `
+                    <p><strong>Situación:</strong> Grupo compradores llegó a stand alojamiento rural agotado.</p>
+                    <p><strong>Acción:</strong> Primero ofreció silla, toallita húmeda aromatizada, agua fría.</p>
+                    <p><strong>Resultado:</strong> Clientes dedicaron 30 min. Cerraron acuerdo distribución.</p>
+                `,
+                tips: [
+                    "Ten agua fría disponible",
+                    "Prepara obsequio local pequeño",
+                    "Usa aromas agradables",
+                    "Ten sillas para visitantes cansados",
+                    "Ofrece más de lo que prometes"
+                ]
+            },
+            {
+                id: 5,
+                title: "Negociación B2B",
+                subtitle: "Precios y Canales",
+                icon: "💼",
+                objective: "Aplicar técnicas de precios y distribución que faciliten cierre de alianzas.",
+                theory: `
+                    <p>En ANATO tratas con intermediarios. Precio = estrategia de mercadeo que comunica valor.</p>
+                    <div class="info-box warning">
+                        <strong>❌ Error Imperdonable:</strong> Confundir precio consumidor final con precio aliado B2B.
+                    </div>
+                    <p>Domina diferencia: <strong>Tarifa Neta</strong> (base sin comisiones) vs <strong>Tarifa Comisionable</strong> (incluye % para agencia).</p>
+                    <div class="info-box tip">
+                        <strong>💰 Estructura B2B:</strong> Tarifa Neta + Comisión (15-25%) = Precio Consumidor. Transparencia = confianza.
+                    </div>
+                `,
+                practical: [
+                    { icon: "📈", title: "Claridad Márgenes", content: "Celular: matriz Costos Fijos, Variables, Margen Bruto. Muestra % comisión transparente." },
+                    { icon: "🔗", title: "Facilitando Plaza", content: "Explica fácil integración a catálogos. Ofrece fotos alta calidad, textos listos, reservas automatizadas." },
+                    { icon: "🤝", title: "Adaptabilidad Cierre", content: "Si duda por precio, no rebajes. Ofrece valor: 'Misma tarifa, incluyo coctel bienvenida'." }
+                ],
+                successCase: `
+                    <p><strong>Situación:</strong> Emprendedor perdió negocios: mismo precio web y agencias (sin margen).</p>
+                    <p><strong>Acción:</strong> Noche: reestructuró con "Tarifa Neta" clara. Día 2: presentó esquema 15% comisión.</p>
+                    <p><strong>Resultado:</strong> Proveedor exclusivo del Tour Operador. 3 alianzas ese día.</p>
+                `,
+                tips: [
+                    "Nunca mismo precio consumidor y agencia",
+                    "Matriz costos en celular",
+                    "3 niveles comisión (15%, 20%, 25%)",
+                    "Valor agregado antes de bajar precio",
+                    "Documenta acuerdos por escrito"
+                ]
+            }
+        ];
+
+        let currentModule = -1;
+
+        function selectModule(index) {
+            // Update current module
+            currentModule = index;
+
+            // Hide welcome screen
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            if (welcomeScreen) {
+                welcomeScreen.style.display = 'none';
+            }
+
+            // Update module navigation buttons
+            document.querySelectorAll('.module-option').forEach((opt, i) => {
+                if (i === index) {
+                    opt.classList.add('active');
+                } else {
+                    opt.classList.remove('active');
+                }
+            });
+
+            // Get module data
+            const module = modules[index];
+
+            // Build content HTML
+            let contentHTML = `
+                <div class="module-content active" id="module-${index}">
+                    <div class="content-header">
+                        <h2>${module.icon} Módulo ${module.id}: ${module.title}</h2>
+                        <p>${module.subtitle}</p>
+                    </div>
+
+                    <div class="content-body">
+                        <div class="section">
+                            <h3 class="section-title">🎯 Objetivo</h3>
+                            <p class="content-text">${module.objective}</p>
+                        </div>
+
+                        <div class="section">
+                            <h3 class="section-title">📖 Contenido Teórico</h3>
+                            <div class="content-text">${module.theory}</div>
+                        </div>
+            `;
+
+            // Add B2B Resources if available
+            if (module.b2bResources) {
+                contentHTML += `
+                    <div class="section">
+                        <h3 class="section-title">📋 Recursos B2B Esenciales</h3>
+                        <div class="b2b-resources">
+                            <h4>Herramientas para ANATO</h4>
+                            <div class="resource-grid">
+                                ${module.b2bResources.map(r => `
+                                    <div class="resource-item">
+                                        <h5>${r.icon} ${r.title}</h5>
+                                        <p>${r.content}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Add Tariff Table if available
+            if (module.tariffTable) {
+                contentHTML += `
+                    <div class="section">
+                        <h3 class="section-title">💰 Ejemplo Estructura Tarifaria B2B</h3>
+                        ${module.tariffTable}
+                        <div class="info-box tip">
+                            <strong>Nota:</strong> Estas tarifas son referenciales. Ajusta según tus costos reales y margen deseado.
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Add practical section
+            contentHTML += `
+                        <div class="section">
+                            <h3 class="section-title">🛠️ Contenido Práctico</h3>
+                            <div class="practical-grid">
+                                ${module.practical.map(item => `
+                                    <div class="practical-card">
+                                        <h4>${item.icon} ${item.title}</h4>
+                                        <p>${item.content}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <h3 class="section-title">🏆 Caso de Éxito</h3>
+                            <div class="success-case">
+                                <h4>💡 Ejemplo Real</h4>
+                                ${module.successCase}
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <h3 class="section-title">⚡ Tips Rápidos</h3>
+                            <div class="quick-tips">
+                                <h4>📌 Para Aplicar Hoy</h4>
+                                <ul>
+                                    ${module.tips.map(tip => `<li>${tip}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="selectModule(${index - 1})" ${index === 0 ? 'disabled' : ''}>
+                            ← Anterior
+                        </button>
+                        <button class="nav-btn next" onclick="selectModule(${index + 1})" ${index === modules.length - 1 ? 'disabled' : ''}>
+                            Siguiente →
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Inject content
+            document.getElementById('mainContent').innerHTML = contentHTML;
+
+            // Scroll to top of module content
+            setTimeout(() => {
+                const moduleContent = document.getElementById(`module-${index}`);
+                if (moduleContent) {
+                    moduleContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Welcome screen is shown by default
+            console.log('Kit ANATO 2026 loaded successfully');
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CULTURA T | Centro de Innovación y Productividad</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fontsource Poppins -->
+    <link href="https://fonts.fontsource.org/poppins" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amazon: '#055C38',
+                        catalina: '#032968',
+                        clementine: '#F06000',
+                        torch: '#FF0037',
+                        lightblue: '#E1F5FE'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #032968 0%, #055C38 100%);
+        }
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+            animation: float 10s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+
+                <div>
+                    <a href="https://cultura-t.com/">
+                      <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" width="80" alt="Logo Cultura T">
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#cursos" class="text-sm font-medium text-gray-600 hover:text-amazon transition">Cursos</a>
+                <a href="#metodologia" class="text-sm font-medium text-gray-600 hover:text-amazon transition">Metodología</a>
+                <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-amazon transition">Contacto</a>
+                <a href="#contacto" class="bg-clementine hover:bg-orange-700 text-white text-sm font-bold py-2 px-6 rounded-full transition shadow-md">
+                    Empezar
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-catalina text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-20 pb-32 overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="blob bg-amazon w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="blob bg-clementine w-80 h-80 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-up">
+                    <span class="inline-block bg-lightblue text-catalina px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6 border border-catalina/20">
+                        Apropiación Social del Conocimiento
+                    </span>
+                    <h2 class="text-5xl md:text-6xl font-black text-catalina leading-tight mb-6">
+                        Transformamos <span class="text-transparent bg-clip-text bg-gradient-to-r from-amazon to-clementine">Territorios</span> con Conocimiento
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Somos un Centro de Innovación y Productividad dedicado a fortalecer comunidades através de formación práctica, turismo comunitario y desarrollo territorial sostenible.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#cursos" class="bg-amazon hover:bg-green-800 text-white font-bold py-4 px-8 rounded-full transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            Ver Cursos Disponibles
+                        </a>
+                        <a href="#metodologia" class="bg-white hover:bg-gray-50 text-catalina border-2 border-catalina font-bold py-4 px-8 rounded-full transition">
+                            Conocer Más
+                        </a>
+                    </div>
+                </div>
+                <div class="relative fade-in-up delay-200">
+                    <div class="bg-white p-6 rounded-3xl shadow-2xl border border-gray-100 relative">
+                        <div class="absolute -top-4 -right-4 bg-torch text-white w-20 h-20 rounded-full flex items-center justify-center font-black text-xs text-center shadow-lg animate-bounce">
+                            100%<br>Práctico
+                        </div>
+                        <img src="img/taller.jpg" alt="Comunidad Aprendiendo" class="rounded-2xl w-full h-80 object-cover mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="flex -space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white"></div>
+                                <div class="w-10 h-10 rounded-full bg-gray-300 border-2 border-white"></div>
+                                <div class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white"></div>
+                            </div>
+                            <div>
+                                <p class="font-bold text-catalina">Comunidades Impactadas</p>
+                                <p class="text-xs text-gray-500">Colombia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- COURSES SECTION -->
+    <section id="cursos" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h3 class="text-3xl md:text-4xl font-black text-catalina mb-4">Nuestros Programas de Formación</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Herramientas prácticas diseñadas para emprendedores, líderes comunitarios y gestores turísticos.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course Card 1: Turismo (The one we made before) -->
+                <a href="curso1.html" class="group block fade-in-up delay-100">
+                    <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg card-hover h-full flex flex-col relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amazon/10 rounded-bl-full -mr-8 -mt-8 transition group-hover:bg-amazon/20"></div>
+                        <div class="w-14 h-14 bg-amazon/10 rounded-2xl flex items-center justify-center text-amazon text-2xl mb-6 group-hover:bg-amazon group-hover:text-white transition">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-catalina mb-3 group-hover:text-amazon transition">Ruta de Fortalecimiento en Turismo Comunitario</h4>
+                        <p class="text-sm text-gray-600 mb-6 flex-grow">
+                            11 módulos prácticos para fortalecer capacidades organizativas, operativas y comerciales de iniciativas turísticas.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-bold text-amazon bg-amazon/10 px-3 py-1 rounded-full">11 Módulos</span>
+                            <span class="text-clementine font-bold text-sm flex items-center gap-2">
+                                Acceder <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Course Card 2: Placeholder for Future -->
+                <a href="curso2.html" class="group block fade-in-up delay-200">
+                    <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg card-hover h-full flex flex-col relative overflow-hidden opacity-75">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-catalina/10 rounded-bl-full -mr-8 -mt-8"></div>
+                        <div class="w-14 h-14 bg-catalina/10 rounded-2xl flex items-center justify-center text-catalina text-2xl mb-6">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-catalina mb-3">Diseño de Productos y Experiencias Destino</h4>
+                        <p class="text-sm text-gray-600 mb-6 flex-grow">
+                            Aprende y conoce el paso a paso para diseñar experiencias de calidad para tu destino.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-bold text-amazon bg-amazon/10 px-3 py-1 rounded-full">11 Módulos</span>
+                            <span class="text-clementine font-bold text-sm flex items-center gap-2">
+                                Acceder <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Course Card 3: Placeholder for Future -->
+                <a href="kit-anato.html" class="group block fade-in-up delay-300">
+                    <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg card-hover h-full flex flex-col relative overflow-hidden opacity-75">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-clementine/10 rounded-bl-full -mr-8 -mt-8"></div>
+                        <div class="w-14 h-14 bg-clementine/10 rounded-2xl flex items-center justify-center text-clementine text-2xl mb-6">
+                            <i class="fa-solid fa-paintbrush"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-catalina mb-3">KIT Anato</h4>
+                        <p class="text-sm text-gray-600 mb-6 flex-grow">
+                            Diseñamos este kit como tu compañero de batalla digital para la Vitrina Turística ANATO 2026. No es solo teoría; es una caja de herramientas optimizada para dispositivos móviles que puedes consultar en tiempo real mientras recorres la feria o atiendes tu stand.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-bold text-amazon bg-amazon/10 px-3 py-1 rounded-full">5 Módulos</span>
+                            <span class="text-clementine font-bold text-sm flex items-center gap-2">
+                                Acceder <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                 <!-- Course Card 4: Placeholder for Future -->
+                <a href="#" class="group block fade-in-up delay-300">
+                    <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg card-hover h-full flex flex-col relative overflow-hidden opacity-75">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-clementine/10 rounded-bl-full -mr-8 -mt-8"></div>
+                        <div class="w-14 h-14 bg-clementine/10 rounded-2xl flex items-center justify-center text-clementine text-2xl mb-6">
+                            <i class="fa-solid fa-paintbrush"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-catalina mb-3">Gestión Cultural Territorial</h4>
+                        <p class="text-sm text-gray-600 mb-6 flex-grow">
+                            Próximamente. Estrategias para la gestión de proyectos culturales con impacto social.
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-bold text-gray-400 bg-gray-100 px-3 py-1 rounded-full">En Desarrollo</span>
+                            <span class="text-gray-400 font-bold text-sm">
+                                Pronto
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY / ABOUT -->
+    <section id="metodologia" class="py-20 bg-lightblue/30 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Metodología" class="rounded-3xl shadow-2xl">
+                </div>
+                <div class="order-1 md:order-2 fade-in-up">
+                    <h3 class="text-3xl font-black text-catalina mb-6">Apropiación Social del Conocimiento</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        En CULTURA T SAS, creemos que el conocimiento no debe quedarse en los libros. Nuestro enfoque busca llevar el saber técnico y académico a las comunidades que más lo necesitan, transformándolo en herramientas prácticas para el desarrollo territorial.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-amazon shadow-md shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-catalina">Enfoque Práctico</h5>
+                                <p class="text-sm text-gray-600">Menos teoría, más aplicación real en el territorio.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-clementine shadow-md shrink-0">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-catalina">Participación Comunitaria</h5>
+                                <p class="text-sm text-gray-600">Las comunidades son co-creadoras del conocimiento.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-torch shadow-md shrink-0">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-catalina">Sostenibilidad</h5>
+                                <p class="text-sm text-gray-600">Proyectos viables económica, social y ambientalmente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section id="contacto" class="py-20 bg-catalina text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 fade-in-up">
+            <h3 class="text-3xl md:text-4xl font-black mb-6">¿Listo para transformar tu territorio?</h3>
+            <p class="text-blue-100 mb-10 text-lg">
+                Contáctanos para conocer más sobre nuestros programas de formación y asesoría.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+                    <i class="fa-solid fa-envelope text-3xl text-clementine mb-4"></i>
+                    <p class="font-bold mb-1">Correo</p>
+                    <p class="text-sm text-blue-100">admin@cultura-t.com</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+                    <i class="fa-solid fa-phone text-3xl text-amazon mb-4"></i>
+                    <p class="font-bold mb-1">Teléfono</p>
+                    <p class="text-sm text-blue-100">+57 323 940 9097</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+                    <i class="fa-solid fa-location-dot text-3xl text-torch mb-4"></i>
+                    <p class="font-bold mb-1">Ubicación</p>
+                    <p class="text-sm text-blue-100">Bogotá D.C.</p>
+                </div>
+            </div>
+            <a href="mailto:admin@cultura-t.com" class="inline-block bg-white text-catalina font-bold py-4 px-10 rounded-full hover:bg-gray-100 transition shadow-lg">
+                Escribirnos Ahora
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gray-800 rounded flex items-center justify-center text-white font-bold text-sm">T</div>
+                    <span class="font-bold text-white">CULTURA T SAS</span>
+                </div>
+                <div class="text-sm text-center md:text-right">
+                    <p>&copy; 2026 CULTURA T SAS. Todos los derechos reservados.</p>
+                    <p class="text-xs mt-1 text-gray-600">Centro de Innovación y Productividad</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

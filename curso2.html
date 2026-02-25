@@ -1,0 +1,2387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño de Producto Turístico Territorial | CULTURA T</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #E67E22;
+            --secondary-color: #27AE60;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #F39C12;
+            --text-color: #34495E;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+            --gradient-secondary: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 5px 20px rgba(0,0,0,0.15);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.2);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Course Layout */
+        .course-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            padding: 2rem 0;
+            min-height: calc(100vh - 100px);
+        }
+
+        /* Sidebar */
+        .course-sidebar {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .module-list {
+            list-style: none;
+        }
+
+        .module-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .module-item:hover {
+            background: var(--light-color);
+        }
+
+        .module-item.active {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            border-left-color: var(--primary-color);
+        }
+
+        .module-item.completed {
+            border-left-color: var(--secondary-color);
+        }
+
+        .module-number {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .module-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .module-status {
+            font-size: 0.75rem;
+            color: var(--text-color);
+            margin-top: 0.3rem;
+        }
+
+        /* Main Content */
+        .course-content {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .content-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .content-header h1 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .content-header p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .content-body {
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .content-section h3 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .content-section ul, .content-section ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4edda 100%);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .info-box.warning {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-left-color: var(--accent-color);
+        }
+
+        .info-box.tip {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left-color: #17a2b8;
+        }
+
+        .info-box h4 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Example Card */
+        .example-card {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid var(--accent-color);
+        }
+
+        .example-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .example-card .example-tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Exercise Box */
+        .exercise-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .exercise-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .exercise-steps {
+            list-style: none;
+            counter-reset: exercise-counter;
+        }
+
+        .exercise-steps li {
+            counter-increment: exercise-counter;
+            padding: 1rem 0 1rem 3rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .exercise-steps li::before {
+            content: counter(exercise-counter);
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            width: 2rem;
+            height: 2rem;
+            background: var(--gradient-secondary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .exercise-steps li:last-child {
+            border-bottom: none;
+        }
+
+        /* Navigation Buttons */
+        .content-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light-color);
+            margin-top: 2rem;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .nav-btn.prev {
+            background: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .nav-btn.next {
+            background: var(--gradient-primary);
+            color: var(--white);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--light-color);
+            border-radius: 50px;
+            height: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 50px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-align: right;
+        }
+
+        /* Table */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .content-table th {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-color);
+        }
+
+        .content-table tr:hover {
+            background: var(--light-color);
+        }
+
+        /* Image Container */
+        .image-container {
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Quote */
+        .quote-box {
+            background: var(--light-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote-box cite {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-style: normal;
+        }
+
+        /* Completion Badge */
+        .completion-badge {
+            background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .completion-badge.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .completion-badge h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .completion-badge .badge-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .course-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .course-sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .course-content {
+                padding: 1.5rem;
+            }
+
+            .content-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-btn {
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .welcome-screen h1 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-screen p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="CULTURA T Logo">
+
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" onclick="showWelcome()">Inicio</a></li>
+                    </ul>
+                </nav>
+                <div class="progress-info">
+                    <span style="font-weight: 600; color: var(--primary-color);">Progreso: <span id="progressPercent">0</span>%</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Course Layout -->
+    <div class="container">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <aside class="course-sidebar">
+                <h3 class="sidebar-title">📚 Módulos del Curso</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" id="sidebarProgress" style="width: 0%"></div>
+                </div>
+                <p class="progress-text" id="modulesCompleted">0 de 11 módulos completados</p>
+                <ul class="module-list" id="moduleList">
+                    <!-- Modules will be generated by JS -->
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="course-content" id="courseContent">
+                <!-- Content will be generated by JS -->
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Course Data
+        const courseData = {
+            welcome: {
+                title: "Bienvenido al Curso de Diseño de Producto Turístico Territorial",
+                subtitle: "Ruta de Fortalecimiento en Turismo Comunitario",
+                description: "Este programa de formación está diseñado para emprendedores, líderes comunitarios y gestores turísticos que buscan crear experiencias memorables y sostenibles en sus territorios. A través de 11 módulos prácticos, desarrollarás las capacidades necesarias para diseñar, planificar y comercializar productos turísticos con enfoque comunitario.",
+                features: [
+                    { icon: "📖", title: "100% Autoguiado", desc: "Estudia a tu propio ritmo, sin presiones de tiempo" },
+                    { icon: "🎯", title: "Enfoque Práctico", desc: "Aplica cada módulo directamente en tu iniciativa" },
+                    { icon: "🌱", title: "Sostenible", desc: "Aprende a crear productos que respeten tu territorio" },
+
+                ]
+            },
+            modules: [
+                {
+                    id: 1,
+                    title: "Fundamentos del Producto Turístico",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 1: Fundamentos del Producto Turístico</h1>
+                            <p>Comprende qué es un producto turístico y cómo se diferencia de una experiencia turística</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Comprender la diferencia entre producto y experiencia turística</li>
+                                    <li>Identificar los componentes esenciales de un producto turístico</li>
+                                    <li>Entender la analogía del restaurante aplicada al turismo</li>
+                                    <li>Reconocer la importancia del enfoque en la demanda</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>¿Qué es un Producto Turístico?</h2>
+                                <p>Un producto turístico es el conjunto de servicios, actividades y experiencias que se ofrecen a los visitantes durante su estancia en un destino. Sin embargo, es crucial entender que <strong>el producto es lo que se vende, pero la experiencia es lo que se recuerda</strong>.</p>
+
+                                <div class="info-box">
+                                    <h4>💡 Concepto Clave</h4>
+                                    <p>El producto turístico incluye elementos tangibles (alojamiento, transporte, alimentación) e intangibles (emociones, recuerdos, conexiones personales). La magia del turismo comunitario está en equilibrar ambos aspectos.</p>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>La Analogía del Restaurante 🍽️</h2>
+                                <p>Imagina tu destino turístico como un restaurante. Esta analogía nos ayuda a comprender mejor cómo funciona el turismo:</p>
+
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Restaurante</th>
+                                            <th>Destino Turístico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Local y equipamiento</td>
+                                            <td>Infraestructura del destino</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Menú y especialidad</td>
+                                            <td>Posicionamiento y oferta turística</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Personal (cocinero, mesero)</td>
+                                            <td>Actores del destino (guías, operadores)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comensal</td>
+                                            <td>Visitante/Turista</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Plato de comida</td>
+                                            <td>Producto turístico</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Experiencia de la cena</td>
+                                            <td>Experiencia turística</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>🏞️ El Valle de las Mariposas - Santander</h4>
+                                <p><strong>Situación:</strong> La comunidad del Valle de las Mariposas tenía hermosos paisajes y una rica tradición artesanal, pero los visitantes solo llegaban por unas horas y no gastaban dinero en la comunidad.</p>
+                                <p><strong>Problema identificado:</strong> Tenían los "ingredientes" (atractivos) pero no un "plato preparado" (producto turístico).</p>
+                                <p><strong>Solución:</strong> Diseñaron un producto llamado "Día de Mariposa" que incluye: bienvenida con agua de panela, recorrido guiado por senderos, taller de artesanías con madres de la comunidad, almuerzo con comida típica, y despedida con obsequio artesanal.</p>
+                                <p><strong>Resultado:</strong> Los visitantes ahora permanecen 6-8 horas, gastan en promedio $150.000 COP por persona, y el 85% recomienda el destino.</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Componentes del Producto Turístico</h2>
+                                <p>Todo producto turístico debe considerar estos elementos:</p>
+                                <ul>
+                                    <li><strong>Atractivos:</strong> Lo que motiva la visita (naturaleza, cultura, historia)</li>
+                                    <li><strong>Servicios:</strong> Alojamiento, alimentación, transporte, guiado</li>
+                                    <li><strong>Actividades:</strong> Experiencias participativas que vive el visitante</li>
+                                    <li><strong>Infraestructura:</strong> Vías, señalización, espacios públicos</li>
+                                    <li><strong>Gestión:</strong> Organización, coordinación, comercialización</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box warning">
+                                <h4>⚠️ Error Común</h4>
+                                <p>Muchas comunidades creen que con tener un atractivo natural o cultural ya tienen un producto turístico. ¡Error! Un árbol bonito no es un producto. Un recorrido interpretativo de 2 horas con guía certificado, punto de fotografía, y explicación ecológica SÍ es un producto.</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 1.1</h3>
+                            <p><strong>Inventario de Tu Territorio</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Lista todos los atractivos naturales y culturales de tu territorio (mínimo 5)</li>
+                                <li>Para cada atractivo, identifica qué servicios existen actualmente (alojamiento, alimentación, etc.)</li>
+                                <li>Evalúa del 1 al 5 el estado de cada componente (1=muy deficiente, 5=excelente)</li>
+                                <li>Identifica las 3 brechas más críticas que debes cerrar</li>
+                                <li>Documenta tus hallazgos en una tabla similar a la del módulo</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 2-3 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" disabled>← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(1)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 2,
+                    title: "Análisis del Destino Turístico",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 2: Análisis del Destino Turístico</h1>
+                            <p>Conoce tu territorio a profundidad antes de diseñar cualquier producto</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Realizar un análisis DOFA del destino</li>
+                                    <li>Comprender la percepción de marca del territorio</li>
+                                    <li>Identificar zonas turísticas dentro del territorio</li>
+                                    <li>Mapear actores y espacios de gobernanza</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Análisis DOFA del Destino</h2>
+                                <p>El análisis DOFA (Debilidades, Oportunidades, Fortalezas, Amenazas) es una herramienta fundamental para diagnosticar la situación actual de tu destino.</p>
+
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>INTERNO</th>
+                                            <th>Fortalezas</th>
+                                            <th>Debilidades</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="2">EXTERNO</td>
+                                            <td>Oportunidades</td>
+                                            <td>Estrategias de Crecimiento</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amenazas</td>
+                                            <td>Estrategias de Defensa</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>🌊 Puerto Esperanza - Chocó</h4>
+                                <p><strong>Fortalezas:</strong> Playas vírgenes, biodiversidad única, comunidad organizada, gastronomía tradicional</p>
+                                <p><strong>Debilidades:</strong> Acceso difícil, poca señalización, servicios básicos limitados, falta de guías certificados</p>
+                                <p><strong>Oportunidades:</strong> Tendencia de turismo de naturaleza, apoyo de ONGs, cercanía a mercado internacional</p>
+                                <p><strong>Amenazas:</strong> Temporada de lluvias extensa, competencia de otros destinos de playa, inseguridad percibida</p>
+                                <p><strong>Estrategia identificada:</strong> Enfocarse en turismo de naturaleza de alto valor (menos visitantes, mayor gasto) para compensar las limitaciones de infraestructura.</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Percepción de Marca</h2>
+                                <p>La marca no es lo que tú dices de tu destino, es lo que los visitantes dicen de él. Es fundamental entender esta diferencia.</p>
+
+                                <div class="info-box tip">
+                                    <h4>💡 Tip Práctico</h4>
+                                    <p>Revisa las reseñas en Google, TripAdvisor y redes sociales de tu destino. ¿Qué palabras usan los visitantes para describirlo? Esas palabras SON tu marca actual, independientemente de lo que digan tus folletos promocionales.</p>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Identificación de Zonas Turísticas</h2>
+                                <p>No todo el territorio es igual. Identifica las zonas donde hay mayor concentración de actividad turística:</p>
+                                <ul>
+                                    <li><strong>Centro soporte:</strong> Donde están los servicios básicos (salud, seguridad, comunicaciones)</li>
+                                    <li><strong>Zonas de visita:</strong> Atractivos que los visitantes recorren</li>
+                                    <li><strong>Zonas de pernocta:</strong> Donde los visitantes se hospedan</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 2.1</h3>
+                            <p><strong>Matriz DOFA de Tu Destino</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Reúne a 3-5 actores clave de tu territorio (empresarios, líderes, funcionarios)</li>
+                                <li>En una sesión de 2 horas, identifiquen al menos 5 elementos para cada categoría DOFA</li>
+                                <li>Prioricen los 3 elementos más críticos de cada categoría</li>
+                                <li>Definan estrategias cruzadas: ¿Cómo usar fortalezas para aprovechar oportunidades?</li>
+                                <li>Documenten los resultados en la matriz del módulo</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 3-4 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(1)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(2)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 3,
+                    title: "Metodología de Flujos de Visitantes",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 3: Metodología de Flujos de Visitantes</h1>
+                            <p>Entiende quién viene a tu destino, por qué y cómo se comporta</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Comprender qué es un flujo de visitantes</li>
+                                    <li>Aprender a mapear diferentes flujos</li>
+                                    <li>Identificar influenciadores de oferta y demanda</li>
+                                    <li>Priorizar flujos para el diseño de productos</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>¿Qué es un Flujo de Visitantes?</h2>
+                                <p>Un flujo de visitantes es un grupo de personas que viaja a un destino con <strong>medios, motivos y comportamientos similares</strong>. No es lo mismo que segmentar por nacionalidad o edad.</p>
+
+                                <div class="info-box">
+                                    <h4>💡 Concepto Clave</h4>
+                                    <p>"Viajeros extranjeros" NO es un flujo. "Mochileros europeos de 25-35 años interesados en turismo de aventura y cultura local" SÍ es un flujo. La especificidad es fundamental.</p>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>🏔️ San Rafael de la Sierra - Boyacá</h4>
+                                <p><strong>Flujo 1:</strong> Familias bogotanas de fin de semana (viajan en carro propio, buscan actividades para niños, gastan moderado)</p>
+                                <p><strong>Flujo 2:</strong> Cicloturistas nacionales (viajan en grupo, requieren servicios especializados, gastan alto en alimentación y alojamiento)</p>
+                                <p><strong>Flujo 3:</strong> Turistas internacionales de naturaleza (viajan con operador, buscan autenticidad, gastan muy alto, permanecen más tiempo)</p>
+                                <p><strong>Decisión:</strong> La comunidad priorizó el Flujo 2 (cicloturistas) porque hay infraestructura base, la temporada es todo el año, y hay operadores interesados.</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Influenciadores de Oferta y Demanda</h2>
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Definición</th>
+                                            <th>Ejemplos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Influenciador-Oferta</strong></td>
+                                            <td>Atractivo o proveedor más importante para hacer funcionar un flujo</td>
+                                            <td>Parque arqueológico, operador de tours, hotel emblemático</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Influenciador-Demanda</strong></td>
+                                            <td>Persona o plataforma que influye en la decisión del visitante</td>
+                                            <td>Lonely Planet, agente de viajes, bloguero de viajes, familiar</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Mapeo de Flujos</h2>
+                                <p>Para cada flujo priorizado, documenta:</p>
+                                <ul>
+                                    <li>Perfil demográfico y psicográfico</li>
+                                    <li>Motivación principal de viaje</li>
+                                    <li>Medios de transporte utilizados</li>
+                                    <li>Fuentes de información que consultan</li>
+                                    <li>Tiempo promedio de estadía</li>
+                                    <li>Gasto promedio por día</li>
+                                    <li>Actividades que realizan</li>
+                                    <li>Influenciadores clave</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box warning">
+                                <h4>⚠️ Error Común</h4>
+                                <p>Intentar atender todos los flujos por igual. Es mejor diseñar productos excelentes para 1-2 flujos priorizados que productos mediocres para 10 flujos diferentes.</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 3.1</h3>
+                            <p><strong>Mapeo de Flujos de Tu Destino</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Lista todos los tipos de visitantes que llegan a tu destino (mínimo 5 flujos diferentes)</li>
+                                <li>Para cada flujo, completa la ficha de perfil del módulo</li>
+                                <li>Identifica el influenciador-oferta y influenciador-demanda de cada flujo</li>
+                                <li>Selecciona 1-2 flujos prioritarios para diseñar tu producto</li>
+                                <li>Justifica por qué elegiste esos flujos (viabilidad, impacto, recursos disponibles)</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 4-5 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(2)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(3)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 4,
+                    title: "Conceptualización de la Experiencia",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 4: Conceptualización de la Experiencia</h1>
+                            <p>Diseña la historia que el visitante se llevará de vuelta a casa</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Comprender la diferencia entre actividad y experiencia</li>
+                                    <li>Construir la experiencia central del producto</li>
+                                    <li>Trabajar las dimensiones emocionales y sensoriales</li>
+                                    <li>Crear narrativa y storytelling territorial</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>¿Qué es una Experiencia Turística?</h2>
+                                <div class="quote-box">
+                                    "Una experiencia es diferente a un producto o una locación. Una experiencia se forma por la combinación de una actividad, un escenario, la interacción social y la conexión personal que surge a raíz de ella. Una experiencia compromete los sentidos: es física, emocional o espiritual."
+                                    <cite>— Definición de Experiencia Turística</cite>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>La Experiencia Central</h2>
+                                <p>La experiencia central es <strong>la historia que quieres que el visitante se lleve de vuelta a su casa</strong>. Debe ser clara, emocional y memorable.</p>
+
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Elemento</th>
+                                            <th>Pregunta Guía</th>
+                                            <th>Ejemplo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Memoria</td>
+                                            <td>¿Qué recuerdo quieres que se lleven?</td>
+                                            <td>"La noche más estrellada de mi vida"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Emoción</td>
+                                            <td>¿Qué emoción debe prevalecer?</td>
+                                            <td>Asombro, paz, conexión, alegría</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aprendizaje</td>
+                                            <td>¿Qué nuevo conocimiento adquirirán?</td>
+                                            <td>Proceso del cacao, técnicas artesanales</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sentidos</td>
+                                            <td>¿Qué sentidos explorarán?</td>
+                                            <td>Vista, oído, tacto, olfato, gusto</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>☕ Ruta del Café Ancestral - Huila</h4>
+                                <p><strong>Experiencia Central:</strong> "De la semilla a la taza: vive el ritual cafetero como lo hacen las familias desde hace 5 generaciones"</p>
+                                <p><strong>Memoria:</strong> El sabor del café que tú mismo tostaste y moliste</p>
+                                <p><strong>Emoción:</strong> Orgullo por el trabajo artesanal, conexión con la tierra</p>
+                                <p><strong>Aprendizaje:</strong> Diferencias entre procesos industriales y artesanales, cata básica de café</p>
+                                <p><strong>Sentidos:</strong></p>
+                                <ul>
+                                    <li>👁️ Vista: Paisajes de montañas cafeteras, proceso de secado</li>
+                                    <li>👂 Oído: Historias del abuelo cafetero, sonido del molino</li>
+                                    <li>✋ Tacto: Textura del grano en diferentes etapas</li>
+                                    <li>👃 Olfato: Aroma del café tostándose</li>
+                                    <li>👅 Gusto: Café recién preparado con panela</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Matriz de Construcción de Experiencia</h2>
+                                <p>Utiliza esta matriz para consolidar tu experiencia:</p>
+                                <ul>
+                                    <li>Nombre del producto (que inspire la experiencia)</li>
+                                    <li>Flujo al que está orientado</li>
+                                    <li>Memoria que se llevará el visitante</li>
+                                    <li>Emociones a generar</li>
+                                    <li>Aprendizajes nuevos</li>
+                                    <li>Experiencias por cada sentido</li>
+                                    <li>Espacios donde se realizará</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box tip">
+                                <h4>💡 Tip Práctico</h4>
+                                <p>Crea un storyboard visual de tu experiencia. Dibuja o busca imágenes que representen cada "escena" de la experiencia. Esto ayuda a comunicar la visión a todos los actores involucrados.</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 4.1</h3>
+                            <p><strong>Construcción de Tu Experiencia Central</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Define el nombre tentativo de tu producto turístico</li>
+                                <li>Describe la memoria principal que quieres que el visitante se lleve (1-2 frases)</li>
+                                <li>Lista las 3 emociones principales que quieres generar</li>
+                                <li>Identifica 2-3 aprendizajes nuevos que tendrá el visitante</li>
+                                <li>Para cada sentido (vista, oído, tacto, olfato, gusto), describe al menos una experiencia</li>
+                                <li>Dibuja o describe 4-6 "escenas" que componen la experiencia completa</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 4-5 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(3)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(4)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 5,
+                    title: "Perfil del Visitante Priorizado",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 5: Perfil del Visitante Priorizado</h1>
+                            <p>Conoce a tu visitante ideal mejor que él mismo</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Construir un Buyer Persona turístico detallado</li>
+                                    <li>Comprender el mapa de empatía del visitante</li>
+                                    <li>Identificar condiciones de consumo específicas</li>
+                                    <li>Alinear el producto con las expectativas del flujo</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Buyer Persona Turístico</h2>
+                                <p>El Buyer Persona es una representación ficticia pero realista de tu visitante ideal. Debe incluir información demográfica, psicográfica, conductual y de estilo de vida.</p>
+
+                                <div class="info-box">
+                                    <h4>💡 Componentes del Perfil</h4>
+                                    <ul>
+                                        <li><strong>Demográfico:</strong> Edad, género, ingresos, educación, ocupación</li>
+                                        <li><strong>Psicográfico:</strong> Personalidad, valores, intereses, estilo de vida</li>
+                                        <li><strong>Conductual:</strong> Hábitos de viaje, frecuencia, gasto promedio</li>
+                                        <li><strong>Condiciones de consumo:</strong> Preferencias específicas de servicios</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>🎒 "María la Exploradora" - Mochilera Internacional</h4>
+                                <p><strong>Demográfico:</strong> 28 años, alemana, soltera, diseñadora gráfica, ingresos medios-altos</p>
+                                <p><strong>Psicográfico:</strong> Curiosa, independiente, valora autenticidad sobre lujo, consciente ambientalmente, activa en redes sociales</p>
+                                <p><strong>Conductual:</strong> Viaja 3-4 veces al año, estadías de 2-3 semanas, investiga exhaustivamente antes de viajar, prefiere booking directo</p>
+                                <p><strong>Condiciones de consumo:</strong></p>
+                                <ul>
+                                    <li>Alojamiento: Hostales con cocina compartida o eco-lodges, WiFi esencial</li>
+                                    <li>Alimentación: Comida local auténtica, opciones vegetarianas importantes</li>
+                                    <li>Transporte: Transporte público o bicicleta, evita tours muy estructurados</li>
+                                    <li>Actividades: Trekking, intercambio cultural, fotografía, aprendizaje de habilidades locales</li>
+                                    <li>Información: Blogs de viajes, Instagram, recomendaciones de otros mochileros</li>
+                                    <li>Presupuesto: $80-120 USD por día (incluye todo)</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Mapa de Empatía</h2>
+                                <p>El mapa de empatía te ayuda a entender profundamente a tu visitante:</p>
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Dimensión</th>
+                                            <th>Preguntas Clave</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>¿Qué ve?</td>
+                                            <td>¿Qué observa en su entorno? ¿Qué contenido consume?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>¿Qué oye?</td>
+                                            <td>¿Qué le dicen amigos, familia, influencers?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>¿Qué piensa y siente?</td>
+                                            <td>¿Cuáles son sus preocupaciones, sueños, frustraciones?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>¿Qué dice y hace?</td>
+                                            <td>¿Cómo se comporta públicamente? ¿Qué acciones toma?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dolores</td>
+                                            <td>¿Qué problemas quiere resolver? ¿Qué le frustra?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ganancias</td>
+                                            <td>¿Qué éxitos quiere lograr? ¿Qué lo haría feliz?</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Condiciones de Consumo</h2>
+                                <p>Detalla las preferencias específicas de tu flujo para cada componente del producto:</p>
+                                <ul>
+                                    <li>Intensidad de actividades (baja, media, alta)</li>
+                                    <li>Ritmo de viaje (relajado, moderado, intenso)</li>
+                                    <li>Preferencias de alojamiento (tipo, servicios, ubicación)</li>
+                                    <li>Preferencias alimenticias (dietas, horarios, tipo de comida)</li>
+                                    <li>Medios de transporte preferidos</li>
+                                    <li>Tecnología necesaria (WiFi, enchufes, apps)</li>
+                                    <li>Forma de contratación (directo, empaquetado, independiente)</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box warning">
+                                <h4>⚠️ Error Común</h4>
+                                <p>Crear un perfil demasiado genérico ("turistas de 30-50 años"). Mientras más específico sea el perfil, más efectivo será el diseño del producto. Es mejor diseñar para "María la Exploradora" que para "turistas jóvenes".</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 5.1</h3>
+                            <p><strong>Creación de Tu Buyer Persona</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Asigna un nombre y foto representativa a tu visitante ideal</li>
+                                <li>Completa toda la información demográfica (edad, origen, ocupación, ingresos)</li>
+                                <li>Describe su personalidad, valores e intereses (mínimo 5 características)</li>
+                                <li>Detalla sus hábitos de viaje (frecuencia, duración, presupuesto, planificación)</li>
+                                <li>Completa el mapa de empatía (qué ve, oye, piensa, dice, dolores, ganancias)</li>
+                                <li>Define condiciones de consumo para cada componente (alojamiento, alimentación, actividades, etc.)</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 3-4 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(4)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(5)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 6,
+                    title: "Cadena de Valor del Producto",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 6: Cadena de Valor del Producto</h1>
+                            <p>Identifica todos los eslabones necesarios y las brechas a cerrar</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Mapear la cadena de valor del producto turístico</li>
+                                    <li>Identificar eslabones existentes y ausentes</li>
+                                    <li>Reconocer brechas y debilidades</li>
+                                    <li>Planear el cierre de brechas prioritarias</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>¿Qué es la Cadena de Valor?</h2>
+                                <p>La cadena de valor turística es la secuencia de eslabones (atractivos, servicios, actividades, proveedores) que el visitante experimenta durante su producto turístico. No es una cadena lineal, sino una <strong>red de vínculos</strong>.</p>
+
+                                <div class="info-box">
+                                    <h4>💡 Eslabones Típicos</h4>
+                                    <ul>
+                                        <li>Transporte (hacia, dentro y desde el destino)</li>
+                                        <li>Alojamiento</li>
+                                        <li>Alimentación</li>
+                                        <li>Atractivos turísticos</li>
+                                        <li>Actividades y experiencias</li>
+                                        <li>Guiado e interpretación</li>
+                                        <li>Comercialización y venta</li>
+                                        <li>Servicios complementarios (seguros, comunicaciones, etc.)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>🦋 Ruta de las Mariposas - Meta</h4>
+                                <p><strong>Cadena de Valor Ideal:</strong></p>
+                                <ul>
+                                    <li>🚌 Transporte: Bogotá → Villavicencio (4h) → Comunidad (2h)</li>
+                                    <li>🏠 Alojamiento: Eco-lodge comunitario (8 habitaciones)</li>
+                                    <li>🍽️ Alimentación: Comidas típicas en casa de familias</li>
+                                    <li>🦋 Atractivos: Santuario de mariposas, sendero interpretativo</li>
+                                    <li>🎨 Actividades: Taller artesanal, observación de aves, cocina tradicional</li>
+                                    <li>👨‍🏫 Guiado: 2 guías locales certificados</li>
+                                    <li>📱 Comercialización: Website, redes sociales, operadores en Villavicencio</li>
+                                </ul>
+                                <p><strong>Brechas Identificadas:</strong></p>
+                                <ul>
+                                    <li>❌ Solo 1 guía certificado (necesitan 3 mínimo)</li>
+                                    <li>❌ Website no funcional desde hace 6 meses</li>
+                                    <li>❌ Baños del eco-lodge necesitan renovación</li>
+                                    <li>❌ No hay señalización en el sendero de 2km</li>
+                                    <li>❌ Solo 3 familias participan (necesitan 8 para la capacidad planeada)</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Análisis de Brechas</h2>
+                                <p>Para cada eslabón de la cadena, evalúa:</p>
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Eslabón</th>
+                                            <th>Oferta Actual</th>
+                                            <th>Oferta Necesaria</th>
+                                            <th>Brecha</th>
+                                            <th>Prioridad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Alojamiento</td>
+                                            <td>5 habitaciones básicas</td>
+                                            <td>10 habitaciones con baño privado</td>
+                                            <td>5 habitaciones + baños</td>
+                                            <td>Alta</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guiado</td>
+                                            <td>1 guía sin certificación</td>
+                                            <td>3 guías certificados en inglés y español</td>
+                                            <td>2 guías + certificación</td>
+                                            <td>Alta</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Señalización</td>
+                                            <td>Sin señalización</td>
+                                            <td>15 puntos señalizados</td>
+                                            <td>Diseño + instalación</td>
+                                            <td>Media</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Tipos de Brechas</h2>
+                                <ul>
+                                    <li><strong>Brechas de infraestructura:</strong> Faltan instalaciones o están en mal estado</li>
+                                    <li><strong>Brechas de capacidad:</strong> Falta personal capacitado o certificado</li>
+                                    <li><strong>Brechas de organización:</strong> Falta coordinación entre actores</li>
+                                    <li><strong>Brechas de comercialización:</strong> No hay canales de venta adecuados</li>
+                                    <li><strong>Brechas de calidad:</strong> Los servicios existen pero no cumplen estándares</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box tip">
+                                <h4>💡 Tip Práctico</h4>
+                                <p>Prioriza las brechas que son CRÍTICAS para la operación (sin ellas no se puede ofrecer el producto) sobre las que son DESEABLES (mejoran la experiencia pero no impiden la operación).</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 6.1</h3>
+                            <p><strong>Mapeo de Tu Cadena de Valor</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Dibuja un gráfico de la cadena de valor ideal para tu producto</li>
+                                <li>Para cada eslabón, identifica la oferta actual (qué existe, quién lo ofrece, en qué estado)</li>
+                                <li>Define la oferta necesaria (qué se necesita para cumplir las expectativas del flujo)</li>
+                                <li>Identifica las brechas (ausencias, debilidades, diferencias)</li>
+                                <li>Prioriza las brechas (Alta, Media, Baja) según impacto y urgencia</li>
+                                <li>Convierte cada brecha prioritaria en acciones concretas para tu plan de trabajo</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 4-5 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(5)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(6)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 7,
+                    title: "Sostenibilidad y Criterios GSTC",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 7: Sostenibilidad y Criterios GSTC</h1>
+                            <p>Integra la sostenibilidad en el corazón de tu producto turístico</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Comprender el turismo sostenible como enfoque transversal</li>
+                                    <li>Conocer los criterios GSTC para destinos</li>
+                                    <li>Aplicar la Rueda de Impacto</li>
+                                    <li>Identificar certificaciones disponibles</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Turismo Sostenible Transversal</h2>
+                                <div class="quote-box">
+                                    "El turismo sostenible consiste en crear mejores lugares para visitar y para vivir"
+                                    <cite>— Definición de Turismo Sostenible</cite>
+                                </div>
+                                <p>La sostenibilidad no es un componente adicional, es un <strong>enfoque transversal</strong> que debe estar presente en todas las decisiones del diseño del producto.</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Criterios GSTC para Destinos</h2>
+                                <p>El Consejo Global de Turismo Sostenible (GSTC) establece los estándares mundiales para la sostenibilidad en turismo. Los criterios para destinos tienen 4 dimensiones:</p>
+
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Dimensión</th>
+                                            <th>Descripción</th>
+                                            <th>Ejemplos de Criterios</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>🏛️ Gestión Sostenible</td>
+                                            <td>Gobernanza, planificación, monitoreo del destino</td>
+                                            <td>Estrategia de sostenibilidad, involucramiento de comunidades, sistema de monitoreo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 Beneficios Económicos</td>
+                                            <td>Impacto económico en la comunidad local</td>
+                                            <td>Empleo local, compras locales, distribución equitativa de ingresos</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🏘️ Sentido de Lugar</td>
+                                            <td>Patrimonio cultural y autenticidad</td>
+                                            <td>Protección de patrimonio, respeto a culturas locales, autenticidad de experiencias</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🌿 Sostenibilidad Ambiental</td>
+                                            <td>Protección del medio natural</td>
+                                            <td>Gestión de residuos, conservación de biodiversidad, eficiencia energética</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>🌿 Comunidad El Paraíso - Amazonas</h4>
+                                <p><strong>Aplicación de Criterios GSTC:</strong></p>
+                                <ul>
+                                    <li>✅ <strong>Gestión:</strong> Comité de turismo comunitario con representación de todas las familias, reuniones mensuales, actas documentadas</li>
+                                    <li>✅ <strong>Económico:</strong> 80% de los ingresos se quedan en la comunidad, sistema de reparto equitativo, fondo comunitario para emergencias</li>
+                                    <li>✅ <strong>Cultural:</strong> Los visitantes participan en rituales solo cuando son invitados, las historias son contadas por los mayores, prohibición de fotografías en ceremonias sagradas</li>
+                                    <li>✅ <strong>Ambiental:</strong> Capacidad de carga máxima de 20 visitantes/día, prohibición de plásticos de un solo uso, sistema de compostaje, reforestación de 1 hectárea/año</li>
+                                </ul>
+                                <p><strong>Resultado:</strong> Certificación TourCert obtenida en 2024, incremento del 40% en visitantes dispuestos a pagar premium por sostenibilidad.</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Rueda de Impacto</h2>
+                                <p>La Rueda de Impacto es una herramienta para visualizar los impactos positivos y negativos de un flujo de visitantes en el destino:</p>
+                                <ul>
+                                    <li><strong>Impactos Económicos:</strong> Ingresos, empleo, inflación, dependencia</li>
+                                    <li><strong>Impactos Sociales:</strong> Calidad de vida, conflictos, orgullo cultural, cambios en tradiciones</li>
+                                    <li><strong>Impactos Ambientales:</strong> Conservación, contaminación, presión sobre recursos, biodiversidad</li>
+                                </ul>
+
+                                <div class="info-box tip">
+                                    <h4>💡 Tip Práctico</h4>
+                                    <p>Aplica la Rueda de Impacto ANTES de lanzar el producto para anticipar impactos negativos y diseñar medidas de mitigación. No esperes a que los problemas aparezcan.</p>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Certificaciones Disponibles en Colombia</h2>
+                                <ul>
+                                    <li><strong>TourCert:</strong> Certificación para operadores y destinos con enfoque en responsabilidad social</li>
+                                    <li><strong>Green Destinations:</strong> Certificación para destinos sostenibles</li>
+                                    <li><strong>Biosphere:</strong> Certificación alineada con Objetivos de Desarrollo Sostenible (ODS)</li>
+                                    <li><strong>Icontec NTS 45001:</strong> Norma técnica colombiana para turismo sostenible</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box warning">
+                                <h4>⚠️ Importante</h4>
+                                <p>La certificación no es el fin, es un medio. El objetivo es la mejora continua. Muchas comunidades comienzan aplicando los criterios sin certificarse inmediatamente, y usan la certificación como meta de mediano plazo.</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 7.1</h3>
+                            <p><strong>Evaluación GSTC de Tu Destino</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Revisa los criterios GSTC para destinos (disponibles en gstcouncil.org)</li>
+                                <li>Para cada una de las 4 dimensiones, evalúa tu destino con semáforo (🟢 Cumple, 🟡 Parcial, 🔴 No cumple)</li>
+                                <li>Identifica los 5 criterios más críticos donde tienes brechas</li>
+                                <li>Aplica la Rueda de Impacto a tu flujo priorizado (impactos económicos, sociales, ambientales)</li>
+                                <li>Diseña 3 medidas de mitigación para impactos negativos identificados</li>
+                                <li>Define si buscarás certificación (cuál, cuándo, qué recursos necesitas)</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 4-5 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(6)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(7)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 8,
+                    title: "Ficha Técnica del Producto",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 8: Ficha Técnica del Producto</h1>
+                            <p>Documenta toda la información de tu producto en un formato estandarizado</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Consolidar toda la información del producto en una ficha técnica</li>
+                                    <li>Documentar detalles operativos y logísticos</li>
+                                    <li>Crear un documento útil para comercialización</li>
+                                    <li>Establecer base para validación y mejoras</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>¿Qué es la Ficha de Producto?</h2>
+                                <p>La ficha técnica del producto turístico es el documento que consolida TODA la información conceptual, técnica, logística y operativa del producto. Es la "biblia" de tu producto.</p>
+
+                                <div class="info-box">
+                                    <h4>💡 Usos de la Ficha</h4>
+                                    <ul>
+                                        <li>Comunicación interna (todos los actores saben qué ofrecer)</li>
+                                        <li>Comercialización (operadores y agencias tienen información completa)</li>
+                                        <li>Capacitación (nuevos guías y prestadores se entrenan con la ficha)</li>
+                                        <li>Validación (base para recibir feedback de mercado)</li>
+                                        <li>Mejora continua (documento vivo que se actualiza)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Contenidos de la Ficha Técnica</h2>
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sección</th>
+                                            <th>Información Requerida</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1. Identificación</td>
+                                            <td>Nombre del producto, destino, flujo objetivo, duración, temporada</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2. Experiencia Central</td>
+                                            <td>Descripción de la experiencia, emociones, aprendizajes, sentidos</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3. Itinerario</td>
+                                            <td>Actividades por hora/lugar, tiempos, traslados, pausas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4. Servicios Incluidos</td>
+                                            <td>Alojamiento, alimentación, transporte, guiado, actividades, seguros</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5. Servicios No Incluidos</td>
+                                            <td>Gastos personales, propinas, bebidas alcohólicas, etc.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6. Requisitos</td>
+                                            <td>Condición física, equipamiento necesario, restricciones, edad mínima</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7. Información Práctica</td>
+                                            <td>Punto de encuentro, qué llevar, clima recomendado, políticas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8. Comercialización</td>
+                                            <td>Precio, canales de venta, contacto, condiciones de reserva</td>
+                                        </tr>
+                                        <tr>
+                                            <td>9. Sostenibilidad</td>
+                                            <td>Prácticas sostenibles, certificaciones, impacto comunitario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10. Anexos</td>
+                                            <td>Mapas, fotos, permisos, contactos de emergencia, fichas de proveedores</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Ejemplo de Ficha</span>
+                                <h4>📋 Extracto: "Amanecer en el Nevado"</h4>
+                                <p><strong>Nombre:</strong> Amanecer en el Nevado - Experiencia de Alta Montaña</p>
+                                <p><strong>Duración:</strong> 14 horas (4:00 AM - 6:00 PM)</p>
+                                <p><strong>Temporada:</strong> Diciembre a Marzo (temporada seca)</p>
+                                <p><strong>Grupo máximo:</strong> 8 personas</p>
+                                <p><strong>Nivel de dificultad:</strong> Alto (requiere condición física excelente)</p>
+                                <p><strong>Incluye:</strong> Transporte 4x4, guía certificado de alta montaña, desayuno energético, almuerzo, equipo de seguridad (arnés, casco, crampones), seguro de aventura, fotografía profesional del amanecer</p>
+                                <p><strong>No incluye:</strong> Ropa térmica personal, botas de montaña, gastos personales, propinas</p>
+                                <p><strong>Requisitos:</strong> Edad 18-55 años, certificado médico de aptitud para alta montaña, experiencia previa en trekking de 8+ horas, no tener condiciones cardíacas o respiratorias</p>
+                                <p><strong>Precio:</strong> $450.000 COP por persona (mínimo 4 personas)</p>
+                                <p><strong>Política de cancelación:</strong> 100% reembolso con 72h de anticipación, 50% con 48h, 0% con menos de 48h o por condiciones climáticas adversas</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Fichas Complementarias</h2>
+                                <p>Adicional a la ficha principal, puedes crear fichas específicas:</p>
+                                <ul>
+                                    <li><strong>Ficha de atractivo:</strong> Información detallada de cada atractivo visitado</li>
+                                    <li><strong>Ficha de alojamiento:</strong> Descripción de cada establecimiento de hospedaje</li>
+                                    <li><strong>Ficha de actividad:</strong> Instrucciones técnicas de cada actividad</li>
+                                    <li><strong>Ficha de proveedor:</strong> Datos de contacto, servicios, condiciones de cada proveedor</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box tip">
+                                <h4>💡 Tip Práctico</h4>
+                                <p>Mantén la ficha en formato digital (Google Docs, Word) para facilitar actualizaciones. Comparte acceso de solo lectura con operadores y acceso de edición solo con el equipo gestor del producto.</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 8.1</h3>
+                            <p><strong>Elaboración de Tu Ficha de Producto</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Descarga o copia la plantilla de ficha técnica del curso</li>
+                                <li>Consolida toda la información de los módulos anteriores (experiencia, perfil, cadena de valor)</li>
+                                <li>Completa cada sección de la ficha con el máximo detalle posible</li>
+                                <li>Incluye al menos 3 fotos representativas (o describe qué fotos necesitas tomar)</li>
+                                <li>Dibuja o incluye un mapa del recorrido</li>
+                                <li>Define precios (costos + margen) y políticas comerciales</li>
+                                <li>Revisa que cualquier operador podría ofrecer el producto solo con leer la ficha</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 5-6 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(7)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(8)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 9,
+                    title: "Validación del Producto",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 9: Validación del Producto</h1>
+                            <p>Prueba tu producto antes de lanzarlo al mercado</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Comprender la importancia de la validación</li>
+                                    <li>Diseñar actividades de focus group con representantes del mercado</li>
+                                    <li>Planear pruebas de campo (try-out)</li>
+                                    <li>Recibir y procesar feedback para ajustes</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>¿Por Qué Validar?</h2>
+                                <p>La validación es el proceso de someter tu producto diseñado a evaluación ANTES de invertir en su implementación completa. Es mejor descubrir problemas con 10 personas que con 1000.</p>
+
+                                <div class="info-box warning">
+                                    <h4>⚠️ Riesgo de No Validar</h4>
+                                    <p>Invertir en infraestructura, capacitación y promoción de un producto que el mercado no quiere o no valora. La validación reduce este riesgo significativamente.</p>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Métodos de Validación</h2>
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Método</th>
+                                            <th>Cuándo Usar</th>
+                                            <th>Ventajas</th>
+                                            <th>Limitaciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Focus Group</strong></td>
+                                            <td>Etapa de diseño, antes de inversión</td>
+                                            <td>Rápido, económico, múltiples perspectivas</td>
+                                            <td>Opiniones no siempre reflejan comportamiento real</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Try-out en Campo</strong></td>
+                                            <td>Producto casi listo, antes de lanzamiento</td>
+                                            <td>Experiencia real, feedback concreto</td>
+                                            <td>Requiere más recursos, logística compleja</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Encuestas a Operadores</strong></td>
+                                            <td>Validación comercial</td>
+                                            <td>Perspectiva de quien vende, conocimiento de mercado</td>
+                                            <td>Puede haber sesgo por competencia</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Prueba con Visitantes Reales</strong></td>
+                                            <td>Producto operativo, mejora continua</td>
+                                            <td>Feedback auténtico, disposición a pagar real</td>
+                                            <td>Requiere producto funcional</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>🎯 Validación: "Ruta del Cacao" - Santander</h4>
+                                <p><strong>Fase 1 - Focus Group (2 semanas antes del try-out):</strong></p>
+                                <ul>
+                                    <li>Participantes: 3 operadores de turismo de naturaleza, 2 blogueros de viajes, 5 turistas que han visitado la región</li>
+                                    <li>Presentación: Video de 5 minutos mostrando la experiencia, fotos de cada actividad, ficha técnica completa</li>
+                                    <li>Feedback recibido: "El precio es adecuado", "Falta información sobre nivel de dificultad física", "Sería bueno incluir opción vegetariana en el almuerzo"</li>
+                                    <li>Ajustes realizados: Se agregó escala de dificultad, se creó menú vegetariano, se especificó equipamiento requerido</li>
+                                </ul>
+                                <p><strong>Fase 2 - Try-out en Campo (1 semana antes del lanzamiento):</strong></p>
+                                <ul>
+                                    <li>Participantes: 8 personas (perfil exacto del flujo priorizado)</li>
+                                    <li>Condiciones: Producto gratuito a cambio de feedback detallado</li>
+                                    <li>Problemas identificados: El tiempo en la actividad de cata fue muy corto (30 min), el sendero tenía 2 puntos confusos sin señalización, el almuerzo se retrasó 45 minutos</li>
+                                    <li>Ajustes realizados: Se extendió la cata a 60 min, se instalaron 3 señales adicionales, se cambió el horario de salida para dar margen</li>
+                                </ul>
+                                <p><strong>Resultado:</strong> Lanzamiento exitoso con 92% de satisfacción en los primeros 3 meses.</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Guía para Focus Group</h2>
+                                <ol>
+                                    <li><strong>Preparación:</strong> Reúne materiales visuales (fotos, videos, mapa, ficha técnica)</li>
+                                    <li><strong>Participantes:</strong> 6-10 personas que representen tu flujo objetivo o intermediarios clave (operadores, agentes)</li>
+                                    <li><strong>Presentación:</strong> Explica el producto completo (15-20 minutos)</li>
+                                    <li><strong>Preguntas clave:</strong>
+                                        <ul>
+                                            <li>¿Qué les atrae más del producto?</li>
+                                            <li>¿Qué les genera dudas o preocupaciones?</li>
+                                            <li>¿El precio les parece adecuado? ¿Por qué?</li>
+                                            <li>¿Qué le agregarían o quitarían?</li>
+                                            <li>¿Lo recomendarían? ¿A quién?</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Documentación:</strong> Graba (con permiso) o toma notas detalladas</li>
+                                    <li><strong>Análisis:</strong> Identifica patrones en el feedback (si 3+ personas mencionan lo mismo, es un tema crítico)</li>
+                                </ol>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Guía para Try-out en Campo</h2>
+                                <ol>
+                                    <li><strong>Selección de participantes:</strong> Perfil exacto del flujo priorizado, preferiblemente que no te conozcan personalmente</li>
+                                    <li><strong>Condiciones:</strong> Producto gratuito o con descuento significativo (50-70%)</li>
+                                    <li><strong>Expectativas:</strong> Aclara que es una prueba, que habrá ajustes, que necesitas feedback honesto</li>
+                                    <li><strong>Recolección de feedback:</strong>
+                                        <ul>
+                                            <li>Encuesta durante la experiencia (puntos específicos)</li>
+                                            <li>Entrevista al finalizar (impresiones generales)</li>
+                                            <li>Seguimiento a los 3 días (reflexión más tranquila)</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Observación:</strong> Ten un observador que no sea guía para notar comportamientos no verbales</li>
+                                    <li><strong>Tiempos:</strong> Registra tiempos reales vs. tiempos planeados para cada actividad</li>
+                                </ol>
+                            </div>
+
+                            <div class="info-box tip">
+                                <h4>💡 Tip Práctico</h4>
+                                <p>No te defiendas cuando recibas críticas. Escucha, agradece y documenta. El objetivo es mejorar el producto, no demostrar que tienes razón.</p>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 9.1</h3>
+                            <p><strong>Plan de Validación de Tu Producto</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Define qué método(s) de validación usarás (focus group, try-out, o ambos)</li>
+                                <li>Lista al menos 5 personas/empresas que podrían participar en la validación</li>
+                                <li>Prepara los materiales de presentación (ficha, fotos, video si es posible)</li>
+                                <li>Diseña el cuestionario de feedback (mínimo 10 preguntas)</li>
+                                <li>Agenda las sesiones de validación (fechas, lugares, duración)</li>
+                                <li>Define cómo procesarás el feedback (plantilla de análisis)</li>
+                                <li>Establece criterios para decidir qué ajustes hacer (ej: si 3+ personas mencionan lo mismo, se ajusta)</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 4-5 horas (más tiempo de ejecución de validación)</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(8)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(9)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 10,
+                    title: "Plan de Trabajo y Acción",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 10: Plan de Trabajo y Acción</h1>
+                            <p>Convierte las brechas identificadas en acciones concretas con responsables y tiempos</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Elaborar un plan de trabajo operativo y ejecutable</li>
+                                    <li>Asignar responsables claros para cada acción</li>
+                                    <li>Estimar recursos y presupuestos necesarios</li>
+                                    <li>Establecer indicadores de cumplimiento</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Estructura del Plan de Trabajo</h2>
+                                <p>El plan de trabajo convierte las brechas identificadas en el Módulo 6 en acciones concretas. Debe ser operativo, con responsables únicos y tiempos realistas.</p>
+
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Componente</th>
+                                            <th>Descripción</th>
+                                            <th>Ejemplo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Actividad</td>
+                                            <td>Acción específica a realizar</td>
+                                            <td>"Capacitar 3 guías en interpretación ambiental"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Responsable</td>
+                                            <td>Persona única responsable (no comité)</td>
+                                            <td>"María González, coordinadora de turismo"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Recursos</td>
+                                            <td>Presupuesto y recursos necesarios</td>
+                                            <td>"$2.500.000 COP, auditorio comunal, formador SENA"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tiempo</td>
+                                            <td>Fecha de inicio y fecha límite</td>
+                                            <td>"15 marzo - 30 abril 2026"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Indicador</td>
+                                            <td>Cómo se mide el cumplimiento</td>
+                                            <td>"3 guías certificados, acta de capacitación"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prioridad</td>
+                                            <td>Nivel de urgencia</td>
+                                            <td>"Alta (crítico para operación)"</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Ejemplo de Plan</span>
+                                <h4>📋 Extracto: Plan de Trabajo "Valle de las Mariposas"</h4>
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Actividad</th>
+                                            <th>Responsable</th>
+                                            <th>Recursos</th>
+                                            <th>Tiempo</th>
+                                            <th>Prioridad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Certificar 2 guías adicionales</td>
+                                            <td>Carlos Mendoza</td>
+                                            <td>$1.800.000, SENA</td>
+                                            <td>Feb-Mar 2026</td>
+                                            <td>Alta</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Renovar 4 baños del eco-lodge</td>
+                                            <td>Ana Rodríguez</td>
+                                            <td>$4.500.000, fondo comunitario</td>
+                                            <td>Mar-Abr 2026</td>
+                                            <td>Alta</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Instalar 15 puntos de señalización</td>
+                                            <td>Luis Hernández</td>
+                                            <td>$800.000, materiales locales</td>
+                                            <td>Abr 2026</td>
+                                            <td>Media</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Desarrollar website funcional</td>
+                                            <td>María González</td>
+                                            <td>$1.200.000, desarrollador web</td>
+                                            <td>Mar-May 2026</td>
+                                            <td>Alta</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reclutar 5 familias adicionales</td>
+                                            <td>Comité de Turismo</td>
+                                            <td>Reuniones, material informativo</td>
+                                            <td>Feb-Mar 2026</td>
+                                            <td>Media</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p><strong>Total Presupuesto Corto Plazo:</strong> $8.300.000 COP</p>
+                                <p><strong>Fuente de recursos:</strong> 60% fondo comunitario, 30% convocatoria departamental, 10% aporte de familias</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Lineamientos para la Elaboración</h2>
+                                <ul>
+                                    <li><strong>Carácter operativo:</strong> Acciones de corto y mediano plazo (0-12 meses)</li>
+                                    <li><strong>Indicadores medibles:</strong> Cada actividad debe tener cómo medir su cumplimiento</li>
+                                    <li><strong>Fácil entendimiento:</strong> Todos los involucrados deben comprender el plan</li>
+                                    <li><strong>Lógica secuencial:</strong> Algunas actividades dependen de otras (ej: no puedes promocionar antes de tener el producto listo)</li>
+                                    <li><strong>Integración:</strong> Evita duplicidad con otros esfuerzos existentes en el territorio</li>
+                                    <li><strong>Validación:</strong> El plan debe ser aprobado por todos los actores involucrados</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Seguimiento al Plan</h2>
+                                <p>Un plan sin seguimiento es solo un documento. Establece:</p>
+                                <ul>
+                                    <li><strong>Reuniones periódicas:</strong> Semanales o quincenales para seguimiento operativo</li>
+                                    <li><strong>Reportes de avance:</strong> Cada responsable reporta progreso de sus actividades</li>
+                                    <li><strong>Ajustes:</strong> El plan es flexible, se ajusta según avances y obstáculos</li>
+                                    <li><strong>Responsable de seguimiento:</strong> Una persona específica que monitorea el cumplimiento global</li>
+                                </ul>
+
+                                <div class="info-box tip">
+                                    <h4>💡 Tip Práctico</h4>
+                                    <p>Usa herramientas simples: una hoja de cálculo compartida (Google Sheets) con columnas de actividad, responsable, fecha límite, estado (pendiente/en proceso/completado), y comentarios. Revisa en cada reunión.</p>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Componentes del Plan de Trabajo</h2>
+                                <p>Organiza las actividades por componentes:</p>
+                                <ul>
+                                    <li><strong>Componente A - Infraestructura:</strong> Obras físicas, equipamiento, señalización</li>
+                                    <li><strong>Componente B - Oferta de Experiencias:</strong> Desarrollo de actividades, capacitación de guías</li>
+                                    <li><strong>Componente C - Calidad y Sostenibilidad:</strong> Certificaciones, estándares, prácticas sostenibles</li>
+                                    <li><strong>Componente D - Promoción:</strong> Marketing, comercialización, canales de venta</li>
+                                    <li><strong>Componente E - Gestión:</strong> Organización, coordinación, monitoreo</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 10.1</h3>
+                            <p><strong>Elaboración de Tu Plan de Trabajo</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Toma la lista de brechas prioritarias del Módulo 6</li>
+                                <li>Para cada brecha, define 1-3 acciones concretas para cerrarla</li>
+                                <li>Asigna un responsable único para cada acción (nombre real, no "la comunidad")</li>
+                                <li>Estima recursos necesarios (dinero, personas, equipos, alianzas)</li>
+                                <li>Define fechas realistas de inicio y finalización</li>
+                                <li>Establece indicadores de cumplimiento para cada acción</li>
+                                <li>Organiza las actividades por componentes (A, B, C, D, E)</li>
+                                <li>Calcula el presupuesto total y define fuentes de financiamiento</li>
+                                <li>Comparte el plan con los responsables para validación y compromiso</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 5-6 horas</p>
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(9)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(10)">Completar Módulo →</button>
+                        </div>
+                    `
+                },
+                {
+                    id: 11,
+                    title: "Comercialización y Canales",
+                    status: "pending",
+                    content: `
+                        <div class="content-header">
+                            <h1>Módulo 11: Comercialización y Canales</h1>
+                            <p>Lleva tu producto al mercado y genera ventas sostenibles</p>
+                        </div>
+
+                        <div class="content-body">
+                            <div class="content-section">
+                                <h2>🎯 Objetivos de Aprendizaje</h2>
+                                <ul>
+                                    <li>Identificar canales de comercialización adecuados</li>
+                                    <li>Desarrollar estrategias de promoción efectivas</li>
+                                    <li>Definir precios basados en valor percibido</li>
+                                    <li>Establecer sistema de seguimiento y monitoreo</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Canales de Comercialización</h2>
+                                <p>Los canales son los medios a través de los cuales los visitantes conocen, reservan y compran tu producto.</p>
+
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de Canal</th>
+                                            <th>Ejemplos</th>
+                                            <th>Ventajas</th>
+                                            <th>Consideraciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Directos</strong></td>
+                                            <td>Website propio, WhatsApp, teléfono, taquilla en destino</td>
+                                            <td>Mayor margen, contacto directo con cliente</td>
+                                            <td>Requiere inversión en marketing, gestión de reservas</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Operadores Locales</strong></td>
+                                            <td>Agencias en la ciudad más cercana al destino</td>
+                                            <td>Conocen el mercado local, facilitan logística</td>
+                                            <td>Comisión 20-30%, menos control sobre experiencia</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Operadores Nacionales</strong></td>
+                                            <td>Agencias en ciudades principales del país</td>
+                                            <td>Mayor alcance, paquetes combinados</td>
+                                            <td>Comisión 25-35%, pagos a 30-60 días</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Operadores Internacionales</strong></td>
+                                            <td>Tour operadores en mercados emisores</td>
+                                            <td>Acceso a mercado extranjero, mayor gasto por visitante</td>
+                                            <td>Comisión 30-40%, requisitos de certificación, pagos a 60-90 días</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Plataformas Digitales</strong></td>
+                                            <td>Booking Experiences, Airbnb Experiences, TripAdvisor, Civitatis</td>
+                                            <td>Alcance global, sistema de reservas integrado</td>
+                                            <td>Comisión 15-25%, alta competencia, necesidad de reviews</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Alianzas Estratégicas</strong></td>
+                                            <td>Hoteles, restaurantes, aerolíneas, marcas</td>
+                                            <td>Acceso a base de clientes existente, valor agregado</td>
+                                            <td>Requiere negociación, comisiones variables</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="example-card">
+                                <span class="example-tag">Caso Ficticio</span>
+                                <h4>📊 Estrategia de Canales: "Ruta del Cacao"</h4>
+                                <p><strong>Canal 1 - Directo (30% de ventas esperadas):</strong></p>
+                                <ul>
+                                    <li>Website con reserva online y pago con tarjeta</li>
+                                    <li>WhatsApp Business para consultas y reservas</li>
+                                    <li>Taquilla en centro de visitantes del destino</li>
+                                    <li>Redes sociales (Instagram, Facebook) con enlace a reserva</li>
+                                </ul>
+                                <p><strong>Canal 2 - Operadores Locales (25% de ventas esperadas):</strong></p>
+                                <ul>
+                                    <li>3 agencias en Bucaramanga (ciudad más cercana)</li>
+                                    <li>Comisión: 25%</li>
+                                    <li>Capacitación a vendedores de las agencias (1 vez al año)</li>
+                                    <li>Material promocional provisto (folletos, fotos, videos)</li>
+                                </ul>
+                                <p><strong>Canal 3 - Plataformas Digitales (25% de ventas esperadas):</strong></p>
+                                <ul>
+                                    <li>Airbnb Experiences (lanzamiento inicial)</li>
+                                    <li>TripAdvisor Experiences (a los 6 meses, con reviews)</li>
+                                    <li>Civitatis (a los 12 meses, mercado internacional)</li>
+                                </ul>
+                                <p><strong>Canal 4 - Alianzas (20% de ventas esperadas):</strong></p>
+                                <ul>
+                                    <li>2 hoteles boutique en Bucaramanga (paquete combinado)</li>
+                                    <li>1 restaurante de gastronomía local (experiencia + almuerzo)</li>
+                                    <li>Comisión: 15-20%</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Estrategias de Promoción</h2>
+                                <p>La promoción es cómo das a conocer tu producto a los visitantes potenciales:</p>
+                                <ul>
+                                    <li><strong>Contenido digital:</strong> Fotos profesionales, videos de la experiencia, blog con historias del destino</li>
+                                    <li><strong>Redes sociales:</strong> Instagram (visual), Facebook (comunidad), TikTok (alcance orgánico), LinkedIn (operadores)</li>
+                                    <li><strong>Influencers:</strong> Invita blogueros y creadores de contenido a experiencias de familiarización (FAM trips)</li>
+                                    <li><strong>Ferias turísticas:</strong> Participa en ferias nacionales (ANATO) e internacionales según tu mercado</li>
+                                    <li><strong>Relaciones públicas:</strong> Notas de prensa en medios de turismo, revistas especializadas</li>
+                                    <li><strong>Marketing de contenidos:</strong> Blog, newsletter, guías descargables del destino</li>
+                                </ul>
+
+                                <div class="info-box tip">
+                                    <h4>💡 Tip Práctico</h4>
+                                    <p>Invierte en fotos y videos PROFESIONALES de tu experiencia. Es el material que más influye en la decisión de compra. Un buen video de 2 minutos puede vender más que 100 folletos.</p>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Definición de Precios</h2>
+                                <p>El precio debe reflejar el valor percibido, no solo los costos:</p>
+                                <table class="content-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Componente</th>
+                                            <th>Cálculo</th>
+                                            <th>Ejemplo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Costos Variables</td>
+                                            <td>Por visitante (alimentación, entradas, materiales)</td>
+                                            <td>$80.000 COP/persona</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Costos Fijos</td>
+                                            <td>Por grupo (guía, transporte, seguros)</td>
+                                            <td>$400.000 COP/grupo (máx 8 personas = $50.000/persona)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Costo Total</td>
+                                            <td>Variables + Fijos</td>
+                                            <td>$130.000 COP/persona</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Margen</td>
+                                            <td>30-50% según posicionamiento</td>
+                                            <td>40% = $52.000 COP</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Precio Base</td>
+                                            <td>Costo + Margen</td>
+                                            <td>$182.000 COP</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comisiones</td>
+                                            <td>25-35% si vendes por operadores</td>
+                                            <td>30% = $54.600 COP</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Precio Final</td>
+                                            <td>Precio Base + Comisiones</td>
+                                            <td>$236.600 → Redondear a $240.000 COP</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Seguimiento y Monitoreo</h2>
+                                <p>Establece indicadores para medir el desempeño comercial:</p>
+                                <ul>
+                                    <li><strong>Ventas:</strong> Número de reservas por mes, por canal, por temporada</li>
+                                    <li><strong>Ingresos:</strong> Ingreso total, ingreso por visitante, margen promedio</li>
+                                    <li><strong>Satisfacción:</strong> Reviews, calificaciones, tasa de recomendación (NPS)</li>
+                                    <li><strong>Conversión:</strong> Consultas vs. reservas (tasa de conversión por canal)</li>
+                                    <li><strong>Costos de adquisición:</strong> Cuánto gastas en marketing por cada reserva obtenida</li>
+                                </ul>
+
+                                <div class="info-box">
+                                    <h4>💡 Indicadores Clave (KPIs)</h4>
+                                    <ul>
+                                        <li>Tasa de ocupación: (Reservas reales / Capacidad máxima) x 100</li>
+                                        <li>Ticket promedio: Ingreso total / Número de visitantes</li>
+                                        <li>NPS (Net Promoter Score): % Promotores - % Detractores</li>
+                                        <li>Tasa de repetición: Visitantes que regresan / Total de visitantes</li>
+                                        <li>ROI de marketing: (Ingreso por marketing - Inversión en marketing) / Inversión en marketing</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="content-section">
+                                <h2>Herramientas de Comercialización</h2>
+                                <p>Desarrolla estas herramientas para facilitar la venta:</p>
+                                <ul>
+                                    <li><strong>Ficha comercial:</strong> Versión resumida de la ficha técnica, enfocada en ventas (1-2 páginas)</li>
+                                    <li><strong>Presentación para operadores:</strong> PowerPoint o PDF con experiencia, precios, condiciones, contactos</li>
+                                    <li><strong>Kit de marketing:</strong> Fotos en alta resolución, videos, logos, descripciones en varios idiomas</li>
+                                    <li><strong>Contratos:</strong> Términos y condiciones, políticas de cancelación, acuerdos con operadores</li>
+                                    <li><strong>Sistema de reservas:</strong> Puede ser desde WhatsApp hasta software especializado (Bokun, FareHarbor, etc.)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="exercise-box">
+                            <h3>📝 Ejercicio Práctico 11.1</h3>
+                            <p><strong>Plan de Comercialización de Tu Producto</strong></p>
+                            <ol class="exercise-steps">
+                                <li>Define tu estrategia de canales (qué canales usarás y qué % de ventas esperas de cada uno)</li>
+                                <li>Lista al menos 5 operadores o aliados potenciales para contactar</li>
+                                <li>Calcula tu precio (costos + margen + comisiones) y define precio público</li>
+                                <li>Diseña tu ficha comercial (1-2 páginas para enviar a operadores)</li>
+                                <li>Planifica tu estrategia de promoción para los primeros 6 meses (acciones concretas, presupuesto, responsable)</li>
+                                <li>Define tus KPIs principales y cómo los medirás (frecuencia, responsable)</li>
+                                <li>Prepara tu kit de marketing mínimo (fotos, descripciones, información de contacto)</li>
+                            </ol>
+                            <p><strong>Tiempo estimado:</strong> 5-6 horas</p>
+                        </div>
+
+                        <div class="completion-badge show" id="courseCompletion">
+                            <div class="badge-icon">🎉</div>
+                            <h3>¡Felicitaciones! Has Completado el Curso</h3>
+                            <p>Has completado los 11 módulos del curso de Diseño de Producto Turístico Territorial. Ahora tienes las herramientas para crear productos turísticos sostenibles y competitivos en tu comunidad.</p>
+
+                        </div>
+
+                        <div class="content-navigation">
+                            <button class="nav-btn prev" onclick="loadModule(10)">← Anterior</button>
+                            <button class="nav-btn next" onclick="completeModule(11)">Finalizar Curso →</button>
+                        </div>
+                    `
+                }
+            ]
+        };
+
+        // State
+        let currentModule = 0;
+        let completedModules = new Set();
+
+        // Initialize
+        function init() {
+            renderModuleList();
+            showWelcome();
+            updateProgress();
+        }
+
+        // Render Module List
+        function renderModuleList() {
+            const moduleList = document.getElementById('moduleList');
+            moduleList.innerHTML = '';
+
+            courseData.modules.forEach((module, index) => {
+                const li = document.createElement('li');
+                li.className = `module-item ${currentModule === index ? 'active' : ''} ${completedModules.has(module.id) ? 'completed' : ''}`;
+                li.onclick = () => loadModule(index);
+                li.innerHTML = `
+                    <span class="module-number">MÓDULO ${module.id.toString().padStart(2, '0')}</span>
+                    <span class="module-name">${module.title}</span>
+                    <span class="module-status">${completedModules.has(module.id) ? '✅ Completado' : '⏳ Pendiente'}</span>
+                `;
+                moduleList.appendChild(li);
+            });
+        }
+
+        // Show Welcome Screen
+        function showWelcome() {
+            const content = document.getElementById('courseContent');
+            content.innerHTML = `
+                <div class="welcome-screen animate">
+                    <h1>${courseData.welcome.title}</h1>
+                    <p>${courseData.welcome.subtitle}</p>
+                    <p style="max-width: 900px; margin: 0 auto 2rem;">${courseData.welcome.description}</p>
+
+                    <div class="feature-grid">
+                        ${courseData.welcome.features.map(f => `
+                            <div class="feature-card">
+                                <div class="icon">${f.icon}</div>
+                                <h4>${f.title}</h4>
+                                <p>${f.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <button class="btn btn-primary" onclick="loadModule(0)" style="font-size: 1.2rem; padding: 15px 40px;">
+                        Comenzar el Curso
+                    </button>
+
+                    <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%); border-radius: 12px; border: 2px solid var(--primary-color);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📋 Información Importante</h3>
+                        <ul style="text-align: left; max-width: 700px; margin: 0 auto; line-height: 2;">
+                            <li>✅ Curso 100% gratuito y de libre acceso</li>
+                            <li>✅ No requiere inscripción ni registro</li>
+                            <li>✅ Estudia a tu propio ritmo</li>
+                            <li>✅ Todos los ejercicios son aplicables directamente en tu iniciativa</li>
+                            <li>✅ Certificado disponible al completar los 11 módulos</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            currentModule = -1;
+            renderModuleList();
+        }
+
+        // Load Module
+        function loadModule(index) {
+            if (index < 0 || index >= courseData.modules.length) return;
+
+            currentModule = index;
+            const content = document.getElementById('courseContent');
+            content.innerHTML = courseData.modules[index].content;
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            renderModuleList();
+        }
+
+        // Complete Module
+        function completeModule(moduleId) {
+            completedModules.add(moduleId);
+            updateProgress();
+            renderModuleList();
+
+            // Show completion message
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Completado';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+
+                // Load next module
+                if (moduleId < courseData.modules.length) {
+                    loadModule(moduleId);
+                }
+            }, 1000);
+        }
+
+        // Update Progress
+        function updateProgress() {
+            const progress = Math.round((completedModules.size / courseData.modules.length) * 100);
+            document.getElementById('progressPercent').textContent = progress;
+            document.getElementById('sidebarProgress').style.width = `${progress}%`;
+            document.getElementById('modulesCompleted').textContent = `${completedModules.size} de ${courseData.modules.length} módulos completados`;
+
+            // Show completion badge if all modules completed
+            if (completedModules.size === courseData.modules.length) {
+                const badge = document.getElementById('courseCompletion');
+                if (badge) {
+                    badge.classList.add('show');
+                }
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
+
