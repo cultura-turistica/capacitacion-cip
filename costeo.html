@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Costeo Turístico | Cultura T</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #1a3d2f;
+            --primary-light: #2d5a42;
+            --primary-dark: #0f2a1f;
+            --accent: #4a7c59;
+            --accent-light: #6b9b6f;
+            --white: #ffffff;
+            --gray-50: #f8f9fa;
+            --gray-100: #f0f2f4;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7f6 0%, #e8ece9 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-container {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 12px 24px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .logo-container:hover {
+            border-color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .header-title {
+            color: var(--white);
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--white);
+        }
+
+        .btn-help {
+            background: var(--warning);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-help:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Currency Bar */
+        .currency-bar {
+            background: var(--white);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .currency-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .exchange-rate {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .exchange-rate label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        .exchange-rate input {
+            width: 140px;
+            padding: 10px 14px;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .exchange-rate input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 32px 0;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 1024px) {
+            .calculator-grid {
+                grid-template-columns: 1fr 420px;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: visible;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 20px 24px;
+        }
+
+        .card-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-header p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #fef9e7 0%, #fff9e6 100%);
+            border-left: 4px solid var(--warning);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-box strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+        }
+
+        .info-box p {
+            color: var(--gray-700);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Cost Items */
+        .cost-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: auto;
+        }
+
+        .cost-item {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cost-item:hover {
+            border-color: var(--accent);
+            background: #f0f5f2;
+        }
+
+        .cost-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .cost-type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cost-type-fixed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .cost-type-variable {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .cost-type-flexible {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .cost-item-inputs {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr auto;
+            gap: 12px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .cost-item-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: var(--gray-400);
+        }
+
+        .btn-remove {
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-remove:hover {
+            background: #dc2626;
+            color: var(--white);
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--gray-50);
+            border: 2px dashed var(--accent);
+            color: var(--accent);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .btn-add:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-style: solid;
+        }
+
+        /* Percentages Grid */
+        .percentages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .percentages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .percentage-item {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .percentage-item label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+        }
+
+        .percentage-item input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .percentage-item input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .percentage-item .hint {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-top: 6px;
+        }
+
+        /* Pax Slider */
+        .pax-section {
+            background: linear-gradient(135deg, #f0f5f2 0%, #e8ece9 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .pax-section label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 16px;
+        }
+
+        .pax-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--gray-300);
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .pax-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .pax-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .pax-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .pax-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .pax-label {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            text-align: center;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            position: sticky;
+            top: 120px;
+        }
+
+        .result-section {
+            margin-bottom: 20px;
+        }
+
+        .result-section-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--gray-700);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #f0f5f2 0%, #e8ece9 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.875rem;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item.total {
+            border-top: 2px solid var(--accent);
+            border-bottom: none;
+            padding-top: 12px;
+            margin-top: 8px;
+            font-weight: 700;
+        }
+
+        .result-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .result-highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .result-highlight .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .result-highlight .value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .result-highlight .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+            margin: 16px 0;
+        }
+
+        .result-highlight .sub-label {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .result-highlight .net-price {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .result-highlight .rack-price {
+            background: rgba(245, 158, 11, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            border: 2px solid var(--warning);
+        }
+
+        /* USD Toggle */
+        .usd-toggle {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .usd-toggle label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .usd-toggle input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .usd-rate-display {
+            margin-top: 12px;
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* Progress Bars */
+        .progress-section {
+            margin-top: 24px;
+        }
+
+        .progress-section h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 16px;
+        }
+
+        .progress-item {
+            margin-bottom: 12px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.75rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.costs {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .progress-fill.expenses {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .progress-fill.profit {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+
+        .progress-fill.iva {
+            background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--gray-600);
+        }
+
+        .modal-body {
+            color: var(--gray-700);
+            line-height: 1.8;
+        }
+
+        .modal-body h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 24px 0 12px;
+        }
+
+        .modal-body h3:first-child {
+            margin-top: 0;
+        }
+
+        .modal-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-body li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.875rem;
+        }
+
+        .modal-body li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .explanation-box {
+            background: linear-gradient(135deg, #f0f5f2 0%, #e8ece9 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        .explanation-box h4 {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .explanation-box table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        .explanation-box th,
+        .explanation-box td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-300);
+            font-size: 0.875rem;
+        }
+
+        .explanation-box th {
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .explanation-box tr:hover {
+            background: rgba(74, 124, 89, 0.1);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 16px 0;
+            font-family: 'Poppins', monospace;
+        }
+
+        .tariff-explanation {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        @media (max-width: 640px) {
+            .tariff-explanation {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tariff-card {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .tariff-card.net {
+            border-color: var(--info);
+            background: #dbeafe;
+        }
+
+        .tariff-card.rack {
+            border-color: var(--warning);
+            background: #fef3c7;
+        }
+
+        .tariff-card.final {
+            border-color: var(--success);
+            background: #d1fae5;
+        }
+
+        .tariff-card h4 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tariff-card p {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        .tariff-card .value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo span {
+            color: var(--accent-light);
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .footer-text small {
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-4 {
+            margin-top: 16px;
+        }
+
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+            }
+
+            .header-actions {
+                justify-content: center;
+            }
+
+            .currency-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .pax-value {
+                font-size: 2rem;
+            }
+
+            .result-highlight .value {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ESTILOS PARA IMPRESIÓN */
+        @media print {
+            /* Ocultar elementos innecesarios al imprimir */
+            header,
+            .currency-bar,
+            .input-section,
+            .btn,
+            .btn-help,
+            .usd-toggle,
+            footer,
+            .modal {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .main-content {
+                padding: 0;
+            }
+
+            .calculator-grid {
+                display: block;
+            }
+
+            .results-section {
+                width: 100%;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+
+            .card-header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 2px solid #000;
+                padding: 10px 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .card-header h2 {
+                color: black !important;
+            }
+
+            .card-header p {
+                color: #333 !important;
+            }
+
+            .result-highlight {
+                background: #f8f9fa !important;
+                color: black !important;
+                border: 2px solid #000;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .result-highlight .label,
+            .result-highlight .sub-label {
+                color: #333 !important;
+            }
+
+            .result-highlight .value {
+                color: black !important;
+            }
+
+            .result-highlight .rack-price {
+                border-color: #000 !important;
+            }
+
+            .progress-fill {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+
+                    <a href="https://cultura-t.com" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
+                        <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="Logo Cultura T" style="max-height: 80px; width: auto; filter: brightness(0) invert(1);">
+                    </a>
+
+                    <div class="header-title">
+                        <h1>Calculadora de Costeo Turístico</h1>
+                        <p>Herramienta profesional para diseño de paquetes turísticos</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="showInfoModal()">
+                        📚 Guía de Uso
+                    </button>
+                    <button class="btn btn-secondary" onclick="showCostModal()">
+                        💡 Tipos de Costos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="currency-bar">
+        <div class="container">
+            <div class="currency-content">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-weight: 600; color: var(--gray-700);">💱 Todos los costos se ingresan en Pesos Colombianos (COP)</span>
+                </div>
+                <div class="exchange-rate">
+                    <label>Tasa de cambio para USD:</label>
+                    <input type="number" id="exchangeRate" value="4000" min="1" step="100" onchange="calculateAll()">
+                    <span style="color: var(--gray-500); font-size: 0.875rem;">1 USD = COP</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="calculator-grid">
+                <div class="input-section">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h2>🏛️ Costos Fijos</h2>
+                            <p>Gastos que no varían con el número de participantes (dentro del rango de capacidad)</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="info-box">
+                                <strong>💡 ¿Qué son costos fijos?</strong>
+                                <p>Son gastos que se mantienen constantes independientemente del número de turistas. Ejemplo: 1 guía para hasta 15 participantes cuesta lo mismo si van 5 o si van 15. El costo por persona disminuye a medida que aumenta el grupo.</p>
+                            </div>
+                            <div class="cost-items-container" id="fixedCostsList">
+                                <div class="cost-item">
+                                    <div class="cost-item-header">
+                                        <span class="cost-type-badge cost-type-fixed">Fijo</span>
+                                    </div>
+                                    <div class="cost-item-inputs">
+                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Guía principal (hasta 15 pax)">
+                                        <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                                        <input type="number" class="input-field" placeholder="Valor total (COP)" value="300000">
+                                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="cost-item">
+                                    <div class="cost-item-header">
+                                        <span class="cost-type-badge cost-type-fixed">Fijo</span>
+                                    </div>
+                                    <div class="cost-item-inputs">
+                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Tallerista (hasta 15 pax)">
+                                        <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                                        <input type="number" class="input-field" placeholder="Valor total (COP)" value="300000">
+                                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="cost-item">
+                                    <div class="cost-item-header">
+                                        <span class="cost-type-badge cost-type-fixed">Fijo</span>
+                                    </div>
+                                    <div class="cost-item-inputs">
+                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Alimentación guías">
+                                        <input type="number" class="input-field" placeholder="Cantidad" value="2" min="1">
+                                        <input type="number" class="input-field" placeholder="Valor total (COP)" value="40000">
+                                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn-add" onclick="addItem('fixed')">
+                                <span>+</span> Agregar Costo Fijo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h2>🔄 Costos Variables</h2>
+                            <p>Gastos que se multiplican por el número de participantes</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="info-box">
+                                <strong>💡 ¿Qué son costos variables?</strong>
+                                <p>Son gastos por persona (pax). El costo total aumenta con más participantes, pero el costo por persona se mantiene constante. Ejemplo: alimentación, materiales, seguros.</p>
+                            </div>
+                            <div class="cost-items-container" id="variableCostsList">
+                                <div class="cost-item">
+                                    <div class="cost-item-header">
+                                        <span class="cost-type-badge cost-type-variable">Variable</span>
+                                    </div>
+                                    <div class="cost-item-inputs">
+                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Kit de Materiales">
+                                        <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                                        <input type="number" class="input-field" placeholder="Valor por pax (COP)" value="50000">
+                                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="cost-item">
+                                    <div class="cost-item-header">
+                                        <span class="cost-type-badge cost-type-variable">Variable</span>
+                                    </div>
+                                    <div class="cost-item-inputs">
+                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Refrigerio">
+                                        <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                                        <input type="number" class="input-field" placeholder="Valor por pax (COP)" value="15000">
+                                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="cost-item">
+                                    <div class="cost-item-header">
+                                        <span class="cost-type-badge cost-type-variable">Variable</span>
+                                    </div>
+                                    <div class="cost-item-inputs">
+                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Seguro turista">
+                                        <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                                        <input type="number" class="input-field" placeholder="Valor por pax (COP)" value="4000">
+                                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn-add" onclick="addItem('variable')">
+                                <span>+</span> Agregar Costo Variable
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h2>⚖️ Costos Flexibles</h2>
+                            <p>Costos que se activan según rangos de participantes</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="info-box">
+                                <strong>💡 ¿Qué son costos flexibles?</strong>
+                                <p>Son costos que se activan cuando superas cierta capacidad. Ejemplo: 1 guía hasta 15 pax, pero si tienes 16-30 pax necesitas 2 guías.</p>
+                            </div>
+                            <div class="cost-items-container" id="flexibleCostsList">
+                                <div class="cost-item">
+                                    <div class="cost-item-header">
+                                        <span class="cost-type-badge cost-type-flexible">Flexible</span>
+                                    </div>
+                                    <div class="cost-item-inputs">
+                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Guía adicional">
+                                        <input type="number" class="input-field" placeholder="Activar desde (pax)" value="1" min="1">
+                                        <input type="number" class="input-field" placeholder="Valor total (COP)" value="300000">
+                                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn-add" onclick="addItem('flexible')">
+                                <span>+</span> Agregar Costo Flexible
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h2>📋 Porcentajes y Márgenes</h2>
+                            <p>Gastos indirectos, comisiones y utilidad</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="percentages-grid">
+                                <div class="percentage-item">
+                                    <label>⚠️ Imprevistos (%)</label>
+                                    <input type="number" id="contingency" value="3" min="0" max="100" step="0.1" onchange="calculateAll()">
+                                    <div class="hint">Reserva para emergencias</div>
+                                </div>
+                                <div class="percentage-item">
+                                    <label>🏢 Administrativos (%)</label>
+                                    <input type="number" id="adminExpenses" value="3" min="0" max="100" step="0.1" onchange="calculateAll()">
+                                    <div class="hint">Internet, teléfono, alquiler</div>
+                                </div>
+                                <div class="percentage-item">
+                                    <label>⚙️ Operacionales (%)</label>
+                                    <input type="number" id="operationalExpenses" value="2" min="0" max="100" step="0.1" onchange="calculateAll()">
+                                    <div class="hint">Mantenimiento, servicios</div>
+                                </div>
+                                <div class="percentage-item">
+                                    <label>🤝 Comisión (%)</label>
+                                    <input type="number" id="commission" value="20" min="0" max="50" step="0.1" onchange="calculateAll()">
+                                    <div class="hint">Agencias, tour operadores</div>
+                                </div>
+                                <div class="percentage-item">
+                                    <label>💰 Utilidad Neta (%)</label>
+                                    <input type="number" id="netProfit" value="15" min="0" max="100" step="0.1" onchange="calculateAll()">
+                                    <div class="hint">Ganancia después de impuestos</div>
+                                </div>
+                                <div class="percentage-item">
+                                    <label>🧾 IVA (%)</label>
+                                    <input type="number" id="iva" value="19" min="0" max="20" step="0.1" onchange="calculateAll()">
+                                    <div class="hint">IVA Colombia: 19%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pax-section">
+                        <label>👥 Número de Participantes</label>
+                        <input type="range" class="pax-slider" id="paxCount" min="1" max="30" value="10" oninput="document.getElementById('paxValue').textContent = this.value; calculateAll()">
+                        <div class="pax-display">
+                            <div>
+                                <div class="pax-label">Mínimo</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-500);">1 pax</div>
+                            </div>
+                            <div>
+                                <div class="pax-value" id="paxValue">10</div>
+                                <div class="pax-label">participantes</div>
+                            </div>
+                            <div>
+                                <div class="pax-label">Máximo</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-500);">30 pax</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <div class="card results-panel">
+                        <div class="card-header">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h2>✅ Resultado del Costeo</h2>
+                                    <p>Desglose completo en tiempo real</p>
+                                </div>
+                                <button class="btn-help" onclick="showPricingModal()" title="¿Cómo se calcula el precio?">?</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="result-section">
+                                <div class="result-section-title">📊 COSTOS DIRECTOS</div>
+                                <div class="result-box">
+                                    <div class="result-item">
+                                        <span class="result-label">Costos Fijos</span>
+                                        <span class="result-value" id="totalFixed">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Costos Variables (por pax)</span>
+                                        <span class="result-value" id="totalVariablePerPax">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Costos Flexibles</span>
+                                        <span class="result-value" id="totalFlexible">$0</span>
+                                    </div>
+                                    <div class="result-item total">
+                                        <span class="result-label">Costo Total Grupo</span>
+                                        <span class="result-value" id="totalGroupCost">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Costo por Persona</span>
+                                        <span class="result-value" id="costPerPax">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="result-section">
+                                <div class="result-section-title">📋 GASTOS INDIRECTOS</div>
+                                <div class="result-box">
+                                    <div class="result-item">
+                                        <span class="result-label">Imprevistos (<span id="contingencyPercent">3</span>%)</span>
+                                        <span class="result-value" id="contingencyAmount">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Administrativos (<span id="adminPercent">3</span>%)</span>
+                                        <span class="result-value" id="adminAmount">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Operacionales (<span id="operationalPercent">2</span>%)</span>
+                                        <span class="result-value" id="operationalAmount">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Comisión (<span id="commissionPercent">20</span>%)</span>
+                                        <span class="result-value" id="commissionAmount">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="result-section">
+                                <div class="result-section-title">💰 UTILIDAD E IMPUESTOS</div>
+                                <div class="result-box">
+                                    <div class="result-item">
+                                        <span class="result-label">Utilidad Neta (<span id="netProfitPercent">15</span>%)</span>
+                                        <span class="result-value" id="netProfitAmount">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Margen Bruto Total</span>
+                                        <span class="result-value" id="grossMargin">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">IVA (<span id="ivaPercentDisplay">19</span>%)</span>
+                                        <span class="result-value" id="ivaAmount">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="result-highlight">
+                                <div class="label">📋 Tarifa Neta (Sin Comisión)</div>
+                                <div class="value" id="netPrice">$0</div>
+                                <div class="sub-label">Costos + Gastos + Utilidad</div>
+
+                                <div class="rack-price">
+                                    <div class="label">🏷️ Tarifa RACK (Con Comisión)</div>
+                                    <div class="value" id="rackPrice">$0</div>
+                                    <div class="sub-label">Tarifa Neta + Comisión Intermediarios</div>
+                                </div>
+
+                                <div class="divider"></div>
+
+                                <div class="label">💵 Precio Final al Público (Con IVA)</div>
+                                <div class="value" id="finalPrice">$0</div>
+                                <div class="sub-label">Tarifa RACK + IVA</div>
+
+                                <div class="divider"></div>
+
+                                <div class="label">👤 Precio por Persona</div>
+                                <div class="value" id="pricePerPax">$0</div>
+                                <div class="sub-label">Precio Final ÷ Número de Participantes</div>
+                            </div>
+
+                            <div class="usd-toggle">
+                                <label>
+                                    <input type="checkbox" id="showUSD" onchange="calculateAll()">
+                                    <span>🇺🇸 Ver precios en Dólares Americanos (USD)</span>
+                                </label>
+                                <div class="usd-rate-display" id="usdRateDisplay">
+                                    Tasa: 1 USD = $4,000 COP
+                                </div>
+                            </div>
+
+                            <div class="progress-section">
+                                <h4>📊 Distribución del Precio</h4>
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>Costos Operativos</span>
+                                        <span id="costsPercent">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill costs" id="costsBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>Gastos y Comisiones</span>
+                                        <span id="expensesPercent">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill expenses" id="expensesBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>Utilidad</span>
+                                        <span id="profitPercent">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill profit" id="profitBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>IVA</span>
+                                        <span id="ivaBarPercent">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill iva" id="ivaBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                                <button class="btn btn-primary" style="flex: 1;" onclick="calculateAll()">
+                                    🔄 Recalcular
+                                </button>
+                                <button class="btn btn-secondary" style="flex: 1;" onclick="window.print()">
+                                    🖨️ Imprimir Resumen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📚 Guía de Uso</h2>
+                <button class="modal-close" onclick="closeInfoModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>1. Ingresa los Costos en COP</h3>
+                <ul>
+                    <li>Todos los costos se ingresan en Pesos Colombianos (COP)</li>
+                    <li><strong>Costos Fijos:</strong> Gastos que no cambian con el número de participantes (guías, transporte, permisos)</li>
+                    <li><strong>Costos Variables:</strong> Gastos por persona (alimentación, materiales, seguros)</li>
+                    <li><strong>Costos Flexibles:</strong> Costos que se activan según rangos (ej: guía adicional a partir de 16 pax)</li>
+                </ul>
+
+                <h3>2. Configura Porcentajes</h3>
+                <ul>
+                    <li>Imprevistos: 3-5% recomendado</li>
+                    <li>Administrativos: 3% típico</li>
+                    <li>Operacionales: 2% típico</li>
+                    <li>Comisión: 5-30% según intermediario</li>
+                    <li>Utilidad: 15-25% recomendado</li>
+                    <li>IVA: 19% para Colombia</li>
+                </ul>
+
+                <h3>3. Ajusta Participantes</h3>
+                <ul>
+                    <li>Usa el control deslizante para ver cómo cambia el costo por persona</li>
+                    <li>Más participantes = menor costo unitario de costos fijos</li>
+                </ul>
+
+                <h3>4. Configura Tasa de Cambio USD</h3>
+                <ul>
+                    <li>Ingresa la tasa de cambio actual (ej: 4000 COP = 1 USD)</li>
+                    <li>Activa la opción "Ver precios en USD" para ver equivalencias</li>
+                    <li>Los costos se mantienen en COP, solo el resultado final se convierte</li>
+                </ul>
+
+                <h3>5. Revisa Resultados</h3>
+                <ul>
+                    <li>Panel derecho muestra desglose completo en COP</li>
+                    <li>Activa USD para ver equivalencia en dólares</li>
+                    <li>Barras visuales muestran distribución del precio</li>
+                    <li>Los cálculos se actualizan automáticamente</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="costModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>💡 Tipos de Costos</h2>
+                <button class="modal-close" onclick="closeCostModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>🏛️ Costos Fijos</h3>
+                <p>No cambian con el número de participantes dentro de un rango establecido. El costo total es constante, pero el costo por persona disminuye a medida que aumenta el grupo.</p>
+                <p style="background: #f0f5f2; padding: 12px; border-radius: 8px; margin-top: 12px;"><strong>Ejemplo:</strong> 1 guía por $300,000 COP para hasta 15 participantes</p>
+
+                <h3>🔄 Costos Variables</h3>
+                <p>Cambian proporcionalmente con cada participante adicional. El costo por persona se mantiene constante, pero el costo total del grupo aumenta linealmente.</p>
+                <p style="background: #f0f5f2; padding: 12px; border-radius: 8px; margin-top: 12px;"><strong>Ejemplo:</strong> Kit de materiales por $50,000 COP por persona</p>
+
+                <h3>⚖️ Costos Flexibles</h3>
+                <p>Se activan cuando superas ciertos umbrales de capacidad. Útil para modelar situaciones donde necesitas recursos adicionales al crecer el grupo.</p>
+                <p style="background: #f0f5f2; padding: 12px; border-radius: 8px; margin-top: 12px;"><strong>Ejemplo:</strong> 1 guía hasta 15 pax, 2 guías de 16-30 pax</p>
+
+                <h3>📊 Fórmula de Precio de Venta</h3>
+                <p style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; padding: 16px; border-radius: 8px; text-align: center; margin-top: 12px;">
+                    <strong>PRECIO = COSTOS + GASTOS + UTILIDAD + COMISIÓN + IVA</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="pricingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>❓ ¿Cómo se Calcula el Precio Final?</h2>
+                <button class="modal-close" onclick="closePricingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>📈 ¿Por qué el Precio por Persona Baja con Más Participantes?</h3>
+
+                <div class="explanation-box">
+                    <h4>🎯 El Paradigma de los Costos Fijos Distribuidos</h4>
+                    <p>Los <strong>costos fijos</strong> (guías, transporte, permisos) son gastos que NO cambian sin importar cuántas personas vayan. Por eso, cuando hay más participantes, ese costo se "reparte" entre más personas, haciendo que el costo individual baje.</p>
+
+                    <table>
+                        <tr>
+                            <th>Participantes</th>
+                            <th>Costo Fijo Total</th>
+                            <th>Costo Fijo por Persona</th>
+                        </tr>
+                        <tr>
+                            <td>1 pax</td>
+                            <td>$640,000</td>
+                            <td>$640,000 ÷ 1 = <strong>$640,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>2 pax</td>
+                            <td>$640,000</td>
+                            <td>$640,000 ÷ 2 = <strong>$320,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>5 pax</td>
+                            <td>$640,000</td>
+                            <td>$640,000 ÷ 5 = <strong>$128,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>10 pax</td>
+                            <td>$640,000</td>
+                            <td>$640,000 ÷ 10 = <strong>$64,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>20 pax</td>
+                            <td>$640,000</td>
+                            <td>$640,000 ÷ 20 = <strong>$32,000</strong></td>
+                        </tr>
+                    </table>
+
+                    <p style="margin-top: 12px;"><strong>💡 Conclusión:</strong> ¡Mientras más participantes, menor es el costo fijo por persona! Los costos variables (alimentación, materiales) se mantienen iguales por persona.</p>
+                </div>
+
+                <h3>💵 Tipos de Tarifas en Turismo</h3>
+
+                <div class="tariff-explanation">
+                    <div class="tariff-card net">
+                        <h4>📋 Tarifa NETA</h4>
+                        <p>Costos + Gastos + Utilidad</p>
+                        <p style="font-size: 0.65rem; margin-top: 8px;">Precio confidencial para el operador. No incluye comisión de intermediarios.</p>
+                        <div class="value" style="color: var(--info);" id="modalNetPrice">$0</div>
+                    </div>
+                    <div class="tariff-card rack">
+                        <h4>🏷️ Tarifa RACK</h4>
+                        <p>Tarifa Neta + Comisión</p>
+                        <p style="font-size: 0.65rem; margin-top: 8px;">Precio oficial con comisión para agencias y tour operadores.</p>
+                        <div class="value" style="color: var(--warning);" id="modalRackPrice">$0</div>
+                    </div>
+                    <div class="tariff-card final">
+                        <h4>💵 Precio FINAL</h4>
+                        <p>Tarifa RACK + IVA</p>
+                        <p style="font-size: 0.65rem; margin-top: 8px;">Precio que paga el cliente final con todos los impuestos incluidos.</p>
+                        <div class="value" style="color: var(--success);" id="modalFinalPrice">$0</div>
+                    </div>
+                </div>
+
+                <div class="formula-box">
+                    <strong>Fórmula Completa:</strong><br><br>
+                    <span style="font-size: 0.9rem;">
+                    COSTOS DIRECTOS (Fijos + Variables + Flexibles)<br>
+                    + GASTOS INDIRECTOS (Imprevistos + Admin + Operacionales)<br>
+                    + UTILIDAD NETA<br>
+                    = <strong>TARIFA NETA</strong><br><br>
+                    TARIFA NETA + COMISIÓN<br>
+                    = <strong>TARIFA RACK</strong><br><br>
+                    TARIFA RACK + IVA<br>
+                    = <strong>PRECIO FINAL AL PÚBLICO</strong>
+                    </span>
+                </div>
+
+                <h3>📊 Ejemplo Práctico con tu Calculadora</h3>
+                <div class="explanation-box">
+                    <p>Si tienes <strong>10 participantes</strong> y el precio final es de <strong>$1,000,000 COP</strong>:</p>
+                    <ul>
+                        <li><strong>Precio por persona:</strong> $1,000,000 ÷ 10 = <strong>$100,000 COP</strong></li>
+                    </ul>
+                    <p>Si aumentas a <strong>20 participantes</strong> (mismos costos fijos):</p>
+                    <ul>
+                        <li><strong>Precio por persona:</strong> $1,200,000 ÷ 20 = <strong>$60,000 COP</strong></li>
+                    </ul>
+                    <p style="margin-top: 12px;"><strong>⚠️ Nota:</strong> El precio total del grupo aumenta ligeramente (por costos variables), pero el precio POR PERSONA disminuye porque los costos fijos se distribuyen entre más gente.</p>
+                </div>
+
+                <div class="info-box" style="margin-top: 16px;">
+                    <strong>🎯 Recomendación Estratégica:</strong>
+                    <p style="margin-top: 8px;">Para maximizar tu utilidad, busca llenar la capacidad máxima de tu tour sin superar los límites que activan costos flexibles adicionales (ej: segundo guía, segundo vehículo).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="https://cultura-t.com" target="_blank" style="display: flex; align-items: center; justify-content: center; text-decoration: none; margin-bottom: 16px;">
+                    <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="Logo Cultura T" style="max-height: 60px; width: auto; filter: brightness(0) invert(1);">
+                </a>
+                <p class="footer-text">Herramienta educativa desarrollada por Cultura T</p>
+                <p class="footer-text"><small>© 2025 Cultura T - Todos los derechos reservados</small></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Currency state
+        let currentCurrency = 'COP';
+
+        // Format currency
+        function formatCurrency(amount) {
+            if (currentCurrency === 'COP') {
+                return '$' + Math.round(amount).toLocaleString('es-CO');
+            } else {
+                return 'USD $' + amount.toFixed(2).toLocaleString('en-US');
+            }
+        }
+
+        // Upload logo (Esta función se mantiene aunque quitamos el input por si la necesitas a futuro)
+        function uploadLogo(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const container = document.querySelector('.logo-container');
+                    container.innerHTML = `<img src="${e.target.result}" alt="Cultura T Logo" style="max-height: 60px;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add item
+        function addItem(type) {
+            const list = document.getElementById(type === 'fixed' ? 'fixedCostsList' : type === 'variable' ? 'variableCostsList' : 'flexibleCostsList');
+            const item = document.createElement('div');
+
+            let inputHtml = '';
+            let badgeClass = '';
+            let badgeText = '';
+            let thresholdValue = type === 'flexible' ? '1' : '';
+            let placeholder3 = type === 'variable' ? 'Valor por pax (COP)' : 'Valor total (COP)';
+
+            if (type === 'fixed') {
+                inputHtml = `
+                    <input type="text" class="input-field" placeholder="Nombre del item">
+                    <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                    <input type="number" class="input-field" placeholder="${placeholder3}" value="0">
+                `;
+                badgeClass = 'cost-type-fixed';
+                badgeText = 'Fijo';
+            } else if (type === 'variable') {
+                inputHtml = `
+                    <input type="text" class="input-field" placeholder="Nombre del item">
+                    <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                    <input type="number" class="input-field" placeholder="${placeholder3}" value="0">
+                `;
+                badgeClass = 'cost-type-variable';
+                badgeText = 'Variable';
+            } else {
+                inputHtml = `
+                    <input type="text" class="input-field" placeholder="Nombre del item">
+                    <input type="number" class="input-field" placeholder="Activar desde (pax)" value="1" min="1">
+                    <input type="number" class="input-field" placeholder="${placeholder3}" value="0">
+                `;
+                badgeClass = 'cost-type-flexible';
+                badgeText = 'Flexible';
+            }
+
+            item.className = 'cost-item';
+            item.innerHTML = `
+                <div class="cost-item-header">
+                    <span class="cost-type-badge ${badgeClass}">${badgeText}</span>
+                </div>
+                <div class="cost-item-inputs">
+                    ${inputHtml}
+                    <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                </div>
+            `;
+            list.appendChild(item);
+            calculateAll();
+        }
+
+        // Remove item
+        function removeItem(button) {
+            button.closest('.cost-item').remove();
+            calculateAll();
+        }
+
+        // Show/Hide modals
+        function showInfoModal() {
+            document.getElementById('infoModal').classList.add('active');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.remove('active');
+        }
+
+        function showCostModal() {
+            document.getElementById('costModal').classList.add('active');
+        }
+
+        function closeCostModal() {
+            document.getElementById('costModal').classList.remove('active');
+        }
+
+        function showPricingModal() {
+            // Update modal values with current calculation
+            const showUSD = document.getElementById('showUSD').checked;
+            const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 4000;
+            const convertToUSD = (amount) => amount / exchangeRate;
+            const formatCurr = showUSD ? formatCurrencyUSD : formatCurrencyCOP;
+
+            const netPriceCOP = parseFloat(document.getElementById('netPrice').textContent.replace(/[^0-9.-]+/g,"")) || 0;
+            const rackPriceCOP = parseFloat(document.getElementById('rackPrice').textContent.replace(/[^0-9.-]+/g,"")) || 0;
+            const finalPriceCOP = parseFloat(document.getElementById('finalPrice').textContent.replace(/[^0-9.-]+/g,"")) || 0;
+
+            document.getElementById('modalNetPrice').textContent = formatCurr(showUSD ? convertToUSD(netPriceCOP) : netPriceCOP);
+            document.getElementById('modalRackPrice').textContent = formatCurr(showUSD ? convertToUSD(rackPriceCOP) : rackPriceCOP);
+            document.getElementById('modalFinalPrice').textContent = formatCurr(showUSD ? convertToUSD(finalPriceCOP) : finalPriceCOP);
+
+            document.getElementById('pricingModal').classList.add('active');
+        }
+
+        function closePricingModal() {
+            document.getElementById('pricingModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+
+        // Calculate all
+        function calculateAll() {
+            const pax = parseInt(document.getElementById('paxCount').value) || 1;
+            document.getElementById('paxValue').textContent = pax;
+
+            const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 4000;
+            const showUSD = document.getElementById('showUSD').checked;
+
+            // Update USD rate display
+            document.getElementById('usdRateDisplay').textContent = `Tasa: 1 USD = $${exchangeRate.toLocaleString('es-CO')} COP`;
+
+            // Get fixed costs (always in COP)
+            let totalFixed = 0;
+            document.querySelectorAll('#fixedCostsList .cost-item').forEach(item => {
+                const inputs = item.querySelectorAll('input');
+                const qty = parseFloat(inputs[1].value) || 0;
+                const value = parseFloat(inputs[2].value) || 0;
+                totalFixed += qty * value;
+            });
+
+            // Get variable costs per pax (always in COP)
+            let totalVariablePerPax = 0;
+            document.querySelectorAll('#variableCostsList .cost-item').forEach(item => {
+                const inputs = item.querySelectorAll('input');
+                const qty = parseFloat(inputs[1].value) || 0;
+                const value = parseFloat(inputs[2].value) || 0;
+                totalVariablePerPax += qty * value;
+            });
+
+            // Get flexible costs (always in COP) - FIXED: now activates from 1 pax by default
+            let totalFlexible = 0;
+            document.querySelectorAll('#flexibleCostsList .cost-item').forEach(item => {
+                const inputs = item.querySelectorAll('input');
+                const threshold = parseFloat(inputs[1].value) || 1;
+                const value = parseFloat(inputs[2].value) || 0;
+                if (pax >= threshold) {
+                    totalFlexible += value;
+                }
+            });
+
+            // Calculate totals (in COP)
+            const totalVariable = totalVariablePerPax * pax;
+            const totalGroupCost = totalFixed + totalVariable + totalFlexible;
+            const costPerPax = totalGroupCost / pax;
+
+            // Get percentages
+            const contingencyPercent = parseFloat(document.getElementById('contingency').value) || 0;
+            const adminPercent = parseFloat(document.getElementById('adminExpenses').value) || 0;
+            const operationalPercent = parseFloat(document.getElementById('operationalExpenses').value) || 0;
+            const commissionPercent = parseFloat(document.getElementById('commission').value) || 0;
+            const netProfitPercent = parseFloat(document.getElementById('netProfit').value) || 0;
+            const ivaPercent = parseFloat(document.getElementById('iva').value) || 0;
+
+            // Update percentage displays
+            document.getElementById('contingencyPercent').textContent = contingencyPercent;
+            document.getElementById('adminPercent').textContent = adminPercent;
+            document.getElementById('operationalPercent').textContent = operationalPercent;
+            document.getElementById('commissionPercent').textContent = commissionPercent;
+            document.getElementById('netProfitPercent').textContent = netProfitPercent;
+            document.getElementById('ivaPercentDisplay').textContent = ivaPercent;
+
+            // Calculate amounts (in COP)
+            const contingencyAmount = totalGroupCost * (contingencyPercent / 100);
+            const adminAmount = totalGroupCost * (adminPercent / 100);
+            const operationalAmount = totalGroupCost * (operationalPercent / 100);
+            const commissionAmount = totalGroupCost * (commissionPercent / 100);
+            const netProfitAmount = totalGroupCost * (netProfitPercent / 100);
+            const grossMargin = contingencyAmount + adminAmount + operationalAmount + commissionAmount + netProfitAmount;
+
+            // TARIFA NETA = Costos + Gastos + Utilidad (sin comisión)
+            const netPrice = totalGroupCost + contingencyAmount + adminAmount + operationalAmount + netProfitAmount;
+
+            // TARIFA RACK = Tarifa Neta + Comisión
+            const rackPrice = netPrice + commissionAmount;
+
+            // IVA se calcula sobre la Tarifa RACK
+            const ivaAmount = rackPrice * (ivaPercent / 100);
+
+            // PRECIO FINAL = Tarifa RACK + IVA
+            const finalPrice = rackPrice + ivaAmount;
+            const pricePerPax = finalPrice / pax;
+
+            // Format function based on currency toggle
+            const formatCurrency = showUSD ? formatCurrencyUSD : formatCurrencyCOP;
+            const convertToUSD = (amount) => amount / exchangeRate;
+
+            // Update display
+            document.getElementById('totalFixed').textContent = formatCurrency(showUSD ? convertToUSD(totalFixed) : totalFixed);
+            document.getElementById('totalVariablePerPax').textContent = formatCurrency(showUSD ? convertToUSD(totalVariablePerPax) : totalVariablePerPax);
+            document.getElementById('totalFlexible').textContent = formatCurrency(showUSD ? convertToUSD(totalFlexible) : totalFlexible);
+            document.getElementById('totalGroupCost').textContent = formatCurrency(showUSD ? convertToUSD(totalGroupCost) : totalGroupCost);
+            document.getElementById('costPerPax').textContent = formatCurrency(showUSD ? convertToUSD(costPerPax) : costPerPax);
+
+            document.getElementById('contingencyAmount').textContent = formatCurrency(showUSD ? convertToUSD(contingencyAmount) : contingencyAmount);
+            document.getElementById('adminAmount').textContent = formatCurrency(showUSD ? convertToUSD(adminAmount) : adminAmount);
+            document.getElementById('operationalAmount').textContent = formatCurrency(showUSD ? convertToUSD(operationalAmount) : operationalAmount);
+            document.getElementById('commissionAmount').textContent = formatCurrency(showUSD ? convertToUSD(commissionAmount) : commissionAmount);
+
+            document.getElementById('netProfitAmount').textContent = formatCurrency(showUSD ? convertToUSD(netProfitAmount) : netProfitAmount);
+            document.getElementById('grossMargin').textContent = formatCurrency(showUSD ? convertToUSD(grossMargin) : grossMargin);
+            document.getElementById('ivaAmount').textContent = formatCurrency(showUSD ? convertToUSD(ivaAmount) : ivaAmount);
+
+            // NEW: Display Net Price, Rack Price, and Final Price separately
+            document.getElementById('netPrice').textContent = formatCurrency(showUSD ? convertToUSD(netPrice) : netPrice);
+            document.getElementById('rackPrice').textContent = formatCurrency(showUSD ? convertToUSD(rackPrice) : rackPrice);
+            document.getElementById('finalPrice').textContent = formatCurrency(showUSD ? convertToUSD(finalPrice) : finalPrice);
+            document.getElementById('pricePerPax').textContent = formatCurrency(showUSD ? convertToUSD(pricePerPax) : pricePerPax);
+
+            // Update progress bars (percentages remain the same regardless of currency)
+            const costsPercent = finalPrice > 0 ? (totalGroupCost / finalPrice) * 100 : 0;
+            const expensesPercent = finalPrice > 0 ? ((contingencyAmount + adminAmount + operationalAmount + commissionAmount) / finalPrice) * 100 : 0;
+            const profitPercent = finalPrice > 0 ? (netProfitAmount / finalPrice) * 100 : 0;
+            const ivaBarPercent = finalPrice > 0 ? (ivaAmount / finalPrice) * 100 : 0;
+
+            document.getElementById('costsPercent').textContent = costsPercent.toFixed(1) + '%';
+            document.getElementById('expensesPercent').textContent = expensesPercent.toFixed(1) + '%';
+            document.getElementById('profitPercent').textContent = profitPercent.toFixed(1) + '%';
+            document.getElementById('ivaBarPercent').textContent = ivaBarPercent.toFixed(1) + '%';
+
+            document.getElementById('costsBar').style.width = costsPercent + '%';
+            document.getElementById('expensesBar').style.width = expensesPercent + '%';
+            document.getElementById('profitBar').style.width = profitPercent + '%';
+            document.getElementById('ivaBar').style.width = ivaBarPercent + '%';
+        }
+
+        // Format currency COP
+        function formatCurrencyCOP(amount) {
+            return '$' + Math.round(amount).toLocaleString('es-CO');
+        }
+
+        // Format currency USD
+        function formatCurrencyUSD(amount) {
+            return 'USD $' + amount.toFixed(2).toLocaleString('en-US');
+        }
+
+        // Auto-calculate on input change
+        document.addEventListener('input', function(e) {
+            if (e.target.tagName === 'INPUT' && e.target.type !== 'file') {
+                calculateAll();
+            }
+        });
+
+        // Initialize
+        calculateAll();
+    </script>
+</body>
+</html>

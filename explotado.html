@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CULTURA T | Ruta de Fortalecimiento en Turismo Comunitario</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.fontsource.org/poppins" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        amazon: '#055C38',
+        catalina: '#032968',
+        clementine: '#F06000',
+        torch: '#FF0037',
+        lightblue: '#E1F5FE'
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.fontsource.org/poppins');
+* { font-family: 'Poppins', sans-serif; }
+body { background: linear-gradient(135deg, #f0f4f8 0%, #e8f4f8 100%); -webkit-tap-highlight-color: transparent; }
+.fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Componente: Traductor de GOGO */
+.traductor-box {
+  background: linear-gradient(135deg, #032968 0%, #0f172a 100%);
+  border-radius: 1.5rem; color: white; padding: 2rem; position: relative; margin: 2.5rem 0;
+  box-shadow: 0 10px 25px -5px rgba(3, 41, 104, 0.3);
+}
+.gogo-avatar {
+  width: 80px; height: 80px; background: #F06000; border: 4px solid white; border-radius: 50%;
+  position: absolute; top: -40px; left: 2rem; display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Componente: Timeline Vertical */
+.timeline-container { position: relative; padding-left: 2rem; margin: 2rem 0; }
+.timeline-container::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: #e2e8f0; border-radius: 4px;
+}
+.timeline-step { position: relative; margin-bottom: 2rem; padding-left: 1.5rem; }
+.timeline-step::before {
+  content: ''; position: absolute; left: -2.45rem; top: 0.25rem; width: 20px; height: 20px;
+  background: white; border: 4px solid #FF0037; border-radius: 50%; z-index: 10;
+}
+
+/* Content Box - Optimizado para móvil */
+.content-box { font-size: 1.1rem; line-height: 1.8; color: #475569; }
+.content-box p { margin-bottom: 1rem; font-size: 1rem; }
+.content-box h3 { font-size: 1.5rem; margin: 1.5rem 0 1rem 0; }
+.content-box h4 { font-size: 1.25rem; margin: 1.25rem 0 0.75rem 0; }
+
+/* Progress Ring Animation */
+.progress-ring { animation: pulseRing 2s infinite; }
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(5, 92, 56, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(5, 92, 56, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(5, 92, 56, 0); }
+}
+
+/* Module Card - Touch-friendly */
+.module-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.module-card:hover {
+  border-color: #055C38;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.module-card.active {
+  border-color: #055C38;
+  background: linear-gradient(145deg, #f0fdf4 0%, #ecfdf5 100%);
+  box-shadow: 0 10px 25px rgba(5, 92, 56, 0.2);
+}
+
+/* Checklist */
+.checklist-item:checked + label { text-decoration: line-through; opacity: 0.6; }
+
+/* Flash Animation */
+.flash { animation: flash 0.5s; }
+@keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* Activity Card */
+.activity-card {
+  background: linear-gradient(135deg, #fff9e6 0%, #fef3c7 100%);
+  border: 2px dashed #F06000;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+/* Sticky Nav - Optimizado */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Template Box */
+.template-box {
+  background: white;
+  border: 2px solid #055C38;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  overflow-x: auto;
+}
+.template-header {
+  background: #055C38;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Application Box */
+.application-box {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border-left: 4px solid #0369a1;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Tablas responsivas */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+table { min-width: 600px; }
+
+/* Botones optimizados para touch */
+.btn-touch {
+  min-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  touch-action: manipulation;
+}
+/* Evitar que los íconos/spans internos bloqueen el click en móviles */
+.btn-touch * {
+  pointer-events: none;
+}
+
+/* Modal optimizado */
+.modal-content {
+  max-height: 85vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Progress bar más visible */
+.progress-container {
+  min-width: 100px;
+}
+
+/* Ajustes móviles */
+@media (max-width: 768px) {
+  .content-box { font-size: 1rem; }
+  .content-box h3 { font-size: 1.25rem; }
+  .content-box h4 { font-size: 1.1rem; }
+  .traductor-box { padding: 1.5rem; }
+  .gogo-avatar { width: 60px; height: 60px; font-size: 1.8rem; left: 1rem; }
+  .template-box { padding: 1rem; }
+  .template-header { font-size: 0.9rem; padding: 0.5rem 0.75rem; }
+  .btn-touch { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body class="text-gray-800 antialiased min-h-[100dvh] flex flex-col">
+
+<nav class="sticky-nav bg-white z-50 px-4 py-3 flex justify-between items-center shrink-0 border-b-4 border-amazon">
+  <div class="flex items-center gap-2">
+    <a href="https://cultura-t.com/">
+      <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" width="70" alt="Logo Cultura T">
+    </a>
+  </div>
+  <div class="flex-1 max-w-xl flex items-center gap-3 progress-container">
+    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider hidden sm:inline">Progreso</span>
+    <div class="h-3 w-full bg-gray-100 rounded-full overflow-hidden shadow-inner border border-gray-200">
+      <div id="progress-bar" class="h-full bg-gradient-to-r from-amazon to-green-400 transition-all duration-700 w-0 relative">
+        <div class="absolute inset-0 bg-white/20" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);"></div>
+      </div>
+    </div>
+    <span id="progress-text" class="text-sm font-bold text-catalina w-10 text-right">0%</span>
+  </div>
+  <button onclick="toggleModuleSelector()" class="sm:hidden text-catalina font-bold p-2">
+    <i class="fa-solid fa-bars text-xl"></i>
+  </button>
+</nav>
+
+<main class="flex-1 overflow-y-auto relative" id="main-scroll">
+  <div class="max-w-6xl mx-auto px-3 py-6 pb-40">
+    <div class="hidden md:grid grid-cols-11 gap-2 mb-6" id="module-selector-desktop"></div>
+
+    <div id="course-content-area" class="bg-white rounded-3xl shadow-2xl p-4 md:p-10 min-h-[70vh] relative fade-in">
+      <div class="text-center py-20">
+        <i class="fa-solid fa-circle-notch fa-spin text-4xl text-catalina mb-4"></i>
+        <p class="text-gray-500">Cargando contenido...</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="module-modal" class="fixed inset-0 bg-catalina/90 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 modal-content">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-xl font-black text-catalina">Módulos del Curso</h3>
+      <button onclick="toggleModuleSelector()" class="text-gray-500 active:text-torch p-2">
+        <i class="fa-solid fa-xmark text-3xl"></i>
+      </button>
+    </div>
+    <div class="grid grid-cols-3 md:grid-cols-4 gap-3" id="module-selector-mobile"></div>
+  </div>
+</div>
+
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-15px_40px_rgba(0,0,0,0.08)] p-3 md:p-4 z-40 border-t border-gray-100 shrink-0">
+  <div class="max-w-6xl mx-auto flex justify-between items-center gap-3">
+    <button id="btn-prev" class="text-gray-500 active:text-catalina font-bold py-3 px-4 md:px-6 rounded-xl hidden transition-colors bg-gray-50 active:bg-gray-200 border border-gray-200 btn-touch">
+      <i class="fa-solid fa-arrow-left mr-2"></i> <span class="hidden sm:inline">Anterior</span>
+    </button>
+
+    <button id="btn-next" class="ml-auto bg-catalina active:bg-blue-900 text-white font-bold py-3 px-6 md:px-8 rounded-xl shadow-[0_5px_15px_rgba(3,41,104,0.4)] transition-colors flex items-center gap-3 text-lg btn-touch">
+      <span>Continuar</span> <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</div>
+
+<div id="modal-overlay" class="fixed inset-0 bg-catalina/80 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 transform scale-95 transition-transform modal-content">
+    <div class="flex flex-col items-center text-center mb-6 relative">
+      <div class="w-20 h-20 bg-torch rounded-full flex items-center justify-center text-white text-4xl mb-4 shadow-lg border-4 border-white -mt-16">
+        <i class="fa-solid fa-eye"></i>
+      </div>
+      <h3 class="text-xl md:text-2xl font-black text-torch">EL OJO DE GOGO</h3>
+      <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Anticipación de Errores</p>
+    </div>
+    <div id="modal-text" class="text-gray-700 text-base md:text-lg mb-6 content-box text-center"></div>
+    <button onclick="app.closeModal()" class="w-full bg-catalina active:bg-blue-900 text-white font-bold py-4 px-4 rounded-xl transition-colors text-lg shadow-md btn-touch">
+      ¡Copiado, Gogo!
+    </button>
+  </div>
+</div>
+
+<div id="welcome-modal" class="fixed inset-0 bg-catalina/95 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-12 modal-content">
+    <div class="text-center mb-6">
+      <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-amazon to-green-600 rounded-3xl flex items-center justify-center text-white text-4xl md:text-5xl mx-auto mb-4 md:mb-6 shadow-2xl">
+        <i class="fa-solid fa-leaf"></i>
+      </div>
+      <h1 class="text-2xl md:text-4xl font-black text-catalina mb-3 md:mb-4">¡Bienvenido a CULTURA T!</h1>
+      <p class="text-lg md:text-xl text-gray-600 mb-6 md:mb-8">Ruta de Fortalecimiento en Turismo Comunitario</p>
+
+      <div class="bg-lightblue p-4 md:p-6 rounded-2xl mb-6 md:mb-8 text-left">
+        <h3 class="font-bold text-catalina mb-3 md:mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-amazon"></i>
+          Sobre este curso
+        </h3>
+        <p class="text-sm text-gray-700 mb-3">
+          Este programa de fortalecimiento está diseñado para emprendedores y comunidades de <strong>Colombia</strong>.
+        </p>
+        <p class="text-sm text-gray-700 mb-3">
+          <strong>📚 Curso 100% Autoguiado:</strong> Cada módulo está diseñado para que estudies el contenido y luego apliques los ejercicios directamente en tu unidad de negocio. <strong>No necesitas descargar nada</strong>, las plantillas están aquí en pantalla para que las copies o adaptes a tu contexto.
+        </p>
+        <p class="text-sm text-gray-700">
+          A través de <strong>11 módulos prácticos</strong>, desarrollarás las capacidades organizativas, operativas y comerciales necesarias para potenciar tu iniciativa de turismo comunitario.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
+        <div class="bg-amazon/10 p-3 md:p-4 rounded-xl text-center">
+          <i class="fa-solid fa-book-open text-2xl md:text-3xl text-amazon mb-2"></i>
+          <p class="font-bold text-amazon text-sm md:text-base">11 Módulos</p>
+          <p class="text-xs text-gray-500">Contenido completo</p>
+        </div>
+        <div class="bg-catalina/10 p-3 md:p-4 rounded-xl text-center">
+          <i class="fa-solid fa-users text-2xl md:text-3xl text-catalina mb-2"></i>
+          <p class="font-bold text-catalina text-sm md:text-base">Comunitario</p>
+          <p class="text-xs text-gray-500">Enfoque colectivo</p>
+        </div>
+        <div class="bg-clementine/10 p-3 md:p-4 rounded-xl text-center">
+          <i class="fa-solid fa-hand-holding-heart text-2xl md:text-3xl text-clementine mb-2"></i>
+          <p class="font-bold text-clementine text-sm md:text-base">Aplica en tu Negocio</p>
+          <p class="text-xs text-gray-500">Sin descargas</p>
+        </div>
+      </div>
+
+      <button onclick="startCourse()" class="w-full bg-gradient-to-r from-amazon to-green-600 active:from-green-700 active:to-green-800 text-white font-black py-4 md:py-5 px-6 md:px-8 rounded-2xl transition-colors text-lg md:text-xl shadow-lg btn-touch">
+        <i class="fa-solid fa-play mr-3"></i> Comenzar el Curso
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="fixed bottom-24 right-4 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center space-x-2">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toast-message">Operación exitosa</span>
+</div>
+
+<script>
+const courseData = [
+  // MÓDULO 1
+  {
+    theme: 'amazon', icon: 'fa-users', title: 'Módulo 1: Pensar y Trabajar en Colectivo',
+    html: `
+      <div class="content-box">
+        <div class="bg-amazon text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10 relative overflow-hidden">
+          <i class="fa-solid fa-quote-left text-4xl md:text-6xl absolute top-4 left-4 opacity-10"></i>
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0 relative z-10 drop-shadow-md">"Unidos alcanzamos más lejos"</h3>
+          <p class="text-green-100 text-sm mt-2 relative z-10">Trabajo en equipo y asociatividad para rutas turísticas</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>30-45 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Aplica los ejercicios de roles y toma de decisiones con tu equipo en una reunión presencial (1-2 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-8 md:mb-10">
+          <div class="bg-blue-50 p-4 md:p-6 rounded-2xl border border-blue-100 flex gap-3 md:gap-4">
+            <i class="fa-solid fa-bullseye text-2xl md:text-3xl text-catalina mt-1"></i>
+            <div>
+              <h4 class="text-catalina font-bold text-base md:text-lg !mt-0 !mb-1">Objetivo del Módulo</h4>
+              <p class="text-sm m-0">Sensibilizar sobre la importancia del trabajo en equipo para alcanzar objetivos comunes de la ruta turística.</p>
+            </div>
+          </div>
+          <div class="bg-orange-50 p-4 md:p-6 rounded-2xl border border-orange-100 flex gap-3 md:gap-4">
+            <i class="fa-solid fa-clipboard-check text-2xl md:text-3xl text-clementine mt-1"></i>
+            <div>
+              <h4 class="text-clementine font-bold text-base md:text-lg !mt-0 !mb-1">¿Qué Vas a Lograr?</h4>
+              <p class="text-sm m-0">Al finalizar, tendrás una plantilla clara de roles y responsabilidades lista para aplicar con tu equipo.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Del Trabajo en Colectivo a la Asociatividad</h3>
+        <p class="mb-4 md:mb-6">Trabajar en equipo es cuando decidimos unir fuerzas de manera voluntaria con otras personas para alcanzar un objetivo en común. En este proceso, compartimos ideas, sumamos esfuerzos y juntos superamos los obstáculos gracias a una comunicación abierta y efectiva.</p>
+
+        <div class="traductor-box">
+          <div class="gogo-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+          <h4 class="text-yellow-400 font-black text-lg md:text-xl mb-4 !mt-4 ml-20 md:ml-24 md:ml-0 md:pl-20 uppercase tracking-widest">Consejo de GOGO</h4>
+          <div class="bg-white/10 p-4 md:p-5 rounded-xl border border-white/20">
+            <p class="text-sm md:text-base font-medium">Las urgencias y paciencia de cada miembro pueden variar. Un compañero puede necesitar cubrir gastos inmediatos, mientras otro puede pensar a largo plazo. <span class="text-yellow-300">Creen espacios seguros para definir claramente las urgencias de cada quien antes de asociarse.</span></p>
+          </div>
+        </div>
+
+        <h4 class="font-bold text-amazon mb-3 md:mb-4">Tips para Crear Equipos con Roles Específicos</h4>
+        <div class="grid md:grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-5 rounded-xl border-l-4 border-amazon shadow-sm">
+            <h5 class="!mt-0 text-amazon font-bold flex items-center gap-2"><i class="fa-solid fa-handshake"></i> La Confianza</h5>
+            <p class="text-sm text-gray-600 m-0">Nos asociamos con personas con las que tenemos vínculos de cercanía. Pero la confianza sola no basta, necesitamos objetivos comunes.</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border-l-4 border-catalina shadow-sm">
+            <h5 class="!mt-0 text-catalina font-bold flex items-center gap-2"><i class="fa-solid fa-target"></i> Propósitos Comunes</h5>
+            <p class="text-sm text-gray-600 m-0">Conocer los intereses, metas y motivaciones de cada miembro asegura que todos trabajen en la misma dirección.</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border-l-4 border-clementine shadow-sm">
+            <h5 class="!mt-0 text-clementine font-bold flex items-center gap-2"><i class="fa-solid fa-eye"></i> Visiones Comunes</h5>
+            <p class="text-sm text-gray-600 m-0">Las visiones comunes nos ayudan a construir un camino paralelo conociendo qué impacto queremos producir y en qué momento.</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border-l-4 border-torch shadow-sm">
+            <h5 class="!mt-0 text-torch font-bold flex items-center gap-2"><i class="fa-solid fa-puzzle-piece"></i> Complementos</h5>
+            <p class="text-sm text-gray-600 m-0">Busca personas con habilidades complementarias. Si eres bueno en liderazgo pero no en contabilidad, busca quien te complemente.</p>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Roles y Responsabilidades de tu Equipo
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Esta es la plantilla que debes usar. Copia esta estructura en un cuaderno, Excel o documento de tu negocio. Reúne a tu equipo y completen cada fila juntos.</p>
+          <div class="table-responsive">
+            <table class="w-full text-sm">
+              <thead class="bg-amazon text-white">
+                <tr>
+                  <th class="text-left p-3">Rol</th>
+                  <th class="text-left p-3">Actividad Principal</th>
+                  <th class="text-left p-3">Responsable (Nombre)</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Vocero</td>
+                  <td class="p-3">Comunica y articula actividades con proveedores, clientes y aliados</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir nombre]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Manejo de Cuentas</td>
+                  <td class="p-3">Registra las finanzas de la ruta turística y compromisos</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir nombre]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Guía</td>
+                  <td class="p-3">Lidera los espacios de socialización de la ruta con los visitantes</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir nombre]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Coordinador Operativo</td>
+                  <td class="p-3">Coordina la visita de viajeros y asegura el itinerario</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir nombre]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Creador de Contenido</td>
+                  <td class="p-3">Encargado de fotografía, video y redes sociales</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir nombre]</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold">Otros</td>
+                  <td class="p-3">[Agregar roles específicos de tu iniciativa]</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir nombre]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Reúne a tu equipo</strong> (presencial o virtual) con esta plantilla visible en pantalla o impresa.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Discutan cada rol</strong> y pregúntense: ¿Quién tiene la habilidad natural para esto? ¿Quién quiere aprender?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Escriban los nombres</strong> en la tercera columna. Una persona puede tener varios roles si el equipo es pequeño.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Guarden la plantilla</strong> en un lugar visible (pared del negocio, grupo de WhatsApp, carpeta compartida).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Revísenla cada mes</strong> para ajustar responsabilidades según necesiten.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-50 to-white border border-green-200 p-4 md:p-6 rounded-2xl shadow-sm mb-8 md:mb-10">
+          <h4 class="text-amazon font-black text-lg md:text-xl flex items-center gap-2"><i class="fa-solid fa-clipboard-check"></i> Kit para Toma de Decisiones</h4>
+          <div class="mt-4 space-y-3">
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-amazon text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</div>
+              <p class="text-sm text-gray-700">Contar con mesas de trabajo y/o reuniones, donde participen líderes y/o delegados según las áreas de trabajo de la ruta.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-amazon text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</div>
+              <p class="text-sm text-gray-700">Comunicar las decisiones a todos los integrantes de la ruta</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-amazon text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</div>
+              <p class="text-sm text-gray-700">Evaluar los pro y contra de la situación según las posibilidades de decisiones a tomar.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-amazon text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</div>
+              <p class="text-sm text-gray-700">Aceptar las críticas constructivas, puede facilitar el proceso.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-amazon text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</div>
+              <p class="text-sm text-gray-700">Socializar proyectos y/o alianzas estratégicas en reuniones periódicas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">La comunicación asertiva, escucha activa, trabajo en equipo y participación activa, son fundamentales para la toma de decisiones relacionadas con las iniciativas. Aplica estos conceptos en tu próxima reunión de equipo.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 2
+  {
+    theme: 'catalina', icon: 'fa-leaf', title: 'Módulo 2: Turismo Sostenible y Comunitario',
+    html: `
+      <div class="content-box">
+        <div class="bg-catalina text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"Satisfacer el presente sin comprometer el futuro"</h3>
+          <p class="text-blue-100 text-sm mt-2">Pilares de la sostenibilidad aplicados al turismo</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>40-50 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Completa el plan de sostenibilidad con tu equipo (1-2 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="traductor-box mb-8 md:mb-10" style="background: linear-gradient(135deg, #055C38 0%, #022c19 100%);">
+          <div class="gogo-avatar bg-catalina"><i class="fa-solid fa-user-astronaut"></i></div>
+          <h4 class="text-green-300 font-black text-lg md:text-xl mb-4 !mt-4 ml-20 md:ml-24 md:ml-0 md:pl-20 uppercase tracking-widest">¿Qué es Sostenibilidad?</h4>
+          <div class="bg-white/10 p-4 md:p-5 rounded-xl border border-white/20">
+            <p class="text-sm md:text-base font-medium m-0">Según la ONU: <span class="text-yellow-400">"Satisfacer las necesidades del presente sin comprometer la capacidad de las futuras generaciones para satisfacer sus propias necesidades"</span>. Se basa en 3 pilares: Económico, Ambiental y Social.</p>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Los 3 Pilares de la Sostenibilidad</h3>
+        <div class="grid md:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-emerald-200 text-center">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <i class="fa-solid fa-sack-dollar text-2xl md:text-3xl text-emerald-600"></i>
+            </div>
+            <h4 class="font-bold text-emerald-700 mb-2">Económico</h4>
+            <p class="text-sm text-gray-600">Creación de valor a largo plazo, rentabilidad sin comprometer recursos futuros</p>
+          </div>
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-blue-200 text-center">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <i class="fa-solid fa-tree text-2xl md:text-3xl text-blue-600"></i>
+            </div>
+            <h4 class="font-bold text-blue-700 mb-2">Ambiental</h4>
+            <p class="text-sm text-gray-600">Proteger y preservar el medio ambiente, minimizar impacto negativo</p>
+          </div>
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-orange-200 text-center">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <i class="fa-solid fa-people-group text-2xl md:text-3xl text-orange-600"></i>
+            </div>
+            <h4 class="font-bold text-orange-700 mb-2">Social</h4>
+            <p class="text-sm text-gray-600">Bienestar y equidad social, inclusión y participación comunitaria</p>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Matriz de Sostenibilidad de Tu Iniciativa
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Copia esta matriz en un cuaderno o documento. Responde cada celda con acciones CONCRETAS que puedas implementar en los próximos 3 meses.</p>
+          <div class="table-responsive">
+            <table class="w-full text-sm">
+              <thead class="bg-catalina text-white">
+                <tr>
+                  <th class="text-left p-3 w-1/3">Pilar</th>
+                  <th class="text-left p-3">¿Qué puedes hacer?</th>
+                  <th class="text-left p-3">¿Quién lo hace?</th>
+                  <th class="text-left p-3">¿Para cuándo?</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold text-emerald-700">🟢 Económica</td>
+                  <td class="p-3 text-gray-400 italic">[Ej: Separar finanzas personales del negocio]</td>
+                  <td class="p-3 text-gray-400 italic">[Nombre]</td>
+                  <td class="p-3 text-gray-400 italic">[Fecha]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold text-emerald-700">🟢 Económica</td>
+                  <td class="p-3 text-gray-400 italic">[Ej: Crear fondo de imprevistos]</td>
+                  <td class="p-3 text-gray-400 italic">[Nombre]</td>
+                  <td class="p-3 text-gray-400 italic">[Fecha]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold text-blue-700">🔵 Ambiental</td>
+                  <td class="p-3 text-gray-400 italic">[Ej: Reducir plásticos de un solo uso]</td>
+                  <td class="p-3 text-gray-400 italic">[Nombre]</td>
+                  <td class="p-3 text-gray-400 italic">[Fecha]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold text-blue-700">🔵 Ambiental</td>
+                  <td class="p-3 text-gray-400 italic">[Ej: Capacitar en manejo de residuos]</td>
+                  <td class="p-3 text-gray-400 italic">[Nombre]</td>
+                  <td class="p-3 text-gray-400 italic">[Fecha]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold text-orange-700">🟠 Social</td>
+                  <td class="p-3 text-gray-400 italic">[Ej: Incluir a 2 jóvenes de la comunidad]</td>
+                  <td class="p-3 text-gray-400 italic">[Nombre]</td>
+                  <td class="p-3 text-gray-400 italic">[Fecha]</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-orange-700">🟠 Social</td>
+                  <td class="p-3 text-gray-400 italic">[Ej: Reunión mensual con la comunidad]</td>
+                  <td class="p-3 text-gray-400 italic">[Nombre]</td>
+                  <td class="p-3 text-gray-400 italic">[Fecha]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la matriz</strong> en un cuaderno, Excel o documento de tu negocio.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Reúne a tu equipo</strong> y hagan una lluvia de ideas para cada pilar (económico, ambiental, social).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Seleccionen 2 acciones por pilar</strong> que sean realistas para los próximos 3 meses. No intenten hacer todo de una.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Asignen responsables y fechas</strong> concretas. Sin fecha, no hay compromiso.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Revisen el progreso</strong> en cada reunión mensual. Celebren los logros, ajusten lo que no funcione.</span>
+            </li>
+          </ol>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Políticas de Turismo en Colombia</h3>
+        <div class="grid md:grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-amazon mb-2">📜 Política de Turismo Comunitario (2013)</h4>
+            <p class="text-sm text-gray-600">Promueve el desarrollo del turismo comunitario como estrategia para generar desarrollo económico local y fortalecer identidad cultural.</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">🎭 Política de Turismo Cultural (2021)</h4>
+            <p class="text-sm text-gray-600">Fortalece el turismo cultural promoviendo la puesta en valor del patrimonio y generando beneficios para comunidades locales.</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-clementine mb-2">🌿 Política de Turismo Sostenible (2021)</h4>
+            <p class="text-sm text-gray-600">"Unidos por la Naturaleza" - Posiciona la sostenibilidad como pilar fundamental del desarrollo turístico.</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-torch mb-2">📋 Plan Sectorial 2022-2026</h4>
+            <p class="text-sm text-gray-600">"Turismo en armonía con la vida" - Construir capacidades para desarrollo sostenible y regenerativo.</p>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">Fortalecer las iniciativas turísticas sostenibles es crucial para preservar los destinos naturales y culturales que atraen a los viajeros. La sostenibilidad en el turismo implica equilibrar el crecimiento económico, la conservación ambiental y el bienestar social, que al final es lo que más nos importa en nuestras tres localidades.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 3
+  {
+    theme: 'clementine', icon: 'fa-landmark', title: 'Módulo 3: Patrimonio Cultural y Turístico',
+    html: `
+      <div class="content-box">
+        <div class="bg-clementine text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"Un tesoro que nos pertenece a todos"</h3>
+          <p class="text-orange-100 text-sm mt-2">Patrimonio material, inmaterial y su valor en el turismo</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>45-55 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Identifica y documenta el patrimonio de tu ruta (2-3 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">¿Qué es Patrimonio?</h3>
+        <p class="mb-4 md:mb-6">Es todo aquello que heredamos de nuestros antepasados y que nos define como comunidad. Lo mantenemos en el presente y lo transmitimos a futuras generaciones.</p>
+
+        <div class="grid md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-catalina shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-catalina text-white rounded-full flex items-center justify-center text-lg md:text-xl">
+                <i class="fa-solid fa-building"></i>
+              </div>
+              <h4 class="!m-0 text-catalina font-bold text-lg md:text-xl">Patrimonio Material</h4>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">Bienes culturales con forma física y existencia material.</p>
+            <div class="bg-blue-50 p-3 md:p-4 rounded-xl">
+              <p class="text-xs font-bold text-blue-700 mb-2">Mueble (se puede mover):</p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>• Objetos arqueológicos</li>
+                <li>• Obras de arte</li>
+                <li>• Documentos históricos</li>
+                <li>• Bienes religiosos</li>
+              </ul>
+            </div>
+            <div class="bg-green-50 p-3 md:p-4 rounded-xl mt-3">
+              <p class="text-xs font-bold text-green-700 mb-2">Inmueble (no se puede mover):</p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>• Monumentos</li>
+                <li>• Zonas arqueológicas</li>
+                <li>• Conjuntos históricos</li>
+                <li>• Paisajes culturales</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-clementine shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-clementine text-white rounded-full flex items-center justify-center text-lg md:text-xl">
+                <i class="fa-solid fa-music"></i>
+              </div>
+              <h4 class="!m-0 text-clementine font-bold text-lg md:text-xl">Patrimonio Inmaterial</h4>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">Prácticas, expresiones, conocimientos y habilidades que las comunidades reconocen como parte de su identidad.</p>
+            <div class="bg-orange-50 p-3 md:p-4 rounded-xl">
+              <p class="text-xs font-bold text-orange-700 mb-2">Ejemplos en Colombia:</p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>• Carnaval de Negros y Blancos</li>
+                <li>• Cantos de trabajo del llano</li>
+                <li>• Sistema de conocimiento ancestral</li>
+                <li>• Cuadrillas de San Martín</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Inventario de Patrimonio de Tu Ruta
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Esta plantilla te ayuda a identificar TODO el patrimonio que puedes incluir en tu experiencia turística. Copia la estructura y completa cada fila.</p>
+          <div class="table-responsive">
+            <table class="w-full text-sm">
+              <thead class="bg-clementine text-white">
+                <tr>
+                  <th class="text-left p-3">Elemento</th>
+                  <th class="text-left p-3">Tipo (Tangible/Intangible)</th>
+                  <th class="text-left p-3">¿Dónde está?</th>
+                  <th class="text-left p-3">¿Cómo lo proteges?</th>
+                  <th class="text-left p-3">¿Cómo lo promocionas?</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">[Ej: Iglesia colonial]</td>
+                  <td class="p-3 text-gray-400 italic">Tangible Inmueble</td>
+                  <td class="p-3 text-gray-400 italic">[Ubicación]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">[Ej: Leyenda local]</td>
+                  <td class="p-3 text-gray-400 italic">Intangible</td>
+                  <td class="p-3 text-gray-400 italic">[Oral/escrito]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">[Ej: Plato típico]</td>
+                  <td class="p-3 text-gray-400 italic">Intangible</td>
+                  <td class="p-3 text-gray-400 italic">[Receta familiar]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold">[Agrega más...]</td>
+                  <td class="p-3 text-gray-400 italic">[Tipo]</td>
+                  <td class="p-3 text-gray-400 italic">[Ubicación]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                  <td class="p-3 text-gray-400 italic">[Acciones]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en un cuaderno o documento de tu negocio.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Reúne a los mayores de la comunidad</strong> y pregúntales: ¿Qué historias, lugares o tradiciones son únicas de este territorio?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Llena cada fila</strong> con la información que recolectes. No te limites a lo "obvio", pregunta por leyendas, recetas, canciones, oficios.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Para cada elemento</strong>, define: ¿Cómo lo protegemos? (ej: no revelar ubicación exacta de sitio sagrado) y ¿Cómo lo promocionamos? (ej: contar la leyenda en el tour).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Guarda el inventario</strong> como documento vivo. Agrega nuevos elementos cuando los descubras.</span>
+            </li>
+          </ol>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Marco Legal en Colombia</h3>
+        <div class="timeline-container">
+          <div class="timeline-step">
+            <h4 class="!mt-0 text-catalina font-bold text-lg">Constitución 1991</h4>
+            <p class="text-sm text-gray-600">Establece protección del patrimonio como inalienable, imprescriptible e inembargable (Art. 63, 71, 72)</p>
+          </div>
+          <div class="timeline-step">
+            <h4 class="!mt-0 text-catalina font-bold text-lg">Ley 397 de 1997</h4>
+            <p class="text-sm text-gray-600">Ley General de Cultura, define patrimonio y establece bases para su gestión</p>
+          </div>
+          <div class="timeline-step">
+            <h4 class="!mt-0 text-catalina font-bold text-lg">Ley 1185 de 2008</h4>
+            <p class="text-sm text-gray-600">Modifica Ley 397, crea Sistema Nacional de Patrimonio Cultural</p>
+          </div>
+          <div class="timeline-step border-none pb-0">
+            <h4 class="!mt-0 text-catalina font-bold text-lg">Decreto 2358 de 2019</h4>
+            <p class="text-sm text-gray-600">Reglamenta el Sistema Nacional de Patrimonio Cultural</p>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">El patrimonio cultural es pilar de nuestra identidad, fuente de desarrollo y legado para las futuras generaciones. Su preservación y valoración nos permiten mantener vivas nuestras tradiciones, fortalecer nuestra memoria colectiva y abrir puertas al turismo responsable.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 4
+  {
+    theme: 'torch', icon: 'fa-handshake-simple', title: 'Módulo 4: Resolución de Conflictos',
+    html: `
+      <div class="content-box">
+        <div class="bg-torch text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"Los conflictos son oportunidades de crecimiento"</h3>
+          <p class="text-red-100 text-sm mt-2">Comunicación asertiva y negociación</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>35-45 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Aplica las técnicas de negociación en tu próximo conflicto (tiempo variable)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+          <div class="bg-blue-50 p-4 md:p-6 rounded-2xl border border-blue-100 flex gap-3 md:gap-4">
+            <i class="fa-solid fa-bullseye text-2xl md:text-3xl text-catalina mt-1"></i>
+            <div>
+              <h4 class="text-catalina font-bold text-base md:text-lg !mt-0 !mb-1">Objetivo</h4>
+              <p class="text-sm m-0">Fortalecer habilidades de negociación y resolución de conflictos en las rutas.</p>
+            </div>
+          </div>
+          <div class="bg-orange-50 p-4 md:p-6 rounded-2xl border border-orange-100 flex gap-3 md:gap-4">
+            <i class="fa-solid fa-clipboard-check text-2xl md:text-3xl text-clementine mt-1"></i>
+            <div>
+              <h4 class="text-clementine font-bold text-base md:text-lg !mt-0 !mb-1">¿Qué Vas a Lograr?</h4>
+              <p class="text-sm m-0">Al finalizar, tendrás una guía clara para construir acuerdos cuando surjan conflictos en tu equipo.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Comunicación Asertiva</h3>
+        <p class="mb-4 md:mb-6">"Es la capacidad para expresar necesidades, intereses y derechos de manera clara, pero evitando herir a otras personas."</p>
+
+        <div class="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 p-4 md:p-6 rounded-2xl mb-8 md:mb-10">
+          <h4 class="font-bold text-catalina mb-4"><i class="fa-solid fa-list-check"></i> 6 Claves de la Comunicación Asertiva</h4>
+          <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</div>
+              <p class="text-sm text-gray-700">Lenguaje verbal sencillo, directo y respetuoso</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</div>
+              <p class="text-sm text-gray-700">El cuerpo también comunica (gestos, postura)</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</div>
+              <p class="text-sm text-gray-700">Dirigirse desde el respeto y amabilidad</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</div>
+              <p class="text-sm text-gray-700">Escucha activa sin interrumpir</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">5</div>
+              <p class="text-sm text-gray-700">Mantener contacto visual</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">6</div>
+              <p class="text-sm text-gray-700">Tono de voz amable, no subir la voz</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Construcción de Acuerdos
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Usa esta plantilla cuando haya un conflicto en tu equipo. Completa cada sección ANTES de la reunión de resolución.</p>
+          <div class="space-y-3 md:space-y-4">
+            <div class="bg-gray-50 p-3 md:p-4 rounded-xl border border-gray-200">
+              <p class="font-bold text-gray-800 mb-2">1. Listado de Puntos a Negociar</p>
+              <p class="text-sm text-gray-600 mb-2">Escribe TODOS los puntos de inconformidad o actividades a mejorar:</p>
+              <ul class="text-sm text-gray-400 italic space-y-1">
+                <li>• [Punto 1]</li>
+                <li>• [Punto 2]</li>
+                <li>• [Punto 3]</li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-3 md:p-4 rounded-xl border border-gray-200">
+              <p class="font-bold text-gray-800 mb-2">2. Ventajas y Desventajas para Cada Involucrado</p>
+              <div class="table-responsive">
+                <table class="w-full text-sm">
+                  <tr class="border-b border-gray-200">
+                    <th class="text-left p-2">Persona/Grupo</th>
+                    <th class="text-left p-2">Ventajas</th>
+                    <th class="text-left p-2">Desventajas</th>
+                  </tr>
+                  <tr>
+                    <td class="p-2 text-gray-400 italic">[Nombre]</td>
+                    <td class="p-2 text-gray-400 italic">[Ventajas]</td>
+                    <td class="p-2 text-gray-400 italic">[Desventajas]</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="bg-gray-50 p-3 md:p-4 rounded-xl border border-gray-200">
+              <p class="font-bold text-gray-800 mb-2">3. Escenarios que Beneficien a Todas las Partes</p>
+              <p class="text-sm text-gray-400 italic">[Escribir posibles soluciones]</p>
+            </div>
+            <div class="bg-gray-50 p-3 md:p-4 rounded-xl border border-gray-200">
+              <p class="font-bold text-gray-800 mb-2">4. Acuerdo Final</p>
+              <p class="text-sm text-gray-400 italic">[Escribir el acuerdo al que llegaron]</p>
+              <p class="text-sm text-gray-400 italic mt-2">Firmas: _________________ _________________ _________________</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en un documento o cuaderno. Ten varias copias disponibles para futuros conflictos.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Cuando surja un conflicto</strong>, pide a cada parte que complete la Sección 1 por separado (sin verse).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Reúnanse con un mediador neutral</strong> (puede ser alguien externo al conflicto). Completen las Secciones 2 y 3 juntos.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Busquen escenarios ganar-ganar</strong>. Si no llegan a acuerdo, consideren apoyo institucional (Personería, Cámara de Comercio).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Firmen el acuerdo</strong> y guarden una copia cada uno. Revisen el cumplimiento en 15 días.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="traductor-box" style="background: linear-gradient(135deg, #FF0037 0%, #8b001d 100%);">
+          <div class="gogo-avatar bg-white text-torch"><i class="fa-solid fa-heart"></i></div>
+          <h4 class="text-white font-black text-lg md:text-xl mb-4 !mt-4 ml-20 md:ml-24 md:ml-0 md:pl-20 uppercase tracking-widest">Consejo de GOGO</h4>
+          <div class="bg-white/10 p-4 md:p-5 rounded-xl border border-white/20">
+            <p class="text-sm md:text-base font-medium">Los conflictos son normales en cualquier grupo. <span class="text-yellow-300">Lo importante no es evitarlos, sino resolverlos de manera constructiva.</span> La comunicación asertiva es tu mejor herramienta.</p>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">La comunicación asertiva, escucha activa, trabajo en equipo y participación activa, son fundamentales para la toma de decisiones relacionadas con cada iniciativa.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 5
+  {
+    theme: 'amazon', icon: 'fa-briefcase', title: 'Módulo 5: Modelo de Negocio',
+    html: `
+      <div class="content-box">
+        <div class="bg-amazon text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"De los sueños a la realidad"</h3>
+          <p class="text-green-100 text-sm mt-2">Mapa de sueños y Modelo Canvas</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>50-60 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Completa tu Modelo Canvas con tu equipo (2-3 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Mapa de Sueños del Colectivo</h3>
+        <p class="mb-4 md:mb-6">Antes de construir el modelo de negocio, debemos saber ¿hacia dónde queremos llegar?</p>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Mapa de Sueños Personal y Colectivo
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Cada miembro del equipo debe completar su mapa personal PRIMERO. Luego, reúnanse y construyan el mapa colectivo.</p>
+          <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+            <div class="bg-yellow-50 p-3 md:p-4 rounded-xl border border-yellow-200">
+              <h4 class="font-bold text-yellow-800 mb-3">📝 Mapa Personal (Cada miembro)</h4>
+              <div class="space-y-2 text-sm">
+                <p class="font-bold text-gray-700">Sueños Profesionales:</p>
+                <p class="text-gray-400 italic">[Escribir 3 sueños]</p>
+                <p class="font-bold text-gray-700 mt-3">Sueños Familiares:</p>
+                <p class="text-gray-400 italic">[Escribir 3 sueños]</p>
+                <p class="font-bold text-gray-700 mt-3">Sueños de Formación:</p>
+                <p class="text-gray-400 italic">[Escribir 3 sueños]</p>
+              </div>
+            </div>
+            <div class="bg-green-50 p-3 md:p-4 rounded-xl border border-green-200">
+              <h4 class="font-bold text-green-800 mb-3">📝 Mapa Colectivo (Todo el equipo)</h4>
+              <div class="space-y-2 text-sm">
+                <p class="font-bold text-gray-700">¿Qué nos une?</p>
+                <p class="text-gray-400 italic">[Puntos en común entre sueños personales]</p>
+                <p class="font-bold text-gray-700 mt-3">Sueño del Colectivo a 1 año:</p>
+                <p class="text-gray-400 italic">[Escribir]</p>
+                <p class="font-bold text-gray-700 mt-3">Sueño del Colectivo a 3 años:</p>
+                <p class="text-gray-400 italic">[Escribir]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Imprime o copia</strong> la plantilla de Mapa Personal para cada miembro del equipo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Cada persona completa su mapa</strong> en privado (15-20 minutos). Sé honesto, esto es para ti.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Reúnanse</strong> y compartan sus sueños. Busquen puntos de conexión (ej: todos quieren estabilidad económica).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Construyan el Mapa Colectivo</strong> basado en esos puntos de conexión. Este será el "norte" de su modelo de negocio.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Guarden ambos mapas</strong> en un lugar visible. Revísenlos cada 6 meses para ajustar el rumbo.</span>
+            </li>
+          </ol>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Modelo Canvas - 9 Segmentos</h3>
+        <div class="grid grid-cols-3 md:grid-cols-9 gap-2 mb-6 md:mb-8">
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-users text-catalina text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Socios Clave</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-list-check text-clementine text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Actividades Clave</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-gem text-torch text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Propuesta de Valor</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-heart text-pink-500 text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Relación con Clientes</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-users text-purple-500 text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Segmentos de Clientes</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-box text-blue-500 text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Recursos Clave</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-bullhorn text-orange-500 text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Canales</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-coins text-yellow-600 text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Estructura de Costos</p>
+          </div>
+          <div class="bg-white p-2 md:p-3 rounded-lg border border-gray-200 text-center">
+            <i class="fa-solid fa-sack-dollar text-green-600 text-lg md:text-xl mb-1"></i>
+            <p class="text-xs font-bold">Fuentes de Ingresos</p>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Modelo Canvas para Tu Iniciativa
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Esta es la estructura completa del Canvas. Copia cada segmento en un papel grande o pizarra. Completen con post-it o escribiendo directamente.</p>
+          <div class="table-responsive">
+            <table class="w-full text-sm">
+              <thead class="bg-amazon text-white">
+                <tr>
+                  <th class="text-left p-3 w-1/4">Segmento</th>
+                  <th class="text-left p-3">Preguntas Guía</th>
+                  <th class="text-left p-3">Tu Respuesta</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Propuesta de Valor</td>
+                  <td class="p-3 text-xs">¿Qué valor aportas? ¿Qué problema resuelves?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Segmentos de Clientes</td>
+                  <td class="p-3 text-xs">¿A quién le vendes? ¿Quiénes son tus turistas?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Canales</td>
+                  <td class="p-3 text-xs">¿Cómo llegas a ellos? ¿Redes, voz a voz?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Relación con Clientes</td>
+                  <td class="p-3 text-xs">¿Cómo los fidelizas? ¿Seguimiento?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Fuentes de Ingresos</td>
+                  <td class="p-3 text-xs">¿Qué genera ingresos? ¿Medios de pago?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Recursos Clave</td>
+                  <td class="p-3 text-xs">¿Qué recursos tienes? ¿Qué necesitas?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Actividades Clave</td>
+                  <td class="p-3 text-xs">¿Qué tareas son imprescindibles?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3 font-bold">Socios Clave</td>
+                  <td class="p-3 text-xs">¿Quiénes son tus aliados actuales?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold">Estructura de Costos</td>
+                  <td class="p-3 text-xs">¿Cuáles son los costos más altos?</td>
+                  <td class="p-3 text-gray-400 italic">[Escribir]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Consigue un papel grande</strong> (pliego de papel kraft, cartulina) o usa una pizarra. Dibuja los 9 segmentos del Canvas.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Reúne a tu equipo</strong> con post-it de colores y marcadores. Cada segmento puede tener un color diferente.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Completen segmento por segmento</strong>. Empiecen por Propuesta de Valor y Segmentos de Clientes (son el corazón del modelo).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Sean honestos</strong>. Si no tienen claro algo (ej: costos), investiguen antes de continuar.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Fotografíen el Canvas</strong> y guárdenlo. Revísenlo cada 3 meses para ajustar según lo aprendido.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6 mt-8 md:mt-10">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">La construcción, organización, delegación de actividades, definición y seguimiento de metas comunes son propias de cualquier modelo de negocio. Muchos de los colectivos tienen amplia experiencia en mercado con sus iniciativas.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 6
+  {
+    theme: 'catalina', icon: 'fa-users-viewfinder', title: 'Módulo 6: Segmentación de Mercado',
+    html: `
+      <div class="content-box">
+        <div class="bg-catalina text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"No todos los turistas son iguales"</h3>
+          <p class="text-blue-100 text-sm mt-2">Tipos de turistas y segmentación efectiva</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>45-55 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Define tu Buyer Persona (1-2 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">¿Qué es Segmentación de Mercado?</h3>
+        <p class="mb-4 md:mb-6">Es dividir un mercado en grupos más pequeños con características homogéneas. Estos segmentos son más fáciles de analizar y comprender.</p>
+
+        <div class="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 p-4 md:p-6 rounded-2xl mb-8 md:mb-10">
+          <h4 class="font-bold text-catalina mb-4"><i class="fa-solid fa-star"></i> ¿Por qué es Importante?</h4>
+          <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-amazon mt-1"></i>
+              <p class="text-sm text-gray-700">Mayor conocimiento del cliente</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-amazon mt-1"></i>
+              <p class="text-sm text-gray-700">Estrategias de marketing más efectivas</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-amazon mt-1"></i>
+              <p class="text-sm text-gray-700">Ventaja competitiva</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-amazon mt-1"></i>
+              <p class="text-sm text-gray-700">Mayor rentabilidad</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Buyer Persona de Tu Iniciativa
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Un Buyer Persona NO es una persona real, es una representación de tu cliente IDEAL. Completa esta ficha con la mayor precisión posible.</p>
+          <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+            <div class="space-y-3">
+              <div class="bg-blue-50 p-3 rounded-lg">
+                <p class="text-xs font-bold text-blue-700 mb-1">Nombre (inventado)</p>
+                <p class="text-sm text-gray-400 italic">[Ej: "Carlos, el aventurero"]</p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-lg">
+                <p class="text-xs font-bold text-blue-700 mb-1">Edad</p>
+                <p class="text-sm text-gray-400 italic">[Rango de edad]</p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-lg">
+                <p class="text-xs font-bold text-blue-700 mb-1">Origen</p>
+                <p class="text-sm text-gray-400 italic">[País/Ciudad]</p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-lg">
+                <p class="text-xs font-bold text-blue-700 mb-1">Ocupación</p>
+                <p class="text-sm text-gray-400 italic">[Profesión]</p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-lg">
+                <p class="text-xs font-bold text-blue-700 mb-1">Ingresos Mensuales</p>
+                <p class="text-sm text-gray-400 italic">[Rango]</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="bg-green-50 p-3 rounded-lg">
+                <p class="text-xs font-bold text-green-700 mb-1">Intereses y Motivaciones</p>
+                <p class="text-sm text-gray-400 italic">[¿Por qué viaja? ¿Qué busca?]</p>
+              </div>
+              <div class="bg-torch/10 p-3 rounded-lg border border-torch/20">
+                <p class="text-xs font-bold text-torch mb-1">Malestares o Dudas</p>
+                <p class="text-sm text-gray-400 italic">[¿Qué le preocupa antes de viajar?]</p>
+              </div>
+              <div class="bg-amazon/10 p-3 rounded-lg border border-amazon/20">
+                <p class="text-xs font-bold text-amazon mb-1">¿Cómo Tu Ruta Le Da Solución?</p>
+                <p class="text-sm text-gray-400 italic">[Tu propuesta de valor para ESTE persona]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en un documento o cuaderno. Puedes crear varios Buyer Persona si tienes diferentes tipos de turistas.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Revisa tus turistas actuales</strong>. ¿Quiénes han venido? ¿Qué preguntan? ¿Qué les gusta? Usa esa información real.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Si no tienes turistas aún</strong>, investiga: habla con otros prestadores, revisa estadísticas de ProColombia, observa tendencias.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Sé específico</strong>. No digas "turistas de todas partes". Define: ¿Son familias? ¿Parejas? ¿Mochileros? ¿Adultos mayores?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Usa el Buyer Persona</strong> para tomar decisiones: ¿Qué contenido publicar? ¿Qué precios poner? ¿Qué servicios ofrecer? Pregúntate: "¿A Carlos le interesaría esto?"</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-50 to-white border border-green-200 p-4 md:p-6 rounded-2xl">
+          <h4 class="text-amazon font-black text-lg md:text-xl mb-4"><i class="fa-solid fa-chart-line"></i> Datos Generales</h4>
+          <div class="grid md:grid-cols-2 gap-3 md:gap-4 text-sm">
+            <div>
+              <p class="font-bold text-gray-800 mb-2">Demográficos:</p>
+              <ul class="text-gray-600 space-y-1">
+                <li>• Edad: 30-60 años</li>
+                <li>• Sexo: 54% hombres, 46% mujeres</li>
+                <li>• Origen: USA, Europa, Latinoamérica</li>
+                <li>• Nivel educativo: Alto</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-bold text-gray-800 mb-2">Comportamiento:</p>
+              <ul class="text-gray-600 space-y-1">
+                <li>• Estancia promedio: 8 días</li>
+                <li>• Gasto promedio: USD $1,600</li>
+                <li>• Temporada alta: Dic-Abr</li>
+                <li>• Motivo: Vacaciones, ocio, negocios</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6 mt-8 md:mt-10">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">La segmentación de mercado sirve como una brújula indispensable para navegar por el complejo mercado turístico. Al utilizarla de manera adecuada, se pueden crear experiencias memorables para los viajeros, fortalecer la competitividad de los destinos y contribuir al crecimiento del sector turístico.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 7
+  {
+    theme: 'clementine', icon: 'fa-person-hiking', title: 'Módulo 7: Guión y Guías de Turismo',
+    html: `
+      <div class="content-box">
+        <div class="bg-clementine text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"El guía es el puente entre el destino y el visitante"</h3>
+          <p class="text-orange-100 text-sm mt-2">Guianza, interpretación y narrativas locales</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>50-60 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Construye tu guión turístico (2-3 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">¿Qué es ser Guía?</h3>
+        <p class="mb-4 md:mb-6">El/la guía es una persona que sirve de puente para dar a conocer saberes y facilitar encuentros interculturales en un destino turístico.</p>
+
+        <div class="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 p-4 md:p-6 rounded-2xl mb-8 md:mb-10">
+          <h4 class="font-bold text-catalina mb-4"><i class="fa-solid fa-list-check"></i> Funciones del Guía (Decreto 503 de 1997)</h4>
+          <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-catalina text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</div>
+              <div>
+                <p class="text-sm font-bold text-catalina">Orientar</p>
+                <p class="text-xs text-gray-600">Información clara, precisa y específica del destino</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-catalina text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</div>
+              <div>
+                <p class="text-sm font-bold text-catalina">Instruir (Educar)</p>
+                <p class="text-xs text-gray-600">Enseñanza veraz y completa, advirtiendo riesgos</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-catalina text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</div>
+              <div>
+                <p class="text-sm font-bold text-catalina">Conducir</p>
+                <p class="text-xs text-gray-600">Liderazgo respetuoso, cortés y responsable</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-catalina text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</div>
+              <div>
+                <p class="text-sm font-bold text-catalina">Asistir</p>
+                <p class="text-xs text-gray-600">Colaboración y ayuda en situaciones/eventualidades</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Matriz de Narrativa Local (Para un Plato Tradicional)
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Esta plantilla te ayuda a construir la historia DETRÁS de cada elemento de tu experiencia. Usa este ejemplo para cualquier elemento: plato, lugar, tradición, oficio.</p>
+          <div class="space-y-3">
+            <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
+              <p class="text-xs font-bold text-orange-700 mb-1">1. Descripción del Elemento</p>
+              <p class="text-sm text-gray-400 italic">[Dibuja o describe el plato/elemento con sus ingredientes]</p>
+            </div>
+            <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
+              <p class="text-xs font-bold text-orange-700 mb-1">2. Origen o Historia</p>
+              <p class="text-sm text-gray-400 italic">[¿De dónde viene? ¿Quién lo creó?]</p>
+            </div>
+            <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
+              <p class="text-xs font-bold text-orange-700 mb-1">3. Historia de los Ingredientes</p>
+              <p class="text-sm text-gray-400 italic">[¿De dónde vienen los ingredientes? ¿Se cultivan localmente?]</p>
+            </div>
+            <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
+              <p class="text-xs font-bold text-orange-700 mb-1">4. Técnicas de Preparación</p>
+              <p class="text-sm text-gray-400 italic">[¿Se usan técnicas tradicionales? Descríbelas]</p>
+            </div>
+            <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
+              <p class="text-xs font-bold text-orange-700 mb-1">5. Historias, Mitos o Leyendas</p>
+              <p class="text-sm text-gray-400 italic">[¿Hay alguna historia especial sobre este elemento?]</p>
+            </div>
+            <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
+              <p class="text-xs font-bold text-orange-700 mb-1">6. Festividades Relacionadas</p>
+              <p class="text-sm text-gray-400 italic">[¿Hay algún festival o fiesta en honor a este elemento?]</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en un cuaderno o documento. Crea una matriz por cada elemento importante de tu experiencia (plato, lugar, tradición, etc.).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Entrevista a los mayores</strong> de la comunidad. Pregunta: ¿Quién preparaba esto antes? ¿Cómo? ¿Qué historias se cuentan?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Llena cada sección</strong> con la información que recolectes. No inventes, sé fiel a lo que te cuenten.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Usa esta narrativa</strong> para entrenar a tus guías. Cada guía debe conocer y saber contar estas historias.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Incluye fragmentos</strong> de estas historias en tu contenido de redes sociales, folletos y materiales promocionales.</span>
+            </li>
+          </ol>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Técnicas para la Guianza</h3>
+        <div class="grid md:grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">📖 Historias</h4>
+            <p class="text-xs text-gray-600">Hechos históricos con fechas, nombres, lugares y ubicación geográfica</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">💬 Anécdotas</h4>
+            <p class="text-xs text-gray-600">Vivencias personales que validan la ocurrencia de un hecho</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">👃 Sentidos</h4>
+            <p class="text-xs text-gray-600">Experiencia sensorial: oler, tocar, mirar, escuchar</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">😄 Humor</h4>
+            <p class="text-xs text-gray-600">Buen uso sin excesos, chistes o faltas de respeto</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">🎮 Juegos</h4>
+            <p class="text-xs text-gray-600">Dinámicas puntuales para grupos o niños</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">🎭 Dramatizaciones</h4>
+            <p class="text-xs text-gray-600">Representaciones que hacen viva la historia</p>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">El guía cumple un papel importante en el desarrollo de la actividad turística, entendiendo que es el "eslabón" que tiene mayor interacción con los y las turistas, a la vez que tiene la responsabilidad de brindar información verídica de cada uno de los elementos que hacen parte de la oferta turística.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 8
+  {
+    theme: 'catalina', icon: 'fa-coins', title: 'Módulo 8: Finanzas Personales y del Turismo',
+    html: `
+      <div class="content-box">
+        <div class="bg-catalina text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"El dinero es una herramienta, no un fin"</h3>
+          <p class="text-blue-100 text-sm mt-2">Educación financiera para emprendedores</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>40-50 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Proyecta el presupuesto de tu iniciativa (1-2 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Finanzas Personales</h3>
+        <p class="mb-4 md:mb-6">Cada vez que recibimos y gastamos dinero, ponemos en movimiento el recurso. Es fundamental tener control y educación financiera.</p>
+
+        <div class="grid md:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-emerald-200 text-center">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <i class="fa-solid fa-arrow-down text-2xl md:text-3xl text-emerald-600"></i>
+            </div>
+            <h4 class="font-bold text-emerald-700 mb-2">Ingresos</h4>
+            <p class="text-sm text-gray-600">Entrada de dinero por actividades (salario, ventas, préstamos)</p>
+          </div>
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-torch-200 text-center">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <i class="fa-solid fa-arrow-up text-2xl md:text-3xl text-torch-600"></i>
+            </div>
+            <h4 class="font-bold text-torch-700 mb-2">Gastos</h4>
+            <p class="text-sm text-gray-600">Destino del dinero (necesidades, obligaciones, gustos)</p>
+          </div>
+          <div class="bg-white p-4 md:p-6 rounded-2xl border-2 border-blue-200 text-center">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <i class="fa-solid fa-piggy-bank text-2xl md:text-3xl text-blue-600"></i>
+            </div>
+            <h4 class="font-bold text-blue-700 mb-2">Ahorro</h4>
+            <p class="text-sm text-gray-600">Reserva con objetivo en tiempo determinado</p>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Proyección de Presupuesto Mensual
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Esta plantilla te ayuda a proyectar ingresos y gastos de un mes. Úsala al inicio de cada mes para planificar.</p>
+          <div class="table-responsive">
+            <table class="w-full text-sm">
+              <thead class="bg-catalina text-white">
+                <tr>
+                  <th class="text-left p-3">Concepto</th>
+                  <th class="text-left p-3">Valor Estimado ($)</th>
+                  <th class="text-left p-3">Valor Real ($)</th>
+                  <th class="text-left p-3">Diferencia</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr class="border-b border-gray-200 bg-green-50">
+                  <td class="p-3 font-bold text-green-700">INGRESOS</td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3">Recorridos (4 x 10 personas)</td>
+                  <td class="p-3 text-gray-400 italic">[Estimar]</td>
+                  <td class="p-3 text-gray-400 italic">[Al final del mes]</td>
+                  <td class="p-3 text-gray-400 italic">[Calcular]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3">Hospedaje</td>
+                  <td class="p-3 text-gray-400 italic">[Estimar]</td>
+                  <td class="p-3 text-gray-400 italic">[Al final del mes]</td>
+                  <td class="p-3 text-gray-400 italic">[Calcular]</td>
+                </tr>
+                <tr class="border-b border-gray-200 bg-red-50">
+                  <td class="p-3 font-bold text-torch-700">GASTOS FIJOS</td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3">Arriendo/Servicios</td>
+                  <td class="p-3 text-gray-400 italic">[Valor]</td>
+                  <td class="p-3 text-gray-400 italic">[Valor real]</td>
+                  <td class="p-3 text-gray-400 italic">[Diferencia]</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3">Salarios/Honorarios</td>
+                  <td class="p-3 text-gray-400 italic">[Valor]</td>
+                  <td class="p-3 text-gray-400 italic">[Valor real]</td>
+                  <td class="p-3 text-gray-400 italic">[Diferencia]</td>
+                </tr>
+                <tr class="border-b border-gray-200 bg-red-50">
+                  <td class="p-3 font-bold text-torch-700">GASTOS VARIABLES</td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3">Entradas/Alimentación</td>
+                  <td class="p-3 text-gray-400 italic">[Estimar por persona]</td>
+                  <td class="p-3 text-gray-400 italic">[Valor real]</td>
+                  <td class="p-3 text-gray-400 italic">[Diferencia]</td>
+                </tr>
+                <tr class="border-b border-gray-200 bg-blue-50">
+                  <td class="p-3 font-bold text-catalina">IMPUESTOS Y OBLIGACIONES</td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                  <td class="p-3"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td class="p-3">Impuestos del mes</td>
+                  <td class="p-3 text-gray-400 italic">[Valor]</td>
+                  <td class="p-3 text-gray-400 italic">[Valor real]</td>
+                  <td class="p-3 text-gray-400 italic">[Diferencia]</td>
+                </tr>
+                <tr class="bg-amazon/10">
+                  <td class="p-3 font-bold text-amazon">UTILIDAD PROYECTADA</td>
+                  <td class="p-3 text-gray-400 italic">[Ingresos - Gastos]</td>
+                  <td class="p-3 text-gray-400 italic">[Al final del mes]</td>
+                  <td class="p-3 text-gray-400 italic">[Diferencia]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en Excel, Google Sheets o un cuaderno. Lo importante es que puedas hacer cálculos.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Al inicio de cada mes</strong>, llena la columna "Valor Estimado" con lo que esperas vender y gastar.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Durante el mes</strong>, registra CADA gasto en la columna "Valor Real". No confíes en tu memoria.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Al final del mes</strong>, calcula la diferencia. ¿Gastaste más de lo esperado? ¿Por qué?</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Usa lo aprendido</strong> para ajustar el presupuesto del próximo mes. Mejora continuamente.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="traductor-box">
+          <div class="gogo-avatar bg-white text-catalina"><i class="fa-solid fa-lightbulb"></i></div>
+          <h4 class="text-yellow-400 font-black text-lg md:text-xl mb-4 !mt-4 ml-20 md:ml-24 md:ml-0 md:pl-20 uppercase tracking-widest">Consejo de GOGO</h4>
+          <div class="bg-white/10 p-4 md:p-5 rounded-xl border border-white/20">
+            <p class="text-sm md:text-base font-medium"><span class="text-yellow-300">Separa siempre las finanzas personales de las del negocio.</span> Incluye un rubro para imprevistos en cada presupuesto mensual y haz seguimiento oportuno a gastos y deudas.</p>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">Se recomienda tener separadas las finanzas personales de las finanzas de cada una de las iniciativas. Incluir en los presupuestos mensuales un rubro para imprevistos y realizar seguimiento oportuno a gastos y posibles deudas.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 9
+  {
+    theme: 'torch', icon: 'fa-tag', title: 'Módulo 9: Marca Comercial',
+    html: `
+      <div class="content-box">
+        <div class="bg-torch text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"Tu marca es tu huella digital"</h3>
+          <p class="text-red-100 text-sm mt-2">Construcción de marca y elevator pitch</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>45-55 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Construye tu pitch y practícalo (1-2 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Marketing y Marcas Comerciales</h3>
+        <p class="mb-4 md:mb-6">El marketing es la ciencia y el arte de conectar con los clientes. Una marca comercial es un activo intangible que identifica y distingue tus productos de la competencia.</p>
+
+        <div class="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 p-4 md:p-6 rounded-2xl mb-8 md:mb-10">
+          <h4 class="font-bold text-catalina mb-4"><i class="fa-solid fa-layer-group"></i> Elementos del Diseño de Marca</h4>
+          <div class="grid md:grid-cols-3 gap-3 md:gap-4">
+            <div class="bg-white p-3 md:p-4 rounded-xl text-center">
+              <i class="fa-solid fa-font text-2xl md:text-3xl text-catalina mb-2"></i>
+              <p class="text-xs font-bold">Nombre</p>
+            </div>
+            <div class="bg-white p-3 md:p-4 rounded-xl text-center">
+              <i class="fa-solid fa-image text-2xl md:text-3xl text-catalina mb-2"></i>
+              <p class="text-xs font-bold">Logotipo</p>
+            </div>
+            <div class="bg-white p-3 md:p-4 rounded-xl text-center">
+              <i class="fa-solid fa-palette text-2xl md:text-3xl text-catalina mb-2"></i>
+              <p class="text-xs font-bold">Colores</p>
+            </div>
+            <div class="bg-white p-3 md:p-4 rounded-xl text-center">
+              <i class="fa-solid fa-comment-dots text-2xl md:text-3xl text-catalina mb-2"></i>
+              <p class="text-xs font-bold">Tono de Voz</p>
+            </div>
+            <div class="bg-white p-3 md:p-4 rounded-xl text-center">
+              <i class="fa-solid fa-star text-2xl md:text-3xl text-catalina mb-2"></i>
+              <p class="text-xs font-bold">Valores</p>
+            </div>
+            <div class="bg-white p-3 md:p-4 rounded-xl text-center">
+              <i class="fa-solid fa-bullhorn text-2xl md:text-3xl text-catalina mb-2"></i>
+              <p class="text-xs font-bold">Mensaje</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Construcción de Tu Elevator Pitch
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Un elevator pitch debe durar 60 segundos o menos. Usa esta plantilla para estructurar tu mensaje.</p>
+          <div class="space-y-3">
+            <div class="bg-torch/10 p-3 rounded-lg border border-torch/20">
+              <p class="text-xs font-bold text-torch mb-1">1. El Gancho (0-10 seg)</p>
+              <p class="text-sm text-gray-400 italic">[Una frase que detiene al comprador. Ej: "¿Sabía que somos el único destino donde...?"]</p>
+            </div>
+            <div class="bg-torch/10 p-3 rounded-lg border border-torch/20">
+              <p class="text-xs font-bold text-torch mb-1">2. La Solución (10-30 seg)</p>
+              <p class="text-sm text-gray-400 italic">[Qué problema resuelves. Ej: "Ayudamos a [tipo de turista] a [beneficio] sin [dolor]"]</p>
+            </div>
+            <div class="bg-torch/10 p-3 rounded-lg border border-torch/20">
+              <p class="text-xs font-bold text-torch mb-1">3. El Diferencial (30-45 seg)</p>
+              <p class="text-sm text-gray-400 italic">[Por qué tú y no la competencia. Ej: "Tenemos certificación X, experiencia exclusiva..."]</p>
+            </div>
+            <div class="bg-torch/10 p-3 rounded-lg border border-torch/20">
+              <p class="text-xs font-bold text-torch mb-1">4. El Llamado (45-60 seg)</p>
+              <p class="text-sm text-gray-400 italic">[Acción clara. Ej: "¿Tiene 5 minutos para ver el video?" "¿Puedo enviarle la información?"]</p>
+            </div>
+            <div class="bg-torch/10 p-3 rounded-lg border border-torch/20">
+              <p class="text-xs font-bold text-torch mb-1">TU PITCH COMPLETO</p>
+              <p class="text-sm text-gray-400 italic">[Escribe aquí tu pitch completo uniendo las 4 partes. Luego practícalo en voz alta.]</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en un documento o cuaderno.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Completa cada sección</strong> pensando en tu cliente ideal (el Buyer Persona que definiste en el Módulo 6).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Une las 4 partes</strong> en un solo párrafo. Este es tu pitch completo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Practica en voz alta</strong> cronometrándote. Debe durar 60 segundos o menos. Si es más largo, edita.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Grábate</strong> con el celular y escúchate. ¿Se entiende? ¿Transmites pasión? Ajusta lo necesario.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">6</span>
+              <span><strong>Practica con tu equipo</strong>. Todos deben conocer el pitch y poder decirlo coherentemente.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-50 to-white border border-green-200 p-4 md:p-6 rounded-2xl mb-8 md:mb-10">
+          <h4 class="text-amazon font-black text-lg md:text-xl mb-4"><i class="fa-solid fa-list-ol"></i> 8 Claves para un Pitch Efectivo (Harvard)</h4>
+          <ol class="space-y-2 text-sm text-gray-700">
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">1.</span> Concéntrate en el problema que resuelves</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">2.</span> Sé claro y conciso (evita jerga técnica)</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">3.</span> Cuenta una historia (storytelling)</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">4.</span> Demuestra pasión (es contagiosa)</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">5.</span> Conoce a tu audiencia</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">6.</span> Practica varias veces</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">7.</span> Prepárate para preguntas</li>
+            <li class="flex items-start gap-2"><span class="font-bold text-amazon">8.</span> Sé flexible y adaptable</li>
+          </ol>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">La marca comercial es el alma de una empresa, ya que representa su identidad, valores y propuesta de valor ante los clientes. Es a través de la marca que las empresas se diferencian y crean conexiones emocionales con su público objetivo.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 10
+  {
+    theme: 'amazon', icon: 'fa-camera', title: 'Módulo 10: Generación de Contenidos',
+    html: `
+      <div class="content-box">
+        <div class="bg-amazon text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"Una imagen vale más que mil palabras"</h3>
+          <p class="text-green-100 text-sm mt-2">Fotografía y video con dispositivos móviles</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>50-60 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Practica toma y edición de contenido (2-3 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Fundamentos de Fotografía Móvil</h3>
+        <div class="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 p-4 md:p-6 rounded-2xl mb-8 md:mb-10">
+          <h4 class="font-bold text-catalina mb-4"><i class="fa-solid fa-camera"></i> Configuración de Cámara</h4>
+          <div class="space-y-3 text-sm text-gray-700">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-amazon mt-1"></i>
+              <div>
+                <p class="font-bold">Resolución y calidad</p>
+                <p class="text-xs text-gray-600">Ajusta a la máxima resolución para mejor calidad</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-amazon mt-1"></i>
+              <div>
+                <p class="font-bold">Enfoque y exposición</p>
+                <p class="text-xs text-gray-600">Usa enfoque manual y ajusta exposición según la luz</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-amazon mt-1"></i>
+              <div>
+                <p class="font-bold">Optimización para luz</p>
+                <p class="text-xs text-gray-600">Consejos para diferentes ambientes de iluminación</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Técnicas de Composición</h3>
+        <div class="grid md:grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">📐 Regla de Tercios</h4>
+            <p class="text-xs text-gray-600">Divide la imagen en 9 partes iguales. Coloca elementos clave en las intersecciones</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">📏 Líneas Guía</h4>
+            <p class="text-xs text-gray-600">Usa líneas naturales para dirigir la atención y crear profundidad</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">🎯 Planos Fotográficos</h4>
+            <p class="text-xs text-gray-600">Primer plano, plano medio, plano general, plano detalle</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">💡 Iluminación</h4>
+            <p class="text-xs text-gray-600">Luz natural vs artificial, hora dorada, evitar flash directo</p>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Planificación de Contenido Audiovisual
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Antes de grabar o tomar fotos, planifica. Esta plantilla te ayuda a organizar tu contenido.</p>
+          <div class="space-y-3">
+            <div class="bg-amazon/10 p-3 rounded-lg border border-amazon/20">
+              <p class="text-xs font-bold text-amazon mb-1">Mensaje Principal</p>
+              <p class="text-sm text-gray-400 italic">[¿Qué quieres comunicar?]</p>
+            </div>
+            <div class="bg-amazon/10 p-3 rounded-lg border border-amazon/20">
+              <p class="text-xs font-bold text-amazon mb-1">Público Objetivo</p>
+              <p class="text-sm text-gray-400 italic">[¿A quién va dirigido? (usa tu Buyer Persona)]</p>
+            </div>
+            <div class="bg-amazon/10 p-3 rounded-lg border border-amazon/20">
+              <p class="text-xs font-bold text-amazon mb-1">Plataforma</p>
+              <p class="text-sm text-gray-400 italic">[Instagram, TikTok, Facebook, WhatsApp]</p>
+            </div>
+            <div class="bg-amazon/10 p-3 rounded-lg border border-amazon/20">
+              <p class="text-xs font-bold text-amazon mb-1">Duración/Formato</p>
+              <p class="text-sm text-gray-400 italic">[15-30 seg para Reels/TikTok, 1-2 min para YouTube]</p>
+            </div>
+            <div class="bg-amazon/10 p-3 rounded-lg border border-amazon/20">
+              <p class="text-xs font-bold text-amazon mb-1">Plan de Tomas</p>
+              <p class="text-sm text-gray-400 italic">[Lista de planos que necesitas: primer plano, plano general, etc.]</p>
+            </div>
+            <div class="bg-amazon/10 p-3 rounded-lg border border-amazon/20">
+              <p class="text-xs font-bold text-amazon mb-1">Fecha de Publicación</p>
+              <p class="text-sm text-gray-400 italic">[¿Cuándo lo publicarás?]</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en un documento o cuaderno. Úsala cada vez que vayas a crear contenido.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Completa la plantilla ANTES de grabar</strong>. Esto te ahorra tiempo y asegura que el contenido tenga propósito.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Toma las fotos/videos</strong> siguiendo tu plan de tomas. Usa las técnicas de composición aprendidas.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Edita con herramientas gratuitas</strong> como Canva (diseño), InShot (video), Pexels (banco de imágenes).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Publica según tu calendario</strong>. La constancia es clave en redes sociales.</span>
+            </li>
+          </ol>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Herramientas de Edición Gratuitas</h3>
+        <div class="grid md:grid-cols-3 gap-3 md:gap-4">
+          <div class="bg-gradient-to-br from-blue-50 to-white p-4 md:p-5 rounded-xl border border-blue-200">
+            <h4 class="font-bold text-blue-700 mb-2">🎨 Canva</h4>
+            <p class="text-xs text-gray-600">Diseño gráfico, plantillas para redes sociales</p>
+          </div>
+          <div class="bg-gradient-to-br from-purple-50 to-white p-4 md:p-5 rounded-xl border border-purple-200">
+            <h4 class="font-bold text-purple-700 mb-2">🎬 InShot</h4>
+            <p class="text-xs text-gray-600">Edición de video para móviles, efectos y música</p>
+          </div>
+          <div class="bg-gradient-to-br from-green-50 to-white p-4 md:p-5 rounded-xl border border-green-200">
+            <h4 class="font-bold text-green-700 mb-2">📷 Pexels</h4>
+            <p class="text-xs text-gray-600">Banco de imágenes y videos gratuitos de calidad</p>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6 mt-8 md:mt-10">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">Socializar herramientas y tips para el levantamiento de material audiovisual teniendo en cuenta la definición de estrategias de comunicación de las iniciativas.</p>
+        </div>
+      </div>
+    `
+  },
+  // MÓDULO 11
+  {
+    theme: 'catalina', icon: 'fa-calculator', title: 'Módulo 11: Costos y Precios',
+    html: `
+      <div class="content-box">
+        <div class="bg-catalina text-white rounded-2xl p-6 md:p-8 text-center shadow-lg mb-8 md:mb-10">
+          <h3 class="text-2xl md:text-3xl font-black text-white !border-none !my-0">"El precio correcto es un equilibrio"</h3>
+          <p class="text-blue-100 text-sm mt-2">Fijación de precios en el sector turismo</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-4 md:p-6 mb-8 md:mb-10">
+          <div class="flex items-start gap-3 md:gap-4">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl md:text-3xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-blue-800 font-bold text-base md:text-lg mb-2">⏱️ Tiempo Estimado</h4>
+              <p class="text-sm text-gray-700 mb-2"><strong>50-60 minutos</strong> de contenido en esta plataforma</p>
+              <p class="text-sm text-gray-600"><strong>+ Tiempo en tu negocio:</strong> Calcula y ajusta precios de tus productos (2-3 horas adicionales)</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Factores que Influyen en el Precio</h3>
+        <div class="grid md:grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-10">
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">📊 Modelo de Negocio</h4>
+            <p class="text-xs text-gray-600">Estrategia de costos según producto/servicio ofrecido</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">💎 Propuesta de Valor</h4>
+            <p class="text-xs text-gray-600">Valor agregado determina variaciones según mercado</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">🧠 Valor Percibido</h4>
+            <p class="text-xs text-gray-600">Lo que el cliente está dispuesto a pagar según su imaginario</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">📈 Demanda</h4>
+            <p class="text-xs text-gray-600">Frecuencia de productos vendidos por temporada</p>
+          </div>
+        </div>
+
+        <div class="template-box">
+          <div class="template-header">
+            <i class="fa-solid fa-table"></i>
+            Plantilla: Cálculo de Precio de Tu Producto Turístico
+          </div>
+          <p class="text-sm text-gray-600 mb-3 md:mb-4"><strong>Instrucciones:</strong> Esta plantilla te guía paso a paso para calcular el precio de venta de tu producto. Completa cada sección con tus datos reales.</p>
+          <div class="space-y-3 md:space-y-4">
+            <div class="bg-catalina/10 p-3 md:p-4 rounded-lg border border-catalina/20">
+              <p class="font-bold text-catalina mb-2">PASO 1: Costos Fijos Mensuales</p>
+              <div class="space-y-2 text-sm">
+                <p class="text-gray-400 italic">• Personal: $[Valor]</p>
+                <p class="text-gray-400 italic">• Infraestructura (arriendo, servicios): $[Valor]</p>
+                <p class="text-gray-400 italic">• Marketing: $[Valor]</p>
+                <p class="text-gray-400 italic">• Otros: $[Valor]</p>
+                <p class="font-bold text-catalina mt-2">TOTAL COSTOS FIJOS: $[Suma]</p>
+              </div>
+            </div>
+            <div class="bg-catalina/10 p-3 md:p-4 rounded-lg border border-catalina/20">
+              <p class="font-bold text-catalina mb-2">PASO 2: Costos Variables por Persona</p>
+              <div class="space-y-2 text-sm">
+                <p class="text-gray-400 italic">• Entradas: $[Valor] x persona</p>
+                <p class="text-gray-400 italic">• Alimentación: $[Valor] x persona</p>
+                <p class="text-gray-400 italic">• Transporte: $[Valor] x persona</p>
+                <p class="text-gray-400 italic">• Materiales: $[Valor] x persona</p>
+                <p class="font-bold text-catalina mt-2">TOTAL COSTOS VARIABLES: $[Suma] x persona</p>
+              </div>
+            </div>
+            <div class="bg-catalina/10 p-3 md:p-4 rounded-lg border border-catalina/20">
+              <p class="font-bold text-catalina mb-2">PASO 3: Proyección de Ventas</p>
+              <div class="space-y-2 text-sm">
+                <p class="text-gray-400 italic">• Tours al mes: [Número]</p>
+                <p class="text-gray-400 italic">• Personas promedio por tour: [Número]</p>
+                <p class="text-gray-400 italic">• Total personas al mes: [Tours x Personas]</p>
+              </div>
+            </div>
+            <div class="bg-catalina/10 p-3 md:p-4 rounded-lg border border-catalina/20">
+              <p class="font-bold text-catalina mb-2">PASO 4: Costo Unitario por Persona</p>
+              <p class="text-sm text-gray-700">Fórmula: (Costos Fijos / Total Personas) + Costos Variables</p>
+              <p class="text-sm text-gray-400 italic mt-2">COSTO UNITARIO: $[Resultado]</p>
+            </div>
+            <div class="bg-catalina/10 p-3 md:p-4 rounded-lg border border-catalina/20">
+              <p class="font-bold text-catalina mb-2">PASO 5: Margen de Ganancia</p>
+              <div class="space-y-2 text-sm">
+                <p class="text-gray-400 italic">• Margen deseado: [Ej: 30%]</p>
+                <p class="text-gray-400 italic">• Ganancia por persona: Costo Unitario x [Margen%]</p>
+                <p class="font-bold text-catalina mt-2">GANANCIA: $[Resultado]</p>
+              </div>
+            </div>
+            <div class="bg-amazon/10 p-3 md:p-4 rounded-lg border-2 border-amazon">
+              <p class="font-bold text-amazon mb-2">PASO 6: Precio de Venta Sugerido</p>
+              <p class="text-sm text-gray-700">Fórmula: Costo Unitario + Ganancia</p>
+              <p class="text-lg font-black text-amazon mt-2">PRECIO DE VENTA: $[Resultado Final]</p>
+              <p class="text-xs text-gray-500 mt-2">* No incluye comisiones de agencias (típicamente 15%) ni impuestos. Ajusta según tu modelo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-box">
+          <h4 class="font-bold text-catalina mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            ¿Cómo Aplicar Esta Plantilla en Tu Negocio?
+          </h4>
+          <ol class="space-y-3 text-sm text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</span>
+              <span><strong>Copia la plantilla</strong> en Excel, Google Sheets o un cuaderno. Lo importante es poder hacer cálculos.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</span>
+              <span><strong>Reúne toda tu información financiera</strong>. Si no tienes registros, empieza a registrar HOY mismo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</span>
+              <span><strong>Completa cada paso</strong> con tus datos reales. No uses números "al ojo", investiga costos reales.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">4</span>
+              <span><strong>Compara tu precio</strong> con el de la competencia. ¿Estás muy por encima? ¿Muy por debajo? Ajusta según tu propuesta de valor.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">5</span>
+              <span><strong>Recuerda las comisiones</strong>. Si trabajas con agencias, ellas suelen pedir 15%. Tu precio debe dejar margen para eso.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-catalina text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">6</span>
+              <span><strong>Revisa cada 6 meses</strong>. Los costos cambian, los precios deben ajustarse.</span>
+            </li>
+          </ol>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-black text-catalina mb-4 md:mb-6">Estrategias de Precios</h3>
+        <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">🎯 Penetración</h4>
+            <p class="text-xs text-gray-600">Precio bajo inicial para ganar mercado rápidamente</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">💎 Descremado</h4>
+            <p class="text-xs text-gray-600">Precio alto inicial para segmentos premium</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">🏷️ Competencia</h4>
+            <p class="text-xs text-gray-600">Basado en precios de la competencia directa</p>
+          </div>
+          <div class="bg-white p-4 md:p-5 rounded-xl border border-gray-200">
+            <h4 class="font-bold text-catalina mb-2">💰 Valor Percibido</h4>
+            <p class="text-xs text-gray-600">Basado en lo que el cliente está dispuesto a pagar</p>
+          </div>
+        </div>
+
+        <div class="traductor-box mt-8 md:mt-10">
+          <div class="gogo-avatar bg-white text-catalina"><i class="fa-solid fa-lightbulb"></i></div>
+          <h4 class="text-yellow-400 font-black text-lg md:text-xl mb-4 !mt-4 ml-20 md:ml-24 md:ml-0 md:pl-20 uppercase tracking-widest">Consejo de GOGO</h4>
+          <div class="bg-white/10 p-4 md:p-5 rounded-xl border border-white/20">
+            <p class="text-sm md:text-base font-medium">No olvides incluir <span class="text-yellow-300">impuestos, comisiones de agencias (15% típico) y un fondo de contingencia</span> en tu precio final. El precio de venta no incluye comisiones, tenlo en cuenta en negociaciones.</p>
+          </div>
+        </div>
+
+        <div class="bg-catalina text-white rounded-2xl p-4 md:p-6 mt-8 md:mt-10">
+          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            Reflexión de Cierre
+          </h4>
+          <p class="text-sm text-blue-100">Determina cómo estás llevando a cabo el proceso de fijación de precios de tus productos y servicios, y si es rentable de acuerdo a las proyecciones del negocio.</p>
+        </div>
+      </div>
+    `
+  }
+];
+
+const app = {
+  currentStep: 0,
+  moduleProgress: new Array(11).fill(false),
+
+  init() {
+    this.renderModuleSelector();
+    this.renderStep();
+    this.bindEvents();
+  },
+
+  bindEvents() {
+    const nextBtn = document.getElementById('btn-next');
+    if (nextBtn) {
+      nextBtn.onclick = (e) => {
+        e.preventDefault();
+        if (this.currentStep === courseData.length - 1) {
+          this.currentStep = 0;
+          this.renderStep();
+          window.scrollTo(0,0);
+        } else {
+          this.nextStep();
+        }
+      };
+    }
+
+    const prevBtn = document.getElementById('btn-prev');
+    if (prevBtn) {
+      prevBtn.onclick = (e) => {
+        e.preventDefault();
+        this.prevStep();
+      };
+    }
+  },
+
+  renderModuleSelector() {
+    const desktop = document.getElementById('module-selector-desktop');
+    const mobile = document.getElementById('module-selector-mobile');
+    const icons = ['fa-users', 'fa-leaf', 'fa-landmark', 'fa-handshake-simple', 'fa-briefcase', 'fa-users-viewfinder', 'fa-person-hiking', 'fa-coins', 'fa-tag', 'fa-camera', 'fa-calculator'];
+    const colors = ['amazon', 'catalina', 'clementine', 'torch', 'amazon', 'catalina', 'clementine', 'torch', 'amazon', 'catalina', 'clementine'];
+
+    if (desktop) desktop.innerHTML = '';
+    if (mobile) mobile.innerHTML = '';
+
+    courseData.forEach((module, index) => {
+      // Desktop card
+      const card = document.createElement('div');
+      card.className = `module-card p-2 md:p-3 rounded-xl text-center ${this.currentStep === index ? 'active' : ''}`;
+      card.addEventListener('click', () => {
+        this.currentStep = index;
+        this.renderStep();
+      });
+      card.innerHTML = `
+        <div class="text-xl md:text-2xl mb-1 text-${colors[index]}"><i class="fa-solid ${icons[index]}"></i></div>
+        <div class="text-xs font-bold text-gray-700">${index + 1}</div>
+      `;
+      if (desktop) desktop.appendChild(card);
+
+      // Mobile card
+      const mobileCard = document.createElement('div');
+      mobileCard.className = `module-card p-3 md:p-4 rounded-xl text-center ${this.currentStep === index ? 'active' : ''}`;
+      mobileCard.addEventListener('click', () => {
+        this.currentStep = index;
+        this.renderStep();
+        toggleModuleSelector();
+      });
+      mobileCard.innerHTML = `
+        <div class="text-2xl md:text-3xl mb-2 text-${colors[index]}"><i class="fa-solid ${icons[index]}"></i></div>
+        <div class="text-xs md:text-sm font-bold text-gray-700">Módulo ${index + 1}</div>
+        <div class="text-xs text-gray-500 hidden md:block">${module.title.split(':')[1]?.substring(0, 20) || module.title}</div>
+      `;
+      if (mobile) mobile.appendChild(mobileCard);
+    });
+  },
+
+  renderStep() {
+    const data = courseData[this.currentStep];
+    const container = document.getElementById('course-content-area');
+
+    if (!container) return;
+
+    container.innerHTML = `
+      <div class="absolute top-0 left-0 w-full h-3 rounded-t-3xl bg-${data.theme}"></div>
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 mb-8 md:mb-10 pb-4 md:pb-6 border-b border-gray-100 mt-4">
+        <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-200 flex items-center justify-center text-3xl md:text-4xl text-${data.theme} shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] border border-gray-100 shrink-0">
+          <i class="fa-solid ${data.icon}"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 block">Ruta de Fortalecimiento</span>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 tracking-tight leading-tight">${data.title}</h2>
+        </div>
+      </div>
+      ${data.html}
+    `;
+
+    const prevBtn = document.getElementById('btn-prev');
+    const nextBtn = document.getElementById('btn-next');
+
+    if (prevBtn) {
+      prevBtn.style.display = this.currentStep === 0 ? 'none' : 'flex';
+    }
+
+    if (nextBtn) {
+      // Se eliminó por completo el "transform" y el "hover" problemático de estos strings
+      if (this.currentStep === courseData.length - 1) {
+        nextBtn.innerHTML = '<i class="fa-solid fa-flag-checkered"></i> <span class="hidden sm:inline">Volver al Inicio</span><span class="sm:hidden">Inicio</span>';
+        nextBtn.className = "ml-auto bg-amazon active:bg-green-800 text-white font-bold py-3 px-6 md:px-8 rounded-xl shadow-[0_5px_15px_rgba(5,92,56,0.4)] transition-colors flex items-center gap-3 text-lg btn-touch";
+      } else {
+        nextBtn.innerHTML = '<span>Continuar</span> <i class="fa-solid fa-arrow-right"></i>';
+        nextBtn.className = "ml-auto bg-catalina active:bg-blue-900 text-white font-bold py-3 px-6 md:px-8 rounded-xl shadow-[0_5px_15px_rgba(3,41,104,0.4)] transition-colors flex items-center gap-3 text-lg btn-touch";
+      }
+    }
+
+    const progressPct = Math.round((this.currentStep / (courseData.length - 1)) * 100);
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    if (progressBar) progressBar.style.width = `${progressPct}%`;
+    if (progressText) progressText.innerText = `${progressPct}%`;
+
+    this.renderModuleSelector();
+
+    container.classList.remove('fade-in');
+    void container.offsetWidth;
+    container.classList.add('fade-in');
+
+    const mainScroll = document.getElementById('main-scroll');
+    if (mainScroll) {
+      mainScroll.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  },
+
+  nextStep() {
+    if (this.currentStep < courseData.length - 1) {
+      this.currentStep++;
+      this.renderStep();
+    }
+  },
+
+  prevStep() {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+      this.renderStep();
+    }
+  },
+
+  showGogo(text) {
+    const modalText = document.getElementById('modal-text');
+    const modal = document.getElementById('modal-overlay');
+
+    if (modalText) modalText.innerHTML = text;
+    if (modal) {
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        const content = modal.querySelector('div');
+        if (content) {
+          content.classList.replace('scale-95', 'scale-100');
+        }
+      }, 10);
+    }
+  },
+
+  closeModal() {
+    const modal = document.getElementById('modal-overlay');
+    if (modal) {
+      const content = modal.querySelector('div');
+      if (content) {
+        content.classList.replace('scale-100', 'scale-95');
+      }
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 200);
+    }
+  }
+};
+
+function startCourse() {
+  const welcomeModal = document.getElementById('welcome-modal');
+  if (welcomeModal) {
+    welcomeModal.classList.add('hidden');
+  }
+  app.init();
+}
+
+function toggleModuleSelector() {
+  const modal = document.getElementById('module-modal');
+  if (modal) {
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+  }
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  const toastMessage = document.getElementById('toast-message');
+
+  if (toast && toastMessage) {
+    toastMessage.textContent = message;
+    toast.classList.remove('translate-y-20', 'opacity-0');
+    setTimeout(() => {
+      toast.classList.add('translate-y-20', 'opacity-0');
+    }, 3000);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  console.log('Curso cargado correctamente');
+});
+</script>
+</body>
+</html>
