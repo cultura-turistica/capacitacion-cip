@@ -1027,6 +1027,11 @@
             }
         }
 
+        /* Bloque oculto en pantalla que se usa solo para imprimir */
+        .print-header {
+            display: none;
+        }
+
         /* ESTILOS PARA IMPRESIÓN */
         @media print {
             /* Ocultar elementos innecesarios al imprimir */
@@ -1044,6 +1049,33 @@
             body {
                 background: white;
                 color: black;
+            }
+
+            /* Mostrar y dar formato al encabezado exclusivo de impresión */
+            .print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+                border-bottom: 2px solid #ddd;
+            }
+
+            .print-header img {
+                max-height: 80px; /* Tamaño ideal del logo para papel */
+                width: auto;
+                margin-bottom: 10px;
+                /* Sin filtros para que salga con los colores originales de tu marca */
+            }
+
+            .print-header h2 {
+                color: var(--primary);
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+            }
+
+            .print-header p {
+                color: #555;
+                font-size: 0.9rem;
             }
 
             .main-content {
@@ -1078,7 +1110,7 @@
             }
 
             .card-header p {
-                color: #333 !important;
+                display: none; /* Quitamos la descripción en print para ahorrar espacio */
             }
 
             .result-highlight {
@@ -1149,6 +1181,12 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="print-header">
+        <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="Logo Cultura T">
+        <h2>Resumen de Costeo Turístico</h2>
+        <p>Herramienta desarrollada por Cultura T - cultura-t.com</p>
     </div>
 
     <main class="main-content">
