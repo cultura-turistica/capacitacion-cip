@@ -999,11 +999,20 @@
         }
 
         /* Responsive */
+
+        /* Responsive */
         @media (max-width: 768px) {
+            /* ESTA ES LA REGLA NUEVA PARA QUITAR EL BANNER FIJO EN MÓVILES */
+            .header {
+                position: relative; /* Cambia de sticky a relative */
+            }
+
             .header-content {
                 flex-direction: column;
                 text-align: center;
             }
+        
+
 
             .logo-section {
                 flex-direction: column;
