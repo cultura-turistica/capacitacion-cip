@@ -51,14 +51,20 @@
             padding: 0 24px;
         }
 
-        /* Header */
+        /* Header - NOT FIXED on mobile */
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             padding: 20px 0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            position: sticky;
-            top: 0;
+            position: relative;
             z-index: 100;
+        }
+
+        @media (min-width: 1024px) {
+            .header {
+                position: sticky;
+                top: 0;
+            }
         }
 
         .header-content {
@@ -91,6 +97,12 @@
         .logo-container:hover {
             border-color: var(--accent-light);
             transform: translateY(-2px);
+        }
+
+        .logo-container img {
+            max-height: 60px;
+            max-width: 180px;
+            object-fit: contain;
         }
 
         .logo-text {
@@ -131,6 +143,7 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .btn {
@@ -143,8 +156,8 @@
             border: none;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
+            text-decoration: none;
         }
 
         .btn-primary {
@@ -177,6 +190,18 @@
         .btn-outline:hover {
             background: rgba(255,255,255,0.1);
             border-color: var(--white);
+        }
+
+        .btn-home {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--white);
+            padding: 12px 20px;
+        }
+
+        .btn-home:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
         }
 
         .btn-help {
@@ -376,9 +401,20 @@
             align-items: center;
         }
 
+        /* Flexible cost inputs */
+        .cost-item-inputs-flexible {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
+            gap: 8px;
+            align-items: center;
+        }
+
         @media (max-width: 768px) {
             .cost-item-inputs {
                 grid-template-columns: 1fr;
+            }
+            .cost-item-inputs-flexible {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -400,6 +436,13 @@
 
         .input-field::placeholder {
             color: var(--gray-400);
+        }
+
+        .input-field.readonly {
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-weight: 600;
+            cursor: not-allowed;
         }
 
         .btn-remove {
@@ -560,6 +603,13 @@
             top: 120px;
         }
 
+        @media (max-width: 1023px) {
+            .results-panel {
+                position: relative;
+                top: 0;
+            }
+        }
+
         .result-section {
             margin-bottom: 20px;
         }
@@ -643,13 +693,6 @@
             font-size: 0.7rem;
             opacity: 0.8;
             margin-top: 4px;
-        }
-
-        .result-highlight .net-price {
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
         }
 
         .result-highlight .rack-price {
@@ -999,20 +1042,11 @@
         }
 
         /* Responsive */
-
-        /* Responsive */
         @media (max-width: 768px) {
-            /* ESTA ES LA REGLA NUEVA PARA QUITAR EL BANNER FIJO EN MÓVILES */
-            .header {
-                position: relative; /* Cambia de sticky a relative */
-            }
-
             .header-content {
                 flex-direction: column;
                 text-align: center;
             }
-        
-
 
             .logo-section {
                 flex-direction: column;
@@ -1035,137 +1069,26 @@
                 font-size: 1.5rem;
             }
         }
-
-        /* Bloque oculto en pantalla que se usa solo para imprimir */
-        .print-header {
-            display: none;
-        }
-
-        /* ESTILOS PARA IMPRESIÓN */
-        @media print {
-            /* Ocultar elementos innecesarios al imprimir */
-            header,
-            .currency-bar,
-            .input-section,
-            .btn,
-            .btn-help,
-            .usd-toggle,
-            footer,
-            .modal {
-                display: none !important;
-            }
-
-            body {
-                background: white;
-                color: black;
-            }
-
-            /* Mostrar y dar formato al encabezado exclusivo de impresión */
-            .print-header {
-                display: block !important;
-                text-align: center;
-                margin-bottom: 20px;
-                padding-bottom: 20px;
-                border-bottom: 2px solid #ddd;
-            }
-
-            .print-header img {
-                max-height: 80px; /* Tamaño ideal del logo para papel */
-                width: auto;
-                margin-bottom: 10px;
-                /* Sin filtros para que salga con los colores originales de tu marca */
-            }
-
-            .print-header h2 {
-                color: var(--primary);
-                font-size: 1.5rem;
-                margin-bottom: 5px;
-            }
-
-            .print-header p {
-                color: #555;
-                font-size: 0.9rem;
-            }
-
-            .main-content {
-                padding: 0;
-            }
-
-            .calculator-grid {
-                display: block;
-            }
-
-            .results-section {
-                width: 100%;
-            }
-
-            .card {
-                box-shadow: none;
-                border: 1px solid #ddd;
-                page-break-inside: avoid;
-            }
-
-            .card-header {
-                background: white !important;
-                color: black !important;
-                border-bottom: 2px solid #000;
-                padding: 10px 0;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .card-header h2 {
-                color: black !important;
-            }
-
-            .card-header p {
-                display: none; /* Quitamos la descripción en print para ahorrar espacio */
-            }
-
-            .result-highlight {
-                background: #f8f9fa !important;
-                color: black !important;
-                border: 2px solid #000;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .result-highlight .label,
-            .result-highlight .sub-label {
-                color: #333 !important;
-            }
-
-            .result-highlight .value {
-                color: black !important;
-            }
-
-            .result-highlight .rack-price {
-                border-color: #000 !important;
-            }
-
-            .progress-fill {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-        }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo-section">
-
-                    <a href="https://cultura-t.com" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
-                        <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="Logo Cultura T" style="max-height: 80px; width: auto; filter: brightness(0) invert(1);">
+                    <a href="https://cultura-t.com/" class="logo-container" title="Ir a página principal">
+                        <img src="img/logo.png" alt="Cultura T Logo" id="companyLogo">
                     </a>
-
                     <div class="header-title">
                         <h1>Calculadora de Costeo Turístico</h1>
                         <p>Herramienta profesional para diseño de paquetes turísticos</p>
                     </div>
                 </div>
                 <div class="header-actions">
+                    <a href="index.html" class="btn btn-home" title="Ir a página principal">
+                        🏠 Inicio
+                    </a>
                     <button class="btn btn-outline" onclick="showInfoModal()">
                         📚 Guía de Uso
                     </button>
@@ -1177,6 +1100,7 @@
         </div>
     </header>
 
+    <!-- Currency Bar -->
     <div class="currency-bar">
         <div class="container">
             <div class="currency-content">
@@ -1192,16 +1116,13 @@
         </div>
     </div>
 
-    <div class="print-header">
-        <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="Logo Cultura T">
-        <h2>Resumen de Costeo Turístico</h2>
-        <p>Herramienta desarrollada por Cultura T - cultura-t.com</p>
-    </div>
-
+    <!-- Main Content -->
     <main class="main-content">
         <div class="container">
             <div class="calculator-grid">
+                <!-- Left Column - Inputs -->
                 <div class="input-section">
+                    <!-- Costos Fijos -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <h2>🏛️ Costos Fijos</h2>
@@ -1253,6 +1174,7 @@
                         </div>
                     </div>
 
+                    <!-- Costos Variables -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <h2>🔄 Costos Variables</h2>
@@ -1304,25 +1226,28 @@
                         </div>
                     </div>
 
+                    <!-- Costos Flexibles -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <h2>⚖️ Costos Flexibles</h2>
-                            <p>Costos que se activan según rangos de participantes</p>
+                            <p>Costos con capacidad limitada (ej: lanchas, vehículos)</p>
                         </div>
                         <div class="card-body">
                             <div class="info-box">
                                 <strong>💡 ¿Qué son costos flexibles?</strong>
-                                <p>Son costos que se activan cuando superas cierta capacidad. Ejemplo: 1 guía hasta 15 pax, pero si tienes 16-30 pax necesitas 2 guías.</p>
+                                <p>Son servicios con capacidad limitada. La calculadora determina automáticamente cuántas unidades necesitas según los participantes reservados. Ejemplo: Si una lancha tiene 6 puestos y reservas 8 personas, necesitas 2 lanchas.</p>
                             </div>
                             <div class="cost-items-container" id="flexibleCostsList">
                                 <div class="cost-item">
                                     <div class="cost-item-header">
                                         <span class="cost-type-badge cost-type-flexible">Flexible</span>
                                     </div>
-                                    <div class="cost-item-inputs">
-                                        <input type="text" class="input-field" placeholder="Nombre del item" value="Guía adicional">
-                                        <input type="number" class="input-field" placeholder="Activar desde (pax)" value="1" min="1">
-                                        <input type="number" class="input-field" placeholder="Valor total (COP)" value="300000">
+                                    <div class="cost-item-inputs-flexible">
+                                        <input type="text" class="input-field" placeholder="Nombre del servicio" value="Lancha">
+                                        <input type="number" class="input-field flexible-limit" placeholder="Capacidad máx." value="6" min="1" onchange="calculateFlexibleQuantity(this)">
+                                        <input type="number" class="input-field flexible-reserved" placeholder="Reservados" value="1" min="1" onchange="calculateFlexibleQuantity(this)">
+                                        <input type="number" class="input-field flexible-quantity readonly" placeholder="Unidades" value="1" readonly>
+                                        <input type="number" class="input-field" placeholder="Valor por unidad (COP)" value="300000">
                                         <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
                                     </div>
                                 </div>
@@ -1333,12 +1258,23 @@
                         </div>
                     </div>
 
+                    <!-- Porcentajes -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <h2>📋 Porcentajes y Márgenes</h2>
                             <p>Gastos indirectos, comisiones y utilidad</p>
                         </div>
                         <div class="card-body">
+                            <div class="info-box" style="background: #dbeafe; border-left-color: #3b82f6;">
+                                <strong>📐 Fórmula Correcta de Precio Neto (según UNDP-PNUD)</strong>
+                                <p style="margin-top: 8px;">El Precio Neto incluye Costos + Gastos (imprevistos, administrativos, operacionales). La utilidad se calcula como margen del precio de venta.</p>
+                                <div class="formula-box" style="margin: 12px 0; font-size: 0.8rem;">
+                                    <strong>Precio Neto = Costos + Gastos</strong><br>
+                                    <strong>Precio con Utilidad = Precio Neto / (1 - %Utilidad)</strong>
+                                </div>
+                                <p style="font-size: 0.8rem;">Ejemplo: Si Costos + Gastos = $100 y quieres 20% de utilidad:<br>
+                                Precio con Utilidad = $100 / (1 - 0.20) = $100 / 0.80 = $125</p>
+                            </div>
                             <div class="percentages-grid">
                                 <div class="percentage-item">
                                     <label>⚠️ Imprevistos (%)</label>
@@ -1362,8 +1298,8 @@
                                 </div>
                                 <div class="percentage-item">
                                     <label>💰 Utilidad Neta (%)</label>
-                                    <input type="number" id="netProfit" value="15" min="0" max="100" step="0.1" onchange="calculateAll()">
-                                    <div class="hint">Ganancia después de impuestos</div>
+                                    <input type="number" id="netProfit" value="20" min="0" max="100" step="0.1" onchange="calculateAll()">
+                                    <div class="hint">Margen real sobre precio de venta</div>
                                 </div>
                                 <div class="percentage-item">
                                     <label>🧾 IVA (%)</label>
@@ -1374,9 +1310,10 @@
                         </div>
                     </div>
 
+                    <!-- Pax Slider -->
                     <div class="pax-section">
                         <label>👥 Número de Participantes</label>
-                        <input type="range" class="pax-slider" id="paxCount" min="1" max="30" value="10" oninput="document.getElementById('paxValue').textContent = this.value; calculateAll()">
+                        <input type="range" class="pax-slider" id="paxCount" min="1" max="30" value="10" oninput="document.getElementById('paxValue').textContent = this.value; calculateAll(); updateFlexibleInputs()">
                         <div class="pax-display">
                             <div>
                                 <div class="pax-label">Mínimo</div>
@@ -1394,6 +1331,7 @@
                     </div>
                 </div>
 
+                <!-- Right Column - Results -->
                 <div class="results-section">
                     <div class="card results-panel">
                         <div class="card-header">
@@ -1406,6 +1344,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <!-- Costos Directos -->
                             <div class="result-section">
                                 <div class="result-section-title">📊 COSTOS DIRECTOS</div>
                                 <div class="result-box">
@@ -1432,6 +1371,7 @@
                                 </div>
                             </div>
 
+                            <!-- Gastos Indirectos -->
                             <div class="result-section">
                                 <div class="result-section-title">📋 GASTOS INDIRECTOS</div>
                                 <div class="result-box">
@@ -1447,23 +1387,32 @@
                                         <span class="result-label">Operacionales (<span id="operationalPercent">2</span>%)</span>
                                         <span class="result-value" id="operationalAmount">$0</span>
                                     </div>
-                                    <div class="result-item">
-                                        <span class="result-label">Comisión (<span id="commissionPercent">20</span>%)</span>
-                                        <span class="result-value" id="commissionAmount">$0</span>
+                                    <div class="result-item total">
+                                        <span class="result-label">Total Gastos Indirectos</span>
+                                        <span class="result-value" id="totalIndirectCosts">$0</span>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- Precio Neto y Utilidad -->
                             <div class="result-section">
-                                <div class="result-section-title">💰 UTILIDAD E IMPUESTOS</div>
+                                <div class="result-section-title">💰 PRECIO NETO Y UTILIDAD</div>
                                 <div class="result-box">
                                     <div class="result-item">
-                                        <span class="result-label">Utilidad Neta (<span id="netProfitPercent">15</span>%)</span>
-                                        <span class="result-value" id="netProfitAmount">$0</span>
+                                        <span class="result-label">Precio Neto (Costos + Gastos)</span>
+                                        <span class="result-value" id="netPriceBase">$0</span>
                                     </div>
                                     <div class="result-item">
-                                        <span class="result-label">Margen Bruto Total</span>
-                                        <span class="result-value" id="grossMargin">$0</span>
+                                        <span class="result-label">Utilidad Neta (<span id="netProfitPercent">20</span>%)</span>
+                                        <span class="result-value" id="netProfitAmount">$0</span>
+                                    </div>
+                                    <div class="result-item total">
+                                        <span class="result-label">Tarifa Neta (con Utilidad)</span>
+                                        <span class="result-value" id="netPrice">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Comisión (<span id="commissionPercent">20</span>%)</span>
+                                        <span class="result-value" id="commissionAmount">$0</span>
                                     </div>
                                     <div class="result-item">
                                         <span class="result-label">IVA (<span id="ivaPercentDisplay">19</span>%)</span>
@@ -1472,30 +1421,22 @@
                                 </div>
                             </div>
 
+                            <!-- Precio Final -->
                             <div class="result-highlight">
-                                <div class="label">📋 Tarifa Neta (Sin Comisión)</div>
-                                <div class="value" id="netPrice">$0</div>
-                                <div class="sub-label">Costos + Gastos + Utilidad</div>
-
-                                <div class="rack-price">
-                                    <div class="label">🏷️ Tarifa RACK (Con Comisión)</div>
-                                    <div class="value" id="rackPrice">$0</div>
-                                    <div class="sub-label">Tarifa Neta + Comisión Intermediarios</div>
-                                </div>
-
+                                <div class="label">🏷️ Tarifa RACK (Con Comisión)</div>
+                                <div class="value" id="rackPrice">$0</div>
+                                <div class="sub-label">Tarifa Neta + Comisión Intermediarios</div>
                                 <div class="divider"></div>
-
                                 <div class="label">💵 Precio Final al Público (Con IVA)</div>
                                 <div class="value" id="finalPrice">$0</div>
                                 <div class="sub-label">Tarifa RACK + IVA</div>
-
                                 <div class="divider"></div>
-
                                 <div class="label">👤 Precio por Persona</div>
                                 <div class="value" id="pricePerPax">$0</div>
                                 <div class="sub-label">Precio Final ÷ Número de Participantes</div>
                             </div>
 
+                            <!-- USD Toggle -->
                             <div class="usd-toggle">
                                 <label>
                                     <input type="checkbox" id="showUSD" onchange="calculateAll()">
@@ -1506,6 +1447,7 @@
                                 </div>
                             </div>
 
+                            <!-- Progress Bars -->
                             <div class="progress-section">
                                 <h4>📊 Distribución del Precio</h4>
                                 <div class="progress-item">
@@ -1519,7 +1461,7 @@
                                 </div>
                                 <div class="progress-item">
                                     <div class="progress-header">
-                                        <span>Gastos y Comisiones</span>
+                                        <span>Gastos Indirectos</span>
                                         <span id="expensesPercent">0%</span>
                                     </div>
                                     <div class="progress-bar">
@@ -1537,8 +1479,8 @@
                                 </div>
                                 <div class="progress-item">
                                     <div class="progress-header">
-                                        <span>IVA</span>
-                                        <span id="ivaBarPercent">0%</span>
+                                        <span>Comisión + IVA</span>
+                                        <span id="commissionIvaPercent">0%</span>
                                     </div>
                                     <div class="progress-bar">
                                         <div class="progress-fill iva" id="ivaBar" style="width: 0%"></div>
@@ -1546,14 +1488,9 @@
                                 </div>
                             </div>
 
-                            <div style="display: flex; gap: 12px; margin-top: 24px;">
-                                <button class="btn btn-primary" style="flex: 1;" onclick="calculateAll()">
-                                    🔄 Recalcular
-                                </button>
-                                <button class="btn btn-secondary" style="flex: 1;" onclick="window.print()">
-                                    🖨️ Imprimir Resumen
-                                </button>
-                            </div>
+                            <button class="btn btn-primary" style="width: 100%; margin-top: 24px;" onclick="calculateAll()">
+                                🔄 Recalcular
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1561,6 +1498,7 @@
         </div>
     </main>
 
+    <!-- Info Modal -->
     <div class="modal" id="infoModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1573,7 +1511,7 @@
                     <li>Todos los costos se ingresan en Pesos Colombianos (COP)</li>
                     <li><strong>Costos Fijos:</strong> Gastos que no cambian con el número de participantes (guías, transporte, permisos)</li>
                     <li><strong>Costos Variables:</strong> Gastos por persona (alimentación, materiales, seguros)</li>
-                    <li><strong>Costos Flexibles:</strong> Costos que se activan según rangos (ej: guía adicional a partir de 16 pax)</li>
+                    <li><strong>Costos Flexibles:</strong> Servicios con capacidad limitada (lanchas, vehículos). La calculadora determina automáticamente cuántas unidades necesitas.</li>
                 </ul>
 
                 <h3>2. Configura Porcentajes</h3>
@@ -1582,7 +1520,7 @@
                     <li>Administrativos: 3% típico</li>
                     <li>Operacionales: 2% típico</li>
                     <li>Comisión: 5-30% según intermediario</li>
-                    <li>Utilidad: 15-25% recomendado</li>
+                    <li>Utilidad: 15-25% recomendado (se calcula como margen del precio de venta)</li>
                     <li>IVA: 19% para Colombia</li>
                 </ul>
 
@@ -1590,6 +1528,7 @@
                 <ul>
                     <li>Usa el control deslizante para ver cómo cambia el costo por persona</li>
                     <li>Más participantes = menor costo unitario de costos fijos</li>
+                    <li>Los costos flexibles se recalculan automáticamente</li>
                 </ul>
 
                 <h3>4. Configura Tasa de Cambio USD</h3>
@@ -1610,6 +1549,7 @@
         </div>
     </div>
 
+    <!-- Cost Types Modal -->
     <div class="modal" id="costModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1626,8 +1566,8 @@
                 <p style="background: #f0f5f2; padding: 12px; border-radius: 8px; margin-top: 12px;"><strong>Ejemplo:</strong> Kit de materiales por $50,000 COP por persona</p>
 
                 <h3>⚖️ Costos Flexibles</h3>
-                <p>Se activan cuando superas ciertos umbrales de capacidad. Útil para modelar situaciones donde necesitas recursos adicionales al crecer el grupo.</p>
-                <p style="background: #f0f5f2; padding: 12px; border-radius: 8px; margin-top: 12px;"><strong>Ejemplo:</strong> 1 guía hasta 15 pax, 2 guías de 16-30 pax</p>
+                <p>Servicios con capacidad limitada. La calculadora determina automáticamente cuántas unidades necesitas según los participantes reservados.</p>
+                <p style="background: #f0f5f2; padding: 12px; border-radius: 8px; margin-top: 12px;"><strong>Ejemplo:</strong> Lancha con 6 puestos. Si reservas 8 personas, necesitas 2 lanchas (8 ÷ 6 = 1.33 → 2 unidades)</p>
 
                 <h3>📊 Fórmula de Precio de Venta</h3>
                 <p style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; padding: 16px; border-radius: 8px; text-align: center; margin-top: 12px;">
@@ -1637,6 +1577,7 @@
         </div>
     </div>
 
+    <!-- Pricing Explanation Modal -->
     <div class="modal" id="pricingModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1644,60 +1585,44 @@
                 <button class="modal-close" onclick="closePricingModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <h3>📈 ¿Por qué el Precio por Persona Baja con Más Participantes?</h3>
-
+                <h3>📐 Fórmula Correcta de Precio Neto (según UNDP-PNUD)</h3>
                 <div class="explanation-box">
-                    <h4>🎯 El Paradigma de los Costos Fijos Distribuidos</h4>
-                    <p>Los <strong>costos fijos</strong> (guías, transporte, permisos) son gastos que NO cambian sin importar cuántas personas vayan. Por eso, cuando hay más participantes, ese costo se "reparte" entre más personas, haciendo que el costo individual baje.</p>
+                    <h4>✅ Secuencia de Cálculo Correcta</h4>
+                    <ol style="margin-left: 20px; line-height: 2;">
+                        <li><strong>Costos Directos</strong> = Fijos + Variables + Flexibles</li>
+                        <li><strong>Gastos Indirectos</strong> = Costos × (%Imprevistos + %Admin + %Operacional)</li>
+                        <li><strong>Precio Neto</strong> = Costos Directos + Gastos Indirectos</li>
+                        <li><strong>Precio con Utilidad</strong> = Precio Neto / (1 - %Utilidad)</li>
+                        <li><strong>Tarifa RACK</strong> = Precio con Utilidad + Comisión</li>
+                        <li><strong>Precio Final</strong> = Tarifa RACK + IVA</li>
+                    </ol>
+                </div>
 
-                    <table>
-                        <tr>
-                            <th>Participantes</th>
-                            <th>Costo Fijo Total</th>
-                            <th>Costo Fijo por Persona</th>
-                        </tr>
-                        <tr>
-                            <td>1 pax</td>
-                            <td>$640,000</td>
-                            <td>$640,000 ÷ 1 = <strong>$640,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td>2 pax</td>
-                            <td>$640,000</td>
-                            <td>$640,000 ÷ 2 = <strong>$320,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td>5 pax</td>
-                            <td>$640,000</td>
-                            <td>$640,000 ÷ 5 = <strong>$128,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td>10 pax</td>
-                            <td>$640,000</td>
-                            <td>$640,000 ÷ 10 = <strong>$64,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td>20 pax</td>
-                            <td>$640,000</td>
-                            <td>$640,000 ÷ 20 = <strong>$32,000</strong></td>
-                        </tr>
-                    </table>
-
-                    <p style="margin-top: 12px;"><strong>💡 Conclusión:</strong> ¡Mientras más participantes, menor es el costo fijo por persona! Los costos variables (alimentación, materiales) se mantienen iguales por persona.</p>
+                <div class="formula-box">
+                    <strong>Ejemplo Práctico:</strong><br><br>
+                    <span style="font-size: 0.9rem;">
+                    Costos Directos: $100,000<br>
+                    Gastos (8%): $8,000<br>
+                    Precio Neto: $108,000<br><br>
+                    Utilidad (20%): $108,000 / (1 - 0.20) = $135,000<br>
+                    Comisión (20%): $27,000<br>
+                    Tarifa RACK: $162,000<br>
+                    IVA (19%): $30,780<br>
+                    <strong>Precio Final: $192,780</strong>
+                    </span>
                 </div>
 
                 <h3>💵 Tipos de Tarifas en Turismo</h3>
-
                 <div class="tariff-explanation">
                     <div class="tariff-card net">
-                        <h4>📋 Tarifa NETA</h4>
-                        <p>Costos + Gastos + Utilidad</p>
-                        <p style="font-size: 0.65rem; margin-top: 8px;">Precio confidencial para el operador. No incluye comisión de intermediarios.</p>
-                        <div class="value" style="color: var(--info);" id="modalNetPrice">$0</div>
+                        <h4>📋 Precio NETO</h4>
+                        <p>Costos + Gastos Indirectos</p>
+                        <p style="font-size: 0.65rem; margin-top: 8px;">Base antes de utilidad. Incluye imprevistos, administrativos y operacionales.</p>
+                        <div class="value" style="color: var(--info);" id="modalNetPriceBase">$0</div>
                     </div>
                     <div class="tariff-card rack">
                         <h4>🏷️ Tarifa RACK</h4>
-                        <p>Tarifa Neta + Comisión</p>
+                        <p>Precio con Utilidad + Comisión</p>
                         <p style="font-size: 0.65rem; margin-top: 8px;">Precio oficial con comisión para agencias y tour operadores.</p>
                         <div class="value" style="color: var(--warning);" id="modalRackPrice">$0</div>
                     </div>
@@ -1709,77 +1634,78 @@
                     </div>
                 </div>
 
-                <div class="formula-box">
-                    <strong>Fórmula Completa:</strong><br><br>
-                    <span style="font-size: 0.9rem;">
-                    COSTOS DIRECTOS (Fijos + Variables + Flexibles)<br>
-                    + GASTOS INDIRECTOS (Imprevistos + Admin + Operacionales)<br>
-                    + UTILIDAD NETA<br>
-                    = <strong>TARIFA NETA</strong><br><br>
-                    TARIFA NETA + COMISIÓN<br>
-                    = <strong>TARIFA RACK</strong><br><br>
-                    TARIFA RACK + IVA<br>
-                    = <strong>PRECIO FINAL AL PÚBLICO</strong>
-                    </span>
-                </div>
-
-                <h3>📊 Ejemplo Práctico con tu Calculadora</h3>
-                <div class="explanation-box">
-                    <p>Si tienes <strong>10 participantes</strong> y el precio final es de <strong>$1,000,000 COP</strong>:</p>
-                    <ul>
-                        <li><strong>Precio por persona:</strong> $1,000,000 ÷ 10 = <strong>$100,000 COP</strong></li>
-                    </ul>
-                    <p>Si aumentas a <strong>20 participantes</strong> (mismos costos fijos):</p>
-                    <ul>
-                        <li><strong>Precio por persona:</strong> $1,200,000 ÷ 20 = <strong>$60,000 COP</strong></li>
-                    </ul>
-                    <p style="margin-top: 12px;"><strong>⚠️ Nota:</strong> El precio total del grupo aumenta ligeramente (por costos variables), pero el precio POR PERSONA disminuye porque los costos fijos se distribuyen entre más gente.</p>
-                </div>
-
                 <div class="info-box" style="margin-top: 16px;">
                     <strong>🎯 Recomendación Estratégica:</strong>
-                    <p style="margin-top: 8px;">Para maximizar tu utilidad, busca llenar la capacidad máxima de tu tour sin superar los límites que activan costos flexibles adicionales (ej: segundo guía, segundo vehículo).</p>
+                    <p style="margin-top: 8px;">Para maximizar tu utilidad, busca llenar la capacidad máxima de tu tour sin superar los límites que activan costos flexibles adicionales (ej: segunda lancha, segundo vehículo).</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <a href="https://cultura-t.com" target="_blank" style="display: flex; align-items: center; justify-content: center; text-decoration: none; margin-bottom: 16px;">
-                    <img src="https://cultura-t.com/wp-content/uploads/2025/08/cropped-Logo_CulturaT_color-scaled-1-300x173.png" alt="Logo Cultura T" style="max-height: 60px; width: auto; filter: brightness(0) invert(1);">
-                </a>
+                <div class="footer-logo">cultura<span>t</span></div>
                 <p class="footer-text">Herramienta educativa desarrollada por Cultura T</p>
+                <p class="footer-text"><small>Basado en el Manual UNDP-PNUD para el Diseño y Venta de Paquetes Turísticos (2021)</small></p>
                 <p class="footer-text"><small>© 2025 Cultura T - Todos los derechos reservados</small></p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Currency state
-        let currentCurrency = 'COP';
-
         // Format currency
         function formatCurrency(amount) {
-            if (currentCurrency === 'COP') {
-                return '$' + Math.round(amount).toLocaleString('es-CO');
+            const showUSD = document.getElementById('showUSD').checked;
+            if (showUSD) {
+                const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 4000;
+                return 'USD $' + (amount / exchangeRate).toFixed(2).toLocaleString('en-US');
             } else {
-                return 'USD $' + amount.toFixed(2).toLocaleString('en-US');
+                return '$' + Math.round(amount).toLocaleString('es-CO');
             }
         }
 
-        // Upload logo (Esta función se mantiene aunque quitamos el input por si la necesitas a futuro)
+        // Upload logo
         function uploadLogo(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const container = document.querySelector('.logo-container');
-                    container.innerHTML = `<img src="${e.target.result}" alt="Cultura T Logo" style="max-height: 60px;">`;
+                    const img = document.getElementById('companyLogo');
+                    img.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
+        }
+
+        // Calculate flexible quantity
+        function calculateFlexibleQuantity(input) {
+            const row = input.closest('.cost-item-inputs-flexible');
+            const limitInput = row.querySelector('.flexible-limit');
+            const reservedInput = row.querySelector('.flexible-reserved');
+            const quantityInput = row.querySelector('.flexible-quantity');
+
+            const limit = parseInt(limitInput.value) || 1;
+            const reserved = parseInt(reservedInput.value) || 1;
+
+            // Calculate how many units needed (ceiling division)
+            const quantity = Math.ceil(reserved / limit);
+
+            // Update the readonly quantity field
+            quantityInput.value = quantity;
+
+            // Recalculate all
+            calculateAll();
+        }
+
+        // Update flexible inputs when pax changes
+        function updateFlexibleInputs() {
+            const pax = parseInt(document.getElementById('paxCount').value) || 1;
+            document.querySelectorAll('.flexible-reserved').forEach(input => {
+                input.value = pax;
+                calculateFlexibleQuantity(input);
+            });
         }
 
         // Add item
@@ -1787,48 +1713,49 @@
             const list = document.getElementById(type === 'fixed' ? 'fixedCostsList' : type === 'variable' ? 'variableCostsList' : 'flexibleCostsList');
             const item = document.createElement('div');
 
-            let inputHtml = '';
-            let badgeClass = '';
-            let badgeText = '';
-            let thresholdValue = type === 'flexible' ? '1' : '';
-            let placeholder3 = type === 'variable' ? 'Valor por pax (COP)' : 'Valor total (COP)';
-
             if (type === 'fixed') {
-                inputHtml = `
-                    <input type="text" class="input-field" placeholder="Nombre del item">
-                    <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
-                    <input type="number" class="input-field" placeholder="${placeholder3}" value="0">
+                item.className = 'cost-item';
+                item.innerHTML = `
+                    <div class="cost-item-header">
+                        <span class="cost-type-badge cost-type-fixed">Fijo</span>
+                    </div>
+                    <div class="cost-item-inputs">
+                        <input type="text" class="input-field" placeholder="Nombre del item">
+                        <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                        <input type="number" class="input-field" placeholder="Valor total (COP)" value="0">
+                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                    </div>
                 `;
-                badgeClass = 'cost-type-fixed';
-                badgeText = 'Fijo';
             } else if (type === 'variable') {
-                inputHtml = `
-                    <input type="text" class="input-field" placeholder="Nombre del item">
-                    <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
-                    <input type="number" class="input-field" placeholder="${placeholder3}" value="0">
+                item.className = 'cost-item';
+                item.innerHTML = `
+                    <div class="cost-item-header">
+                        <span class="cost-type-badge cost-type-variable">Variable</span>
+                    </div>
+                    <div class="cost-item-inputs">
+                        <input type="text" class="input-field" placeholder="Nombre del item">
+                        <input type="number" class="input-field" placeholder="Cantidad" value="1" min="1">
+                        <input type="number" class="input-field" placeholder="Valor por pax (COP)" value="0">
+                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                    </div>
                 `;
-                badgeClass = 'cost-type-variable';
-                badgeText = 'Variable';
             } else {
-                inputHtml = `
-                    <input type="text" class="input-field" placeholder="Nombre del item">
-                    <input type="number" class="input-field" placeholder="Activar desde (pax)" value="1" min="1">
-                    <input type="number" class="input-field" placeholder="${placeholder3}" value="0">
+                item.className = 'cost-item';
+                item.innerHTML = `
+                    <div class="cost-item-header">
+                        <span class="cost-type-badge cost-type-flexible">Flexible</span>
+                    </div>
+                    <div class="cost-item-inputs-flexible">
+                        <input type="text" class="input-field" placeholder="Nombre del servicio">
+                        <input type="number" class="input-field flexible-limit" placeholder="Capacidad máx." value="6" min="1" onchange="calculateFlexibleQuantity(this)">
+                        <input type="number" class="input-field flexible-reserved" placeholder="Reservados" value="1" min="1" onchange="calculateFlexibleQuantity(this)">
+                        <input type="number" class="input-field flexible-quantity readonly" placeholder="Unidades" value="1" readonly>
+                        <input type="number" class="input-field" placeholder="Valor por unidad (COP)" value="0">
+                        <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
+                    </div>
                 `;
-                badgeClass = 'cost-type-flexible';
-                badgeText = 'Flexible';
             }
 
-            item.className = 'cost-item';
-            item.innerHTML = `
-                <div class="cost-item-header">
-                    <span class="cost-type-badge ${badgeClass}">${badgeText}</span>
-                </div>
-                <div class="cost-item-inputs">
-                    ${inputHtml}
-                    <button class="btn-remove" onclick="removeItem(this)">Eliminar</button>
-                </div>
-            `;
             list.appendChild(item);
             calculateAll();
         }
@@ -1857,17 +1784,23 @@
         }
 
         function showPricingModal() {
-            // Update modal values with current calculation
             const showUSD = document.getElementById('showUSD').checked;
             const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 4000;
             const convertToUSD = (amount) => amount / exchangeRate;
-            const formatCurr = showUSD ? formatCurrencyUSD : formatCurrencyCOP;
 
-            const netPriceCOP = parseFloat(document.getElementById('netPrice').textContent.replace(/[^0-9.-]+/g,"")) || 0;
+            const formatCurr = (amount) => {
+                if (showUSD) {
+                    return 'USD $' + convertToUSD(amount).toFixed(2).toLocaleString('en-US');
+                } else {
+                    return '$' + Math.round(amount).toLocaleString('es-CO');
+                }
+            };
+
+            const netPriceBaseCOP = parseFloat(document.getElementById('netPriceBase').textContent.replace(/[^0-9.-]+/g,"")) || 0;
             const rackPriceCOP = parseFloat(document.getElementById('rackPrice').textContent.replace(/[^0-9.-]+/g,"")) || 0;
             const finalPriceCOP = parseFloat(document.getElementById('finalPrice').textContent.replace(/[^0-9.-]+/g,"")) || 0;
 
-            document.getElementById('modalNetPrice').textContent = formatCurr(showUSD ? convertToUSD(netPriceCOP) : netPriceCOP);
+            document.getElementById('modalNetPriceBase').textContent = formatCurr(showUSD ? convertToUSD(netPriceBaseCOP) : netPriceBaseCOP);
             document.getElementById('modalRackPrice').textContent = formatCurr(showUSD ? convertToUSD(rackPriceCOP) : rackPriceCOP);
             document.getElementById('modalFinalPrice').textContent = formatCurr(showUSD ? convertToUSD(finalPriceCOP) : finalPriceCOP);
 
@@ -1887,7 +1820,7 @@
             });
         });
 
-        // Calculate all
+        // Calculate all - CORRECTED FORMULA
         function calculateAll() {
             const pax = parseInt(document.getElementById('paxCount').value) || 1;
             document.getElementById('paxValue').textContent = pax;
@@ -1895,44 +1828,41 @@
             const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 4000;
             const showUSD = document.getElementById('showUSD').checked;
 
-            // Update USD rate display
             document.getElementById('usdRateDisplay').textContent = `Tasa: 1 USD = $${exchangeRate.toLocaleString('es-CO')} COP`;
 
-            // Get fixed costs (always in COP)
+            // STEP 1: Get fixed costs
             let totalFixed = 0;
             document.querySelectorAll('#fixedCostsList .cost-item').forEach(item => {
                 const inputs = item.querySelectorAll('input');
-                const qty = parseFloat(inputs[1].value) || 0;
+                const qty = parseFloat(inputs[1].value) || 1;
                 const value = parseFloat(inputs[2].value) || 0;
                 totalFixed += qty * value;
             });
 
-            // Get variable costs per pax (always in COP)
+            // STEP 2: Get variable costs per pax
             let totalVariablePerPax = 0;
             document.querySelectorAll('#variableCostsList .cost-item').forEach(item => {
                 const inputs = item.querySelectorAll('input');
-                const qty = parseFloat(inputs[1].value) || 0;
+                const qty = parseFloat(inputs[1].value) || 1;
                 const value = parseFloat(inputs[2].value) || 0;
                 totalVariablePerPax += qty * value;
             });
 
-            // Get flexible costs (always in COP) - FIXED: now activates from 1 pax by default
+            // STEP 3: Get flexible costs
             let totalFlexible = 0;
             document.querySelectorAll('#flexibleCostsList .cost-item').forEach(item => {
                 const inputs = item.querySelectorAll('input');
-                const threshold = parseFloat(inputs[1].value) || 1;
-                const value = parseFloat(inputs[2].value) || 0;
-                if (pax >= threshold) {
-                    totalFlexible += value;
-                }
+                const quantity = parseFloat(inputs[3].value) || 1;
+                const value = parseFloat(inputs[4].value) || 0;
+                totalFlexible += quantity * value;
             });
 
-            // Calculate totals (in COP)
+            // STEP 4: Calculate total direct costs
             const totalVariable = totalVariablePerPax * pax;
-            const totalGroupCost = totalFixed + totalVariable + totalFlexible;
-            const costPerPax = totalGroupCost / pax;
+            const totalDirectCosts = totalFixed + totalVariable + totalFlexible;
+            const costPerPax = totalDirectCosts / pax;
 
-            // Get percentages
+            // STEP 5: Get percentages
             const contingencyPercent = parseFloat(document.getElementById('contingency').value) || 0;
             const adminPercent = parseFloat(document.getElementById('adminExpenses').value) || 0;
             const operationalPercent = parseFloat(document.getElementById('operationalExpenses').value) || 0;
@@ -1948,78 +1878,77 @@
             document.getElementById('netProfitPercent').textContent = netProfitPercent;
             document.getElementById('ivaPercentDisplay').textContent = ivaPercent;
 
-            // Calculate amounts (in COP)
-            const contingencyAmount = totalGroupCost * (contingencyPercent / 100);
-            const adminAmount = totalGroupCost * (adminPercent / 100);
-            const operationalAmount = totalGroupCost * (operationalPercent / 100);
-            const commissionAmount = totalGroupCost * (commissionPercent / 100);
-            const netProfitAmount = totalGroupCost * (netProfitPercent / 100);
-            const grossMargin = contingencyAmount + adminAmount + operationalAmount + commissionAmount + netProfitAmount;
+            // STEP 6: Calculate indirect costs (as percentage of direct costs)
+            const contingencyAmount = totalDirectCosts * (contingencyPercent / 100);
+            const adminAmount = totalDirectCosts * (adminPercent / 100);
+            const operationalAmount = totalDirectCosts * (operationalPercent / 100);
+            const totalIndirectCosts = contingencyAmount + adminAmount + operationalAmount;
 
-            // TARIFA NETA = Costos + Gastos + Utilidad (sin comisión)
-            const netPrice = totalGroupCost + contingencyAmount + adminAmount + operationalAmount + netProfitAmount;
+            // STEP 7: Calculate Precio Neto (Costos + Gastos) - THIS IS THE KEY CORRECTION
+            const netPriceBase = totalDirectCosts + totalIndirectCosts;
 
-            // TARIFA RACK = Tarifa Neta + Comisión
+            // STEP 8: Calculate Price with Utility using correct formula
+            // Precio con Utilidad = Precio Neto / (1 - %Utilidad)
+            const netPrice = netProfitPercent < 100 ? netPriceBase / (1 - (netProfitPercent / 100)) : netPriceBase;
+            const netProfitAmount = netPrice - netPriceBase;
+
+            // STEP 9: Calculate commission (as percentage of net price with utility)
+            const commissionAmount = netPrice * (commissionPercent / 100);
+
+            // STEP 10: Tarifa RACK = Precio con Utilidad + Comisión
             const rackPrice = netPrice + commissionAmount;
 
-            // IVA se calcula sobre la Tarifa RACK
+            // STEP 11: IVA se calcula sobre la Tarifa RACK
             const ivaAmount = rackPrice * (ivaPercent / 100);
 
-            // PRECIO FINAL = Tarifa RACK + IVA
+            // STEP 12: PRECIO FINAL = Tarifa RACK + IVA
             const finalPrice = rackPrice + ivaAmount;
             const pricePerPax = finalPrice / pax;
 
-            // Format function based on currency toggle
-            const formatCurrency = showUSD ? formatCurrencyUSD : formatCurrencyCOP;
-            const convertToUSD = (amount) => amount / exchangeRate;
+            const formatCurrency = showUSD ?
+                (amt) => 'USD $' + (amt / exchangeRate).toFixed(2).toLocaleString('en-US') :
+                (amt) => '$' + Math.round(amt).toLocaleString('es-CO');
 
-            // Update display
-            document.getElementById('totalFixed').textContent = formatCurrency(showUSD ? convertToUSD(totalFixed) : totalFixed);
-            document.getElementById('totalVariablePerPax').textContent = formatCurrency(showUSD ? convertToUSD(totalVariablePerPax) : totalVariablePerPax);
-            document.getElementById('totalFlexible').textContent = formatCurrency(showUSD ? convertToUSD(totalFlexible) : totalFlexible);
-            document.getElementById('totalGroupCost').textContent = formatCurrency(showUSD ? convertToUSD(totalGroupCost) : totalGroupCost);
-            document.getElementById('costPerPax').textContent = formatCurrency(showUSD ? convertToUSD(costPerPax) : costPerPax);
+            // Update display - Direct Costs
+            document.getElementById('totalFixed').textContent = formatCurrency(totalFixed);
+            document.getElementById('totalVariablePerPax').textContent = formatCurrency(totalVariablePerPax);
+            document.getElementById('totalFlexible').textContent = formatCurrency(totalFlexible);
+            document.getElementById('totalGroupCost').textContent = formatCurrency(totalDirectCosts);
+            document.getElementById('costPerPax').textContent = formatCurrency(costPerPax);
 
-            document.getElementById('contingencyAmount').textContent = formatCurrency(showUSD ? convertToUSD(contingencyAmount) : contingencyAmount);
-            document.getElementById('adminAmount').textContent = formatCurrency(showUSD ? convertToUSD(adminAmount) : adminAmount);
-            document.getElementById('operationalAmount').textContent = formatCurrency(showUSD ? convertToUSD(operationalAmount) : operationalAmount);
-            document.getElementById('commissionAmount').textContent = formatCurrency(showUSD ? convertToUSD(commissionAmount) : commissionAmount);
+            // Update display - Indirect Costs
+            document.getElementById('contingencyAmount').textContent = formatCurrency(contingencyAmount);
+            document.getElementById('adminAmount').textContent = formatCurrency(adminAmount);
+            document.getElementById('operationalAmount').textContent = formatCurrency(operationalAmount);
+            document.getElementById('totalIndirectCosts').textContent = formatCurrency(totalIndirectCosts);
 
-            document.getElementById('netProfitAmount').textContent = formatCurrency(showUSD ? convertToUSD(netProfitAmount) : netProfitAmount);
-            document.getElementById('grossMargin').textContent = formatCurrency(showUSD ? convertToUSD(grossMargin) : grossMargin);
-            document.getElementById('ivaAmount').textContent = formatCurrency(showUSD ? convertToUSD(ivaAmount) : ivaAmount);
+            // Update display - Net Price and Utility
+            document.getElementById('netPriceBase').textContent = formatCurrency(netPriceBase);
+            document.getElementById('netProfitAmount').textContent = formatCurrency(netProfitAmount);
+            document.getElementById('netPrice').textContent = formatCurrency(netPrice);
+            document.getElementById('commissionAmount').textContent = formatCurrency(commissionAmount);
+            document.getElementById('ivaAmount').textContent = formatCurrency(ivaAmount);
 
-            // NEW: Display Net Price, Rack Price, and Final Price separately
-            document.getElementById('netPrice').textContent = formatCurrency(showUSD ? convertToUSD(netPrice) : netPrice);
-            document.getElementById('rackPrice').textContent = formatCurrency(showUSD ? convertToUSD(rackPrice) : rackPrice);
-            document.getElementById('finalPrice').textContent = formatCurrency(showUSD ? convertToUSD(finalPrice) : finalPrice);
-            document.getElementById('pricePerPax').textContent = formatCurrency(showUSD ? convertToUSD(pricePerPax) : pricePerPax);
+            // Update display - Final Prices
+            document.getElementById('rackPrice').textContent = formatCurrency(rackPrice);
+            document.getElementById('finalPrice').textContent = formatCurrency(finalPrice);
+            document.getElementById('pricePerPax').textContent = formatCurrency(pricePerPax);
 
-            // Update progress bars (percentages remain the same regardless of currency)
-            const costsPercent = finalPrice > 0 ? (totalGroupCost / finalPrice) * 100 : 0;
-            const expensesPercent = finalPrice > 0 ? ((contingencyAmount + adminAmount + operationalAmount + commissionAmount) / finalPrice) * 100 : 0;
+            // Update progress bars
+            const costsPercent = finalPrice > 0 ? (totalDirectCosts / finalPrice) * 100 : 0;
+            const expensesPercent = finalPrice > 0 ? (totalIndirectCosts / finalPrice) * 100 : 0;
             const profitPercent = finalPrice > 0 ? (netProfitAmount / finalPrice) * 100 : 0;
-            const ivaBarPercent = finalPrice > 0 ? (ivaAmount / finalPrice) * 100 : 0;
+            const commissionIvaPercent = finalPrice > 0 ? ((commissionAmount + ivaAmount) / finalPrice) * 100 : 0;
 
             document.getElementById('costsPercent').textContent = costsPercent.toFixed(1) + '%';
             document.getElementById('expensesPercent').textContent = expensesPercent.toFixed(1) + '%';
             document.getElementById('profitPercent').textContent = profitPercent.toFixed(1) + '%';
-            document.getElementById('ivaBarPercent').textContent = ivaBarPercent.toFixed(1) + '%';
+            document.getElementById('commissionIvaPercent').textContent = commissionIvaPercent.toFixed(1) + '%';
 
             document.getElementById('costsBar').style.width = costsPercent + '%';
             document.getElementById('expensesBar').style.width = expensesPercent + '%';
             document.getElementById('profitBar').style.width = profitPercent + '%';
-            document.getElementById('ivaBar').style.width = ivaBarPercent + '%';
-        }
-
-        // Format currency COP
-        function formatCurrencyCOP(amount) {
-            return '$' + Math.round(amount).toLocaleString('es-CO');
-        }
-
-        // Format currency USD
-        function formatCurrencyUSD(amount) {
-            return 'USD $' + amount.toFixed(2).toLocaleString('en-US');
+            document.getElementById('ivaBar').style.width = commissionIvaPercent + '%';
         }
 
         // Auto-calculate on input change
@@ -2034,3 +1963,4 @@
     </script>
 </body>
 </html>
+
