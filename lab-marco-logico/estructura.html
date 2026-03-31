@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura Final - Marco Lógico</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        const App = () => {
+            return (
+                <div style={{ fontFamily: 'sans-serif', padding: '20px' }}>
+                    <h1>Estructura del Curso: Marco Lógico</h1>
+                    <h2>Módulos Consilidados (De Legacy a Interactivo)</h2>
+                    <ul>
+                        <li><strong>Fase 1:</strong> Diagnóstico y Árbol de Problemas</li>
+                        <li><strong>Fase 2:</strong> Árbol de Objetivos y Alternativas</li>
+                        <li><strong>Fase 3:</strong> Matriz de Marco Lógico (Interactiva)</li>
+                        <li><strong>Fase 4:</strong> Diseño del Producto Turístico Territorial</li>
+                        <li><strong>Fase 5:</strong> Modelos de Negocio, Costeos y Finanzas</li>
+                        <li><strong>Fase 6:</strong> Comercialización, Guianza y Marca</li>
+                    </ul>
+                </div>
+            );
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
